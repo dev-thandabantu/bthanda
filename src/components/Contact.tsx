@@ -10,6 +10,17 @@ export default function Contact() {
         </p>
         <div className="flex flex-col gap-4">
           <a
+            href="/cv.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 hover:border-white/25 transition-all"
+          >
+            <span className="text-sm text-white/60 group-hover:text-white transition-colors">
+              View CV
+            </span>
+            <span className="text-white/25 group-hover:text-white/60 transition-colors text-sm">↗</span>
+          </a>
+          <a
             href="mailto:brightontandabantu@gmail.com"
             className="group flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 hover:border-white/25 transition-all"
           >

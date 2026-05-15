@@ -7,6 +7,7 @@ const links = [
   { label: "Recognition", href: "#recognition" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
+  { label: "CV", href: "/cv.html", external: true },
 ];
 
 export default function Nav() {
@@ -35,6 +36,8 @@ export default function Nav() {
             <a
               key={l.href}
               href={l.href}
+              target={l.external ? "_blank" : undefined}
+              rel={l.external ? "noopener noreferrer" : undefined}
               className="text-sm text-white/50 hover:text-white transition-colors"
             >
               {l.label}
