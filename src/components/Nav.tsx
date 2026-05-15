@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react";
 
-const links = [
+const links: { label: string; href: string; external?: boolean }[] = [
   { label: "Work", href: "#work" },
   { label: "Recognition", href: "#recognition" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
-  { label: "CV", href: "/cv.html", external: true },
+  { label: "CV", href: "/cv" },
 ];
 
 export default function Nav() {
