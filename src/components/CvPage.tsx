@@ -2,12 +2,19 @@
 
 import { useState } from "react";
 import { generateDocx } from "@/lib/generateDocx";
+import { generatePdf } from "@/lib/generatePdf";
 
 function DownloadBar() {
+  const [loadingPdf, setLoadingPdf] = useState(false);
   const [loadingDocx, setLoadingDocx] = useState(false);
 
-  const downloadPdf = () => {
-    window.print();
+  const downloadPdf = async () => {
+    setLoadingPdf(true);
+    try {
+      await generatePdf();
+    } finally {
+      setLoadingPdf(false);
+    }
   };
 
   const downloadDocx = async () => {
@@ -23,8 +30,8 @@ function DownloadBar() {
     <div className="download-bar">
       <span className="download-label">Brighton Tandabantu — CV</span>
       <div className="download-buttons">
-        <button onClick={downloadPdf} className="btn">
-          Download PDF
+        <button onClick={downloadPdf} disabled={loadingPdf} className="btn">
+          {loadingPdf ? "Generating..." : "Download PDF"}
         </button>
         <button onClick={downloadDocx} disabled={loadingDocx} className="btn btn-secondary">
           {loadingDocx ? "Generating..." : "Download Word (.docx)"}
@@ -164,7 +171,7 @@ export default function CvPage() {
 
       <DownloadBar />
 
-      <div className="cv-sheet">
+      <div className="cv-sheet" id="cv-content">
         {/* Header */}
         <div style={{ marginBottom: 24 }}>
           <div className="cv-name">Brighton Tandabantu</div>
