@@ -200,15 +200,14 @@ export async function generateDocx() {
           jobOrg("AgriData AI · Zimbabwe"),
           bullet("Built an AI system for Zimbabwe's agricultural sector, processing farmer and extension officer queries via a WhatsApp-native interface."),
           bullet("Deployed live pilots with the Migratory Pests & Biosecurity Control (MPBC) team within Zimbabwe's Ministry of Agriculture — system has processed 5,000+ messages from 22+ extension officers."),
-          bullet("Running an active pilot with the Tobacco Research Board (Kutsaga); in contract deliberations with the Zimbabwe Society of Agricultural and Environmental Sciences (ZSAES)."),
+          bullet("Running an active pilot with the Tobacco Research Board (Kutsaga); in contract deliberations with the Zimbabwe Sugarcane Association Experiment Station (ZSAES)."),
           bullet("Finalist, Kutsaga Innovation Challenge 2025."),
 
           jobHeader("Co-Founder & CEO", "Jun 2024 – Present"),
           jobOrg("AakiTech · Remote"),
           bullet("Founded and led AakiTech, building digital tools for African schools and small businesses in underserved, low-resource environments."),
           bullet("Built and led a cross-functional team of 7 — developers, business operations, and growth specialists."),
-          bullet("Tech-partnered a platform launch now serving 1,000+ users for an edtech startup, engineered for low-bandwidth, mobile-first environments."),
-          bullet("Designed and shipped Project PINDA — a digital inclusion initiative delivering recordkeeping, communication, and operational tools for SMEs and schools."),
+          bullet("Shipped multiple products across edtech and SME operations — including a platform now serving 1,000+ users, engineered for low-bandwidth, mobile-first environments."),
           bullet("Selected: Mastercard FAST Build 2024. 2nd place, Unity Challenge 2025 (AL for Professionals). Finalist, Kutsaga Innovation Challenge 2025."),
 
           jobHeader("Software Consultant", "Sep 2023 – Jun 2024"),

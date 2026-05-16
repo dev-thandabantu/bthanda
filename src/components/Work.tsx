@@ -10,11 +10,11 @@ const projects = [
   },
   {
     name: "AgriData AI",
-    url: null,
+    url: "https://agridata-ai.vercel.app/",
     role: "Founder",
     period: "2024 – present",
     description:
-      "AI system for Zimbabwe's agricultural sector. Currently running pilots with the Tobacco Research Board (Kutsaga), the Migratory Pests & Biosecurity Control team within the Ministry of Agriculture, and in active contract deliberations with ZSAES.",
+      "AI system for Zimbabwe's agricultural sector. Currently running pilots with the Tobacco Research Board (Kutsaga), the Migratory Pests & Biosecurity Control team within the Ministry of Agriculture, and in active contract deliberations with the Zimbabwe Sugarcane Association Experiment Station (ZSAES).",
     tags: ["AI", "Agriculture", "Zimbabwe", "Government"],
   },
   {
@@ -23,12 +23,12 @@ const projects = [
     role: "Co-founder & CEO",
     period: "2024 – present",
     description:
-      "Venture building digital tools for African schools and small businesses. Launched Project PINDA for SME operations. Built and led a cross-functional team. Tech-partnered a platform now serving 1,000+ users for an edtech startup. Recipients: Mastercard FAST Build 2024, Unity Challenge 2nd place 2025, Kutsaga Innovation Challenge finalist.",
+      "Venture building digital tools for African schools and small businesses in underserved, low-resource environments. Led a cross-functional team of 7 and shipped multiple products across edtech and SME operations — including a platform now serving 1,000+ users built for low-bandwidth, mobile-first environments. Recipients: Mastercard FAST Build 2024, Unity Challenge 2nd place 2025, Kutsaga Innovation Challenge finalist.",
     tags: ["Founder", "Edtech", "Africa", "Team leadership"],
   },
   {
     name: "BOQ Generator",
-    url: null,
+    url: "https://boq.aakitech.com",
     role: "Builder",
     period: "2025",
     description:
