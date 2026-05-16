@@ -19,7 +19,7 @@ const projects = [
   },
   {
     name: "AakiTech",
-    url: null,
+    url: "https://aakitech.com",
     role: "Co-founder & CEO",
     period: "2024 – present",
     description:
