@@ -3,16 +3,16 @@ const projects = [
     name: "AnchorBase",
     url: "https://anchorbase.xyz",
     role: "Co-founder & builder",
-    period: "2025 – present",
+    period: "Feb 2026 – present",
     description:
-      "AI-powered document search for engineers buried in codes, standards, and technical specs. Upload PDFs, ask natural language questions, get precise answers with citations. Built with React, FastAPI, Pinecone, xAI/Grok, Gemini, and Supabase. Near launch — actively onboarding pilot partners.",
-    tags: ["AI", "RAG", "FastAPI", "React", "Pinecone", "SaaS"],
+      "AI-powered document search for engineers buried in codes, standards, and technical specs. Upload PDFs, ask natural language questions, get precise answers with citations. Pivoted from Project Machine (Nov 2025) after deep work on document parsing and RAG pipelines revealed the bigger opportunity. Built with React, FastAPI, Pinecone, xAI/Grok, Gemini, and Supabase. Actively onboarding pilot partners.",
+    tags: ["AI", "RAG", "FastAPI", "React", "Pinecone", "SaaS", "Document Parsing"],
   },
   {
     name: "AgriData AI",
     url: "https://agridata-ai.vercel.app/",
     role: "Founder",
-    period: "2024 – present",
+    period: "2025 – present",
     description:
       "AI system for Zimbabwe's agricultural sector. Currently running pilots with the Tobacco Research Board (Kutsaga), the Migratory Pests & Biosecurity Control team within the Ministry of Agriculture, and in active contract deliberations with the Zimbabwe Sugarcane Association Experiment Station (ZSAES).",
     tags: ["AI", "Agriculture", "Zimbabwe", "Government"],

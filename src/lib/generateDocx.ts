@@ -187,16 +187,16 @@ export async function generateDocx() {
           // ── Work Experience ──
           sectionHeading("Work Experience"),
 
-          jobHeader("Co-Founder & AI Engineer", "Jan 2025 – Present"),
+          jobHeader("Co-Founder & AI Engineer", "Feb 2026 – Present"),
           jobOrg("AnchorBase · Remote"),
-          bullet("Built and shipped an AI-powered document search platform for engineers working with codes, standards, and technical specifications — enabling natural language Q&A with precise citations."),
+          bullet("Built and shipped an AI-powered document search platform for engineers working with codes, standards, and technical specifications — enabling natural language Q&A with precise citations. Pivoted from Project Machine (Nov 2025) after deep work on document parsing and RAG pipelines revealed the bigger opportunity."),
           bullet("Designed and implemented a full RAG pipeline: HyDE query expansion, embedding via Gemini gemini-embedding-001, semantic + keyword retrieval with RRF reranking, and hierarchical chunk expansion."),
           bullet("Architected multi-LLM routing: xAI/Grok for document Q&A; Gemini 2.5 Flash with Google Search grounding for internet-routed queries."),
           bullet("Built streaming answer delivery via SSE with real-time source citation, follow-up question generation, and an admin observability dashboard."),
           bullet("Stack: React + TypeScript (frontend), FastAPI + Python (backend), Pinecone (vector search), Supabase (Postgres + auth), Cloudflare R2 (storage)."),
           bullet("Onboarded 50+ organic users since launch; actively onboarding pilot partners."),
 
-          jobHeader("Founder & AI Engineer", "2024 – Present"),
+          jobHeader("Founder & AI Engineer", "2025 – Present"),
           jobOrg("AgriData AI · Zimbabwe"),
           bullet("Built an AI system for Zimbabwe's agricultural sector, processing farmer and extension officer queries via a WhatsApp-native interface."),
           bullet("Deployed live pilots with the Migratory Pests & Biosecurity Control (MPBC) team within Zimbabwe's Ministry of Agriculture — system has processed 5,000+ messages from 22+ extension officers."),

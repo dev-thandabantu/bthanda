@@ -209,11 +209,11 @@ export default function CvPage() {
           <div className="job">
             <div className="job-header">
               <span className="job-title">Co-Founder &amp; AI Engineer</span>
-              <span className="job-dates">Jan 2025 – Present</span>
+              <span className="job-dates">Feb 2026 – Present</span>
             </div>
             <div className="job-org">AnchorBase · Remote</div>
             <ul>
-              <li>Built and shipped an AI-powered document search platform for engineers working with codes, standards, and technical specifications — enabling natural language Q&amp;A with precise citations.</li>
+              <li>Built and shipped an AI-powered document search platform for engineers working with codes, standards, and technical specifications — enabling natural language Q&amp;A with precise citations. Pivoted from Project Machine (Nov 2025) after deep work on document parsing and RAG pipelines revealed the bigger opportunity.</li>
               <li>Designed and implemented a full RAG pipeline: HyDE query expansion, embedding via Gemini gemini-embedding-001, semantic + keyword retrieval with RRF reranking, and hierarchical chunk expansion.</li>
               <li>Architected multi-LLM routing: xAI/Grok for document Q&amp;A; Gemini 2.5 Flash with Google Search grounding for internet-routed queries.</li>
               <li>Built streaming answer delivery via SSE with real-time source citation, follow-up question generation, and an admin observability dashboard.</li>
@@ -225,7 +225,7 @@ export default function CvPage() {
           <div className="job">
             <div className="job-header">
               <span className="job-title">Founder &amp; AI Engineer</span>
-              <span className="job-dates">2024 – Present</span>
+              <span className="job-dates">2025 – Present</span>
             </div>
             <div className="job-org">AgriData AI · Zimbabwe</div>
             <ul>
