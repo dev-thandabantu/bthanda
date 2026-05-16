@@ -88,7 +88,7 @@ export async function generatePdf() {
     pdf.setFontSize(9.5);
     pdf.setFont("helvetica", "normal");
     setColor(DARK);
-    pdf.text("•", MARGIN + 1, y);
+    pdf.text("-", MARGIN + 1, y);
     pdf.text(lines, MARGIN + 5, y);
     y += lines.length * 4 + 0.5;
   };
@@ -136,11 +136,11 @@ export async function generatePdf() {
   setColor(MID);
   pdf.text("(+27) 64 129 5093", MARGIN, y);
   pdf.setTextColor(LINK[0], LINK[1], LINK[2]);
-  const phone = pdf.getTextWidth("(+27) 64 129 5093  ·  ");
+  const phone = pdf.getTextWidth("(+27) 64 129 5093   | ");
   pdf.text("brightontandabantu@gmail.com", MARGIN + phone, y);
-  const emailW = pdf.getTextWidth("brightontandabantu@gmail.com  ·  ");
+  const emailW = pdf.getTextWidth("brightontandabantu@gmail.com   | ");
   pdf.text("linkedin.com/in/bthanda", MARGIN + phone + emailW, y);
-  const liW = pdf.getTextWidth("linkedin.com/in/bthanda  ·  ");
+  const liW = pdf.getTextWidth("linkedin.com/in/bthanda   | ");
   pdf.text("bthanda.vercel.app", MARGIN + phone + emailW + liW, y);
   y += 5;
 
@@ -150,7 +150,7 @@ export async function generatePdf() {
   // ── SUMMARY ──
   sectionHeading("Professional Summary");
   const summary =
-    "AI engineer and founder with 4+ years of experience building and shipping full-stack software products. Deep hands-on expertise in RAG pipelines, LLM integration, vector search, and AI-powered SaaS. Currently co-founding AnchorBase — an AI document search platform for engineers — and leading AgriData AI, which is running live government pilots within Zimbabwe's Ministry of Agriculture. Proven record of taking products from zero to production, leading cross-functional teams, and securing recognition in competitive startup programs across Africa. Available for select freelance and contract engagements in AI engineering and full-stack development.";
+    "AI engineer and founder with 4+ years of experience building and shipping full-stack software products. Deep hands-on expertise in RAG pipelines, LLM integration, vector search, and AI-powered SaaS. Currently co-founding AnchorBase -an AI document search platform for engineers -and leading AgriData AI, which is running live government pilots within Zimbabwe's Ministry of Agriculture. Proven record of taking products from zero to production, leading cross-functional teams, and securing recognition in competitive startup programs across Africa. Available for select freelance and contract engagements in AI engineering and full-stack development.";
   const summaryLines = pdf.splitTextToSize(summary, CONTENT_W);
   pdf.setFontSize(9.5);
   pdf.setFont("helvetica", "normal");
@@ -161,38 +161,38 @@ export async function generatePdf() {
   // ── WORK EXPERIENCE ──
   sectionHeading("Work Experience");
 
-  jobHeader("Co-Founder & AI Engineer", "AnchorBase · Remote", "Feb 2026 – Present");
-  bullet("Built and shipped an AI-powered document search platform for engineers working with codes, standards, and technical specifications — enabling natural language Q&A with precise citations.");
-  bullet("Pivoted from Project Machine (Nov 2025) after deep work on document parsing and RAG pipelines revealed the bigger opportunity. Key insight: in RAG, parsing is the pipeline — document structure must be preserved at the pixel level before retrieval begins.");
+  jobHeader("Co-Founder & AI Engineer", "AnchorBase  |Remote", "Feb 2026 -Present");
+  bullet("Built and shipped an AI-powered document search platform for engineers working with codes, standards, and technical specifications -enabling natural language Q&A with precise citations.");
+  bullet("Pivoted from Project Machine (Nov 2025) after deep work on document parsing and RAG pipelines revealed the bigger opportunity. Key insight: in RAG, parsing is the pipeline -document structure must be preserved at the pixel level before retrieval begins.");
   bullet("Designed and implemented a full RAG pipeline: HyDE query expansion, Gemini embeddings, semantic + keyword retrieval with RRF reranking, and hierarchical chunk expansion.");
   bullet("Architected multi-LLM routing: xAI/Grok for document Q&A; Gemini 2.5 Flash with Google Search grounding for internet-routed queries.");
   bullet("Stack: React + TypeScript, FastAPI + Python, Pinecone, Supabase, Cloudflare R2. 50+ organic users; actively onboarding pilot partners.");
   y += 2;
 
-  jobHeader("Founder & AI Engineer", "AgriData AI · Zimbabwe", "2025 – Present");
+  jobHeader("Founder & AI Engineer", "AgriData AI  |Zimbabwe", "2025 -Present");
   bullet("Built an AI system for Zimbabwe's agricultural sector, processing queries via a WhatsApp-native interface.");
-  bullet("Deployed live pilots with the Migratory Pests & Biosecurity Control (MPBC) team within Zimbabwe's Ministry of Agriculture — 5,000+ messages from 22+ extension officers.");
+  bullet("Deployed live pilots with the Migratory Pests & Biosecurity Control (MPBC) team within Zimbabwe's Ministry of Agriculture -5,000+ messages from 22+ extension officers.");
   bullet("Active pilot with the Tobacco Research Board (Kutsaga); in contract deliberations with the Zimbabwe Sugarcane Association Experiment Station (ZSAES).");
   bullet("Finalist, Kutsaga Innovation Challenge 2025.");
   y += 2;
 
-  jobHeader("Co-Founder & CEO", "AakiTech · Remote", "Jun 2024 – Present");
+  jobHeader("Co-Founder & CEO", "AakiTech  |Remote", "Jun 2024 -Present");
   bullet("Founded and led AakiTech, building digital tools for African schools and small businesses in underserved, low-resource environments.");
-  bullet("Built and led a cross-functional team of 7 — developers, business operations, and growth specialists.");
-  bullet("Shipped multiple products across edtech and SME operations — including a platform now serving 1,000+ users, engineered for low-bandwidth, mobile-first environments.");
+  bullet("Built and led a cross-functional team of 7 -developers, business operations, and growth specialists.");
+  bullet("Shipped multiple products across edtech and SME operations -including a platform now serving 1,000+ users, engineered for low-bandwidth, mobile-first environments.");
   bullet("Selected: Mastercard FAST Build 2024. 2nd place, Unity Challenge 2025. Finalist, Kutsaga Innovation Challenge 2025.");
   y += 2;
 
-  jobHeader("Software Consultant", "Kindred for Business · London (Remote)", "Sep 2023 – Jun 2024");
+  jobHeader("Software Consultant", "Kindred for Business  |London (Remote)", "Sep 2023 -Jun 2024");
   bullet("Led migration of multiple C# Azure Functions applications to .NET 8 LTS, ensuring zero-downtime transitions.");
   bullet("Triaged and resolved backend bugs via Azure Function Monitor and Application Insights, improving system resilience.");
   y += 2;
 
-  jobHeader("Software Developer", "Full Stack (Pty) Ltd · Cape Town", "2021 – Sep 2023");
+  jobHeader("Software Developer", "Full Stack (Pty) Ltd  |Cape Town", "2021 -Sep 2023");
   bullet("Brokers Platform: OutSystems + ASP.NET Core; automated test suites with Selenium and Katalon.");
   bullet("Mortgage Application Platform: deployed on AWS; gRPC/Proto Buffers for frontend-backend communication.");
   bullet("Jupyter Data Science Portal: Angular frontend, ASP.NET Core + YARP middleware, JupyterHub on Azure Kubernetes Cluster with custom images on ACR.");
-  bullet("File Submission & Review System: led Umbraco 8 → 10 migration; Azure AD B2C + Blob Storage; delivered within 6-month timeline.");
+  bullet("File Submission & Review System: led Umbraco 8 to 10 migration; Azure AD B2C + Blob Storage; delivered within 6-month timeline.");
   y += 2;
 
   // ── SKILLS ──
@@ -208,23 +208,23 @@ export async function generatePdf() {
   // ── EDUCATION ──
   sectionHeading("Education");
 
-  jobHeader("BSc Computer Science", "University of Cape Town (UCT)", "2017 – 2021");
+  jobHeader("BSc Computer Science", "University of Cape Town (UCT)", "2017 -2021");
   bullet("Mastercard Foundation Scholar (full scholarship)");
-  bullet("Chairperson, Space & Astronomy Society · Co-Founder, SEDS South Africa — enrolled 3 universities, organized 10+ events nationally");
+  bullet("Chairperson, Space & Astronomy Society  |Co-Founder, SEDS South Africa -enrolled 3 universities, organized 10+ events nationally");
   bullet("Keynote speaker, 4th SA-GEO National Symposium, CSIR (2022)");
   y += 2;
 
-  jobHeader("O-Level & A-Level (ZIMSEC)", "Mt Selinda High School", "2010 – 2015");
-  bullet("Head Boy · 8 As and 1 B at O-Level · Recipient, United States Achievers Program (USAP)");
+  jobHeader("O-Level & A-Level (ZIMSEC)", "Mt Selinda High School", "2010 -2015");
+  bullet("Head Boy  |8 As and 1 B at O-Level  |Recipient, United States Achievers Program (USAP)");
   y += 2;
 
   // ── RECOGNITION ──
   sectionHeading("Recognition & Awards");
-  recItem("2026", "AIM Founding to Give 2026 Cohort — selected after multiple rigorous rounds");
-  recItem("2025", "Mastercard Foundation Scholars — Alumni Panellist");
-  recItem("2025", "Unity Challenge — 2nd Place (AL for Professionals)");
-  recItem("2025", "Kutsaga Innovation Challenge — Finalist");
-  recItem("2024", "Mastercard FAST Build — Recipient");
+  recItem("2026", "AIM Founding to Give 2026 Cohort -selected after multiple rigorous rounds");
+  recItem("2025", "Mastercard Foundation Scholars -Alumni Panellist");
+  recItem("2025", "Unity Challenge -2nd Place (AL for Professionals)");
+  recItem("2025", "Kutsaga Innovation Challenge -Finalist");
+  recItem("2024", "Mastercard FAST Build -Recipient");
 
   pdf.save("Brighton Tandabantu - CV.pdf");
 }
