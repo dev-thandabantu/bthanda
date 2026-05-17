@@ -24,7 +24,7 @@ const applications: Application[] = [
     status: "Applied",
     url: "https://jobs.ashbyhq.com/sweedpos.com/b2335d86-ace5-4773-acf4-3d5c89c2a008",
     notes:
-      "Cannabis retail SaaS (POS, eCommerce, Inventory, Analytics). 200+ people, remote-first, USD B2B contract. Role is full-cycle AI engineer — own features end-to-end using AI tools as core workflow. Strong fit: .NET, React, TypeScript, PostgreSQL, RAG, LLM integration all checked. Additional info answer described using Claude Code to fix mobile issues, scrape the JD, update CV, and apply — all in one session.",
+      "Cannabis retail SaaS (POS, eCommerce, Inventory, Analytics). 200+ people, remote-first, USD B2B contract. Role is full-cycle AI engineer — own features end-to-end using AI tools as core workflow. Strong fit: .NET, React, TypeScript, PostgreSQL, RAG, LLM integration all checked. Same session as the mobile fix: noticed the site wasn't mobile-optimised, fixed the nav (hamburger menu) and Work section header wrapping, shipped, then scraped the JD, assessed fit, updated CV to name Claude/Cursor/Copilot/Antigravity explicitly, and applied. Used the Additional Info field to describe exactly that — applying to an AI engineer role using AI tools to apply, as proof of the thing they're hiring for. Salary: $75k USD/year.",
   },
   {
     company: "Infinity Constellation (Everest)",
