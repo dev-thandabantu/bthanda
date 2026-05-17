@@ -18,6 +18,15 @@ type Application = {
 
 const applications: Application[] = [
   {
+    company: "Bolt.new (StackBlitz)",
+    role: "Senior Applied AI Engineer",
+    date: "2026-05-17",
+    status: "Applied",
+    url: "https://job-boards.greenhouse.io/stackblitz/jobs/4005254009",
+    notes:
+      "Bolt.new is StackBlitz's AI app builder — used by 1M+ developers. Role is building the AI agents that turn natural language into production apps: context management, multi-LLM orchestration, tool use, evals. TypeScript stack throughout. Cover letter led with AnchorBase RAG pipeline and AgriData AI government pilots. Removed a false claim about using Bolt.new (haven't opened it — use Lovable instead); replaced with honest framing about understanding the category from the user side. CV updated same session: TypeScript surfaced to top of languages, Vercel AI SDK added, new AnchorBase bullet on multi-step agent orchestration. Also applied for Staff AI Engineer but correctly self-selected down to Senior — Staff asked whether you've led AI architecture at scale across teams, which is a stretch right now.",
+  },
+  {
     company: "Sweed (SweedPos)",
     role: "AI Engineer",
     date: "2026-05-17",
