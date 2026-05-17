@@ -18,6 +18,15 @@ type Application = {
 
 const applications: Application[] = [
   {
+    company: "Sweed (SweedPos)",
+    role: "AI Engineer",
+    date: "2026-05-17",
+    status: "Applied",
+    url: "https://jobs.ashbyhq.com/sweedpos.com/b2335d86-ace5-4773-acf4-3d5c89c2a008",
+    notes:
+      "Cannabis retail SaaS (POS, eCommerce, Inventory, Analytics). 200+ people, remote-first, USD B2B contract. Role is full-cycle AI engineer — own features end-to-end using AI tools as core workflow. Strong fit: .NET, React, TypeScript, PostgreSQL, RAG, LLM integration all checked. Additional info answer described using Claude Code to fix mobile issues, scrape the JD, update CV, and apply — all in one session.",
+  },
+  {
     company: "Infinity Constellation (Everest)",
     role: "AI Engineer",
     date: "2026-05-17",
