@@ -63,20 +63,22 @@ export default function Work() {
         {projects.map((p) => (
           <div key={p.name} className="group">
             <div className="flex items-start justify-between gap-4 mb-2">
-              <div className="flex items-baseline gap-3">
-                {p.url ? (
-                  <a
-                    href={p.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-lg font-medium text-white hover:text-white/70 transition-colors"
-                  >
-                    {p.name} ↗
-                  </a>
-                ) : (
-                  <span className="text-lg font-medium text-white">{p.name}</span>
-                )}
-                <span className="text-sm text-white/30">{p.role}</span>
+              <div>
+                <div className="flex items-baseline gap-3 flex-wrap">
+                  {p.url ? (
+                    <a
+                      href={p.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-lg font-medium text-white hover:text-white/70 transition-colors"
+                    >
+                      {p.name} ↗
+                    </a>
+                  ) : (
+                    <span className="text-lg font-medium text-white">{p.name}</span>
+                  )}
+                  <span className="text-sm text-white/30">{p.role}</span>
+                </div>
               </div>
               <span className="text-sm text-white/25 shrink-0">{p.period}</span>
             </div>
