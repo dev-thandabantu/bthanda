@@ -32,8 +32,8 @@ const projects = [
     role: "Builder",
     period: "2026",
     description:
-      "SaaS tool that generates and prices Bills of Quantities from construction documents using AI. Full payment flow via Stripe. Built with Next.js, Gemini, and Supabase.",
-    tags: ["AI", "Construction", "Next.js", "Stripe", "SaaS"],
+      "AI-powered BOQ platform for the Zambian construction market. Upload a Scope of Work PDF and receive a structured, priced Bill of Quantities — or upload an unrated Excel BOQ and have AI fill in Zambian market rates calibrated to province, site accessibility, and margin. Generation runs as a 7-step async pipeline (Inngest) to handle large documents beyond serverless limits. Rates are grounded by a vector-indexed library of real Zambian construction data. Full payment gate via Stripe, Google OAuth, in-browser BOQ editor with auto-save, Excel export in Zambian tender format, and AI edit assistant. Built with Next.js, Gemini 2.5, Supabase, Inngest, Stripe, PostHog, and Sentry.",
+    tags: ["AI", "Construction", "Zambia", "Next.js", "Stripe", "Inngest", "RAG", "SaaS"],
   },
   {
     name: "Auto Tuck Shop",

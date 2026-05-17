@@ -268,6 +268,22 @@ export default function CvPage() {
 
           <div className="job">
             <div className="job-header">
+              <span className="job-title">Builder</span>
+              <span className="job-dates">2026</span>
+            </div>
+            <div className="job-org">BOQ Generator · Remote</div>
+            <ul>
+              <li>Built an AI-powered Bill of Quantities platform for the Zambian construction market — upload a Scope of Work PDF, receive a structured and priced BOQ; or upload an unrated Excel BOQ and have AI fill Zambian market rates calibrated to province, site accessibility, labour source, and margin.</li>
+              <li>Architected a 7-step async generation pipeline using Inngest to handle large documents beyond Vercel's serverless timeout limits: extract → structure → save → rate-fill → QA → save → notify.</li>
+              <li>Built a vector-indexed rate library (pgvector) sourced from real Zambian construction BOQs, used to ground AI pricing with temporal rate anchors — rates carry <code>rate_date</code> for auditability.</li>
+              <li>Implemented full payment gate via Stripe (dynamic pricing by BOQ size and item count), Google OAuth, in-browser BOQ editor with auto-save, Excel export in Zambian tender format, and a streaming AI edit assistant.</li>
+              <li>Observability stack: Sentry (errors + session replay), PostHog (server events), structured JSON logging, Upstash Redis rate limiting, Inngest dashboard for per-step execution traces.</li>
+              <li>Stack: Next.js 15, TypeScript, Supabase (Postgres + RLS), Gemini 2.5 Pro/Flash, Inngest, Stripe, Vercel.</li>
+            </ul>
+          </div>
+
+          <div className="job">
+            <div className="job-header">
               <span className="job-title">Software Consultant</span>
               <span className="job-dates">Sep 2023 – Jun 2024</span>
             </div>
