@@ -18,6 +18,15 @@ type Application = {
 
 const applications: Application[] = [
   {
+    company: "Infinity Constellation (Everest)",
+    role: "AI Engineer",
+    date: "2026-05-17",
+    status: "Applied",
+    url: "https://www.infinityconstellation.com/openings?ashby_jid=e84aea13-1d51-4a4e-b179-0d9a3cb890ae",
+    notes:
+      "AI holding company. Everest is their tech-enabled executive assistant service. Role involves building AI infrastructure and automation for service delivery. Quick/straightforward application.",
+  },
+  {
     company: "Huzzle (client placement)",
     role: "AI Engineer",
     date: "2026-05-17",
