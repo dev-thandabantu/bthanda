@@ -194,9 +194,11 @@ export default function CvPage() {
             Deep hands-on expertise in RAG pipelines, LLM integration, vector search, and AI-powered SaaS.
             Currently co-founding AnchorBase — an AI document search platform for engineers — and leading
             AgriData AI, which is running live government pilots within Zimbabwe&apos;s Ministry of Agriculture.
-            Proven record of taking products from zero to production, leading cross-functional teams, and
-            securing recognition in competitive startup programs across Africa. Available for select
-            freelance and contract engagements in AI engineering and full-stack development.
+            Works AI-natively: Claude, Cursor, GitHub Copilot, and Antigravity are active parts of the daily
+            development workflow — used for agentic task execution, plan-mode iteration, prompt engineering,
+            and output verification. Proven record of taking products from zero to production, leading
+            cross-functional teams, and securing recognition in competitive startup programs across Africa.
+            Available for select freelance and contract engagements in AI engineering and full-stack development.
           </p>
         </section>
 
@@ -290,6 +292,7 @@ export default function CvPage() {
             <div className="skill-row"><span className="skill-label">Frameworks &amp; Libraries</span><span className="skill-value">FastAPI, ASP.NET Core, Next.js, React, Angular, Blazor, Flutter, Django, Entity Framework Core</span></div>
             <div className="skill-row"><span className="skill-label">Databases &amp; Storage</span><span className="skill-value">PostgreSQL, SQL Server, Supabase, Firebase, Pinecone, Azure Blob Storage, Cloudflare R2</span></div>
             <div className="skill-row"><span className="skill-label">Cloud &amp; Infrastructure</span><span className="skill-value">Microsoft Azure (Functions, AKS, ACR, AD B2C, Application Insights), AWS, Google Cloud, Docker, CI/CD, Vercel, Fly.io</span></div>
+            <div className="skill-row"><span className="skill-label">AI Dev Tools</span><span className="skill-value">Claude (Claude Code), Cursor, GitHub Copilot, Antigravity — daily agentic workflow, plan-mode iteration, prompt engineering, output verification</span></div>
             <div className="skill-row"><span className="skill-label">Tools &amp; Practices</span><span className="skill-value">Git, GitHub, Azure DevOps, Scrum, Kanban, Jupyter, OutSystems, YARP, gRPC, Selenium, Katalon</span></div>
           </div>
         </section>
