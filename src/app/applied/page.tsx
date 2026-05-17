@@ -18,6 +18,15 @@ type Application = {
 
 const applications: Application[] = [
   {
+    company: "Huzzle (client placement)",
+    role: "AI Engineer",
+    date: "2026-05-17",
+    status: "Applied",
+    url: "https://apply.workable.com/huzzle/j/172A019A2A/",
+    notes:
+      "Huzzle places you in-house with a client company. Full-time, independent contractor. JD: LLMs, RAG, Python, scalable APIs, MLOps. Submitted CV + tools/industries answers + cover letter leading with AnchorBase RAG pipeline and AgriData AI government pilots.",
+  },
+  {
     company: "DeepMetis",
     role: "Senior AI Engineer",
     date: "2026-05-17",
