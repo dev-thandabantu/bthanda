@@ -30,7 +30,7 @@ const projects = [
     name: "BOQ Generator",
     url: "https://boq.aakitech.com",
     role: "Builder",
-    period: "2025",
+    period: "2026",
     description:
       "SaaS tool that generates and prices Bills of Quantities from construction documents using AI. Full payment flow via Stripe. Built with Next.js, Gemini, and Supabase.",
     tags: ["AI", "Construction", "Next.js", "Stripe", "SaaS"],
@@ -39,7 +39,7 @@ const projects = [
     name: "Auto Tuck Shop",
     url: null,
     role: "Builder",
-    period: "2025",
+    period: "2026",
     description:
       "WhatsApp AI assistant for Zimbabwean tuckshop owners. Owners send voice or text messages about sales — the bot records inventory, tracks revenue, and surfaces insights. Built with Django, Meta WhatsApp Business API, OpenRouter (Gemini), and ElevenLabs.",
     tags: ["AI", "WhatsApp", "Django", "Zimbabwe", "Voice"],
@@ -48,7 +48,7 @@ const projects = [
     name: "Living Portraits",
     url: null,
     role: "Builder",
-    period: "2025 – present",
+    period: "2026 – present",
     description:
       "A private app built for two users — me and my partner. We each build an evolving portrait of the other from our own point of view, then interact with a simulation of that portrait to test its accuracy. On top of that: a shared financial advisor that knows both of us, tracks our income and spending in rands, and gives grounded, context-aware advice. Not a product. A tool we actually live inside.",
     tags: ["AI", "Agents", "Personal", "Next.js", "OpenAI", "Gemini"],
