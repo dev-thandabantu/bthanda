@@ -219,6 +219,7 @@ export default function CvPage() {
               <li>Designed and implemented a full RAG pipeline: HyDE query expansion, embedding via Gemini gemini-embedding-001, semantic + keyword retrieval with RRF reranking, and hierarchical chunk expansion.</li>
               <li>Architected multi-LLM routing: xAI/Grok for document Q&amp;A; Gemini 2.5 Flash with Google Search grounding for internet-routed queries.</li>
               <li>Built streaming answer delivery via SSE with real-time source citation, follow-up question generation, and an admin observability dashboard.</li>
+              <li>Implemented multi-step agent workflows: intent classification, query routing, context retrieval, answer generation, and follow-up suggestion — each step orchestrated as a discrete agent action with fallback handling.</li>
               <li>Stack: React + TypeScript (frontend), FastAPI + Python (backend), Pinecone (vector search), Supabase (Postgres + auth), Cloudflare R2 (storage).</li>
               <li>Onboarded 50+ organic users since launch; actively onboarding pilot partners.</li>
             </ul>
@@ -288,8 +289,8 @@ export default function CvPage() {
           <h2>Skills</h2>
           <div className="skills-grid">
             <div className="skill-row"><span className="skill-label">AI &amp; Machine Learning</span><span className="skill-value">RAG pipelines, LLM integration, vector search, embeddings, HyDE, prompt engineering, OpenAI, Gemini, xAI/Grok, OpenRouter, ElevenLabs</span></div>
-            <div className="skill-row"><span className="skill-label">Languages</span><span className="skill-value">Python, C#, TypeScript, JavaScript, Dart, SQL</span></div>
-            <div className="skill-row"><span className="skill-label">Frameworks &amp; Libraries</span><span className="skill-value">FastAPI, ASP.NET Core, Next.js, React, Angular, Blazor, Flutter, Django, Entity Framework Core</span></div>
+            <div className="skill-row"><span className="skill-label">Languages</span><span className="skill-value">TypeScript, Python, C#, JavaScript, Dart, SQL</span></div>
+            <div className="skill-row"><span className="skill-label">Frameworks &amp; Libraries</span><span className="skill-value">Vercel AI SDK, FastAPI, ASP.NET Core, Next.js, React, Angular, Blazor, Flutter, Django, Entity Framework Core</span></div>
             <div className="skill-row"><span className="skill-label">Databases &amp; Storage</span><span className="skill-value">PostgreSQL, SQL Server, Supabase, Firebase, Pinecone, Azure Blob Storage, Cloudflare R2</span></div>
             <div className="skill-row"><span className="skill-label">Cloud &amp; Infrastructure</span><span className="skill-value">Microsoft Azure (Functions, AKS, ACR, AD B2C, Application Insights), AWS, Google Cloud, Docker, CI/CD, Vercel, Fly.io</span></div>
             <div className="skill-row"><span className="skill-label">AI Dev Tools</span><span className="skill-value">Claude (Claude Code), Cursor, GitHub Copilot, Antigravity — daily agentic workflow, plan-mode iteration, prompt engineering, output verification</span></div>
