@@ -156,6 +156,19 @@ export default function CvPage() {
         .rec-year { color: #777; min-width: 36px; }
         .rec-text { color: #222; }
 
+        @media (max-width: 600px) {
+          .download-bar { padding: 0 16px; gap: 8px; }
+          .download-label { display: none; }
+          .cv-sheet { padding: 24px 18px; margin: 60px auto 32px; }
+          .cv-name { font-size: 17pt; }
+          .cv-title { font-size: 11pt; }
+          .job-header { flex-direction: column; gap: 1px; }
+          .job-dates { font-size: 9.5pt; }
+          .edu-header { flex-direction: column; gap: 1px; }
+          .skill-row { flex-direction: column; gap: 1px; }
+          .skill-label { min-width: unset; }
+        }
+
         @media print {
           .download-bar { display: none !important; }
           body { background: #fff; }
