@@ -44,6 +44,15 @@ const projects = [
       "WhatsApp AI assistant for Zimbabwean tuckshop owners. Owners send voice or text messages about sales — the bot records inventory, tracks revenue, and surfaces insights. Built with Django, Meta WhatsApp Business API, OpenRouter (Gemini), and ElevenLabs.",
     tags: ["AI", "WhatsApp", "Django", "Zimbabwe", "Voice"],
   },
+  {
+    name: "Living Portraits",
+    url: null,
+    role: "Builder",
+    period: "2025 – present",
+    description:
+      "A private app built for two users — me and my partner. We each build an evolving portrait of the other from our own point of view, then interact with a simulation of that portrait to test its accuracy. On top of that: a shared financial advisor that knows both of us, tracks our income and spending in rands, and gives grounded, context-aware advice. Not a product. A tool we actually live inside.",
+    tags: ["AI", "Agents", "Personal", "Next.js", "OpenAI", "Gemini"],
+  },
 ];
 
 export default function Work() {

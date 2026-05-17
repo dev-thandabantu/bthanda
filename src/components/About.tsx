@@ -33,6 +33,16 @@ export default function About() {
         <p>
           Outside of work: six years of serious mindfulness practice, philosophy, effective altruism,
           and a quiet mission to change the trajectory of my family&apos;s lineage.
+          Some of it I&apos;ve{" "}
+          <a
+            href="https://dev-thandabantu.github.io/conversation-we-didnt-finish/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/70 underline underline-offset-4 decoration-white/20 hover:decoration-white/60 transition-all"
+          >
+            written down
+          </a>
+          .
         </p>
 
         <div className="pt-4">
