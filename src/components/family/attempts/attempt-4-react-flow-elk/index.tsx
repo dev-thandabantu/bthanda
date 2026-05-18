@@ -124,7 +124,7 @@ const PersonNode = memo(({ data, selected }: NodeProps) => {
         alignItems: 'center',
         justifyContent: 'center',
         opacity: dead ? 0.35 : 1,
-        cursor: 'pointer',
+        cursor: 'grab',
         boxShadow: selected ? `0 0 0 1px ${a}66` : undefined,
       }}
     >
@@ -163,7 +163,7 @@ const WifeNode = memo(({ data, selected }: NodeProps) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        cursor: 'pointer',
+        cursor: 'grab',
         boxShadow: selected ? `0 0 0 1px ${a}55` : undefined,
       }}
     >
@@ -299,7 +299,7 @@ function FamilyFlowInner() {
           fitViewOptions={{ padding: 0.12 }}
           minZoom={0.03}
           maxZoom={3}
-          nodesDraggable={false}
+          nodesDraggable={true}
           nodesConnectable={false}
           elementsSelectable={true}
           colorMode="dark"
