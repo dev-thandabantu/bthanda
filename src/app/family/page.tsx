@@ -2,7 +2,9 @@ import type { Metadata } from 'next'
 import FamilyStats from '@/components/FamilyStats'
 import Attempt1Loader from '@/components/family/attempts/attempt-1-react-d3-tree/Loader'
 import Attempt2Loader from '@/components/family/attempts/attempt-2-family-chart/Loader'
+import Attempt3Loader from '@/components/family/attempts/attempt-3-cytoscape/Loader'
 import AttemptSection from '@/components/family/AttemptSection'
+import ChallengeBlock from '@/components/family/ChallengeBlock'
 
 export const metadata: Metadata = {
   title: 'Family — Brighton Tandabantu',
@@ -101,7 +103,7 @@ export default function FamilyPage() {
           <AttemptSection
             number={2}
             title="family-chart — ancestor-rooted, split by lineage"
-            status="current"
+            status="abandoned"
             verdict="Right direction, not fully resolved"
             what={<>
               Dropped the ego-center model. Ifraim Musabani (maternal) and Wilson Maphutukezi (paternal) are the
@@ -135,6 +137,97 @@ export default function FamilyPage() {
             <Attempt2Loader />
           </AttemptSection>
 
+          <AttemptSection
+            number={3}
+            title="Cytoscape.js — union node model"
+            status="current"
+            verdict="First approach to correctly model polygamy"
+            what={<>
+              Each wife-grandfather pairing becomes an invisible &ldquo;union node&rdquo; in the graph.
+              Children attach to the union node rather than directly to the grandfather — so &ldquo;children of Wilson and Wife 1&rdquo;
+              is structurally distinct from &ldquo;children of Wilson and Wife 2&rdquo;.
+              Built on <a href="https://js.cytoscape.org" target="_blank" rel="noopener noreferrer">Cytoscape.js</a> with the{' '}
+              <a href="https://github.com/cytoscape/cytoscape.js-dagre" target="_blank" rel="noopener noreferrer">dagre layout</a> for top-down generational ordering.
+              Inspired by <a href="https://github.com/BeepBeep84/family-tree" target="_blank" rel="noopener noreferrer">this approach</a> of
+              using invisible coupling nodes to represent partnerships.
+            </>}
+            problem={<>
+              Dagre is a generic directed-graph layout algorithm — it doesn&apos;t know about generations,
+              so sibling ordering and generational alignment require manual nudging.
+              Union nodes being invisible means edge routing sometimes produces visually confusing connector paths.
+              The library handles zoom/pan natively, but canvas-based rendering means no DOM-level accessibility.
+            </>}
+            learned={<>
+              The union node pattern solves the data modelling problem that defeats every genealogy library —
+              it correctly represents simultaneous multi-partner structures without the GEDCOM workaround of
+              separate family records. This is the &ldquo;couple concept&rdquo; node described in the{' '}
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6170727/" target="_blank" rel="noopener noreferrer">Lineage system paper</a>.
+              The challenge is now layout rather than data model.
+            </>}
+          >
+            <Attempt3Loader />
+          </AttemptSection>
+
+          <AttemptSection
+            number={4}
+            title="React Flow + ELK — coming soon"
+            status="experimental"
+            verdict="Most promising remaining option"
+            what={<>
+              <a href="https://reactflow.dev" target="_blank" rel="noopener noreferrer">React Flow</a> (xyflow) is the
+              current standard for interactive node graphs in React — DOM-based, accessible, well-maintained.
+              Paired with <a href="https://eclipse.dev/elk/" target="_blank" rel="noopener noreferrer">ELK</a> (Eclipse Layout Kernel),
+              which has a dedicated hierarchical layout algorithm designed for genealogy-style graphs.
+              Reference: <a href="https://reactflow.dev/examples/layout/elkjs" target="_blank" rel="noopener noreferrer">React Flow + ELK example</a>.
+            </>}
+            problem={<>
+              Not yet attempted. The union node pattern from Attempt 3 would carry over — ELK&apos;s
+              &ldquo;mrtree&rdquo; or &ldquo;layered&rdquo; algorithm may produce better generational alignment than dagre.
+              Main unknown: whether ELK handles the union-node topology cleanly or fights it.
+            </>}
+            learned={<>
+              Documented as the next attempt. React Flow&apos;s DOM-based rendering would allow CSS
+              styling, accessibility, and easier custom node components — advantages over Cytoscape&apos;s canvas approach.
+            </>}
+          >
+            <div className="h-full flex items-center justify-center text-white/20 text-sm">
+              Not yet built.
+            </div>
+          </AttemptSection>
+
+          <AttemptSection
+            number={5}
+            title="Custom generational SVG renderer — coming soon"
+            status="experimental"
+            verdict="Highest effort, best long-term result"
+            what={<>
+              Build from scratch: people positioned by generation row, no library assumptions
+              about family structure. Full control over connector routing, sibling spacing, and
+              multi-wife layout. Reference algorithm:{' '}
+              <a href="https://gojs.net/latest/samples/genogram.html" target="_blank" rel="noopener noreferrer">GoJS genogram sample</a>,
+              which uses a custom layout pass specifically for kinship diagrams.
+            </>}
+            problem={<>
+              Not yet attempted. Estimated to be the most complex implementation —
+              generational layout with correct connector routing for union nodes is a non-trivial
+              graph drawing problem. Worth doing if Attempts 3 and 4 don&apos;t fully satisfy.
+            </>}
+            learned={<>
+              The fallback if every library proves insufficient. A custom renderer means
+              writing the layout algorithm — but it&apos;s the only path to an implementation
+              that makes zero assumptions about family structure.
+            </>}
+          >
+            <div className="h-full flex items-center justify-center text-white/20 text-sm">
+              Not yet built.
+            </div>
+          </AttemptSection>
+
+        </div>
+
+        {/* ── Challenge ── */}
+        <div className="mt-24">
+          <ChallengeBlock />
         </div>
 
         {/* ── Footer ── */}
