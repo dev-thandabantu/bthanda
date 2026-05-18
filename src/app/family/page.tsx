@@ -60,8 +60,8 @@ export default function FamilyPage() {
               Every genealogy library I tried quietly panics at it.
             </p>
             <p>
-              Five attempts to get this right are documented below — what each one tried, where it broke,
-              and what it taught me. Attempt 5 finally solved the rendering. The problem that&apos;s left
+              Six attempts to get this right are documented below — what each one tried, where it broke,
+              and what it taught me. Attempt 5 is the most functional renderer so far. The problem that&apos;s left
               isn&apos;t technical.
             </p>
           </div>
@@ -207,7 +207,7 @@ export default function FamilyPage() {
           <AttemptSection
             number={5}
             title="Custom generational SVG renderer"
-            status="abandoned"
+            status="current"
             verdict="No library — full control over layout"
             what={<>
               No layout library at all. Positions are computed in a pure JS layout pass:
@@ -226,8 +226,9 @@ export default function FamilyPage() {
               The wife-cluster grouping — centering a wife node over her children with a kinship bracket —
               is about 30 lines of geometry. Every attempt before this spent more than 30 lines working
               around library assumptions that prevented exactly this grouping.
-              The rendering is done. The open problem now is data: 218 people documented,
-              an unknown number still untraced, and most of the family reachable only by WhatsApp.
+              This is the working baseline. Attempt 6 experiments with a different layout axis off this same foundation.
+              The open problem now is data: 218 people documented, an unknown number still untraced,
+              and most of the family reachable only by WhatsApp.
             </>}
           >
             <Attempt5Loader />
@@ -292,7 +293,8 @@ export default function FamilyPage() {
         <div className="mt-24 pt-8 border-t border-white/[0.06] max-w-2xl">
           <p className="text-xs text-white/20 leading-relaxed">
             Data sourced from family conversations, memory, and ongoing research.
-            If you&apos;re family and see an error — or want to be added — reach out.
+            If you&apos;re family and see an error — or want to be added —{' '}
+            <a href="mailto:brightontandabantu@gmail.com?subject=Family%20tree" className="underline underline-offset-2 hover:text-white/40 transition-colors">reach out</a>.
           </p>
         </div>
 
