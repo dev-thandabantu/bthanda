@@ -4,6 +4,7 @@ import Attempt1Loader from '@/components/family/attempts/attempt-1-react-d3-tree
 import Attempt2Loader from '@/components/family/attempts/attempt-2-family-chart/Loader'
 import Attempt3Loader from '@/components/family/attempts/attempt-3-cytoscape/Loader'
 import Attempt4Loader from '@/components/family/attempts/attempt-4-react-flow-elk/Loader'
+import Attempt5Loader from '@/components/family/attempts/attempt-5-custom-svg/Loader'
 import AttemptSection from '@/components/family/AttemptSection'
 import ChallengeBlock from '@/components/family/ChallengeBlock'
 
@@ -172,7 +173,7 @@ export default function FamilyPage() {
           <AttemptSection
             number={4}
             title="React Flow + ELK — layered layout"
-            status="current"
+            status="abandoned"
             verdict="Better layout, same data model"
             what={<>
               Same union-node data model as Attempt 3, but swapped the renderer and layout engine.{' '}
@@ -204,30 +205,29 @@ export default function FamilyPage() {
 
           <AttemptSection
             number={5}
-            title="Custom generational SVG renderer — coming soon"
-            status="experimental"
-            verdict="Highest effort, best long-term result"
+            title="Custom generational SVG renderer"
+            status="current"
+            verdict="No library — full control over layout"
             what={<>
-              Build from scratch: people positioned by generation row, no library assumptions
-              about family structure. Full control over connector routing, sibling spacing, and
-              multi-wife layout. Reference algorithm:{' '}
-              <a href="https://gojs.net/latest/samples/genogram.html" target="_blank" rel="noopener noreferrer">GoJS genogram sample</a>,
-              which uses a custom layout pass specifically for kinship diagrams.
+              No layout library at all. Positions are computed in a pure JS layout pass:
+              people grouped by generation row, children sub-grouped by wife into visual clusters,
+              wife node centred over her children, kinship brackets drawn as explicit SVG paths.
+              Zoom and pan via pointer events on a native <code>&lt;svg&gt;</code> element.
             </>}
             problem={<>
-              Not yet attempted. Estimated to be the most complex implementation —
-              generational layout with correct connector routing for union nodes is a non-trivial
-              graph drawing problem. Worth doing if Attempts 3 and 4 don&apos;t fully satisfy.
+              The layout pass is hand-coded, which means edge cases (nodes without a wife match,
+              deeply-nested descendants, siblings that appear in both lineages) need explicit handling.
+              Very wide generations still require horizontal scrolling — the constraint of a fixed
+              viewport hasn&apos;t changed, only the clarity of the layout within it.
             </>}
             learned={<>
-              The fallback if every library proves insufficient. A custom renderer means
-              writing the layout algorithm — but it&apos;s the only path to an implementation
-              that makes zero assumptions about family structure.
+              Writing the layout algorithm takes less code than fighting a library.
+              The wife-cluster grouping — centering a wife node over her children with a kinship bracket —
+              is about 30 lines of geometry. Every attempt before this spent more than 30 lines working
+              around library assumptions that prevented exactly this grouping.
             </>}
           >
-            <div className="h-full flex items-center justify-center text-white/20 text-sm">
-              Not yet built.
-            </div>
+            <Attempt5Loader />
           </AttemptSection>
 
         </div>
