@@ -10,7 +10,7 @@ export const cvHeader = {
 };
 
 export const cvSummary =
-  "Production AI and software engineer with 4+ years of experience designing, building, and operating end-to-end AI systems in Python and TypeScript. Specialises in RAG pipelines (query refinement, intent routing, blended reranking, metadata hydration), multi-step agent orchestration with tool use and structured output, async pipeline architecture (Inngest), and real-time inference APIs with full observability. Hands-on experience with Azure (Functions, AKS, ACR, Application Insights, AD B2C), Docker, CI/CD, and cloud-native deployment. Currently co-founding AnchorBase (London), an AI document search platform with 50+ users, and leading AgriData AI with live government pilots within Zimbabwe's Ministry of Agriculture. Works AI-natively with agentic tooling (Claude, Cursor, Copilot, Antigravity) as core development workflow.";
+  "Production AI and software engineer with 4+ years of experience designing, building, and operating end-to-end AI systems in Python and TypeScript. Specialises in RAG pipelines (query refinement, intent routing, blended reranking), multi-step agent orchestration with tool use and structured output, async pipeline architecture (Inngest), and real-time inference APIs with full observability. Hands-on experience with Azure, Docker, CI/CD, and cloud-native deployment. Currently co-founding AnchorBase (London), an AI document search platform with 50+ users, and leading AgriData AI with live government pilots within Zimbabwe's Ministry of Agriculture. Works AI-natively with agentic tooling (Claude, Cursor, Copilot, Antigravity) as core development workflow.";
 
 export interface CvJob {
   title: string;
