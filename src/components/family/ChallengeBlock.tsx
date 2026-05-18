@@ -57,9 +57,9 @@ export default function ChallengeBlock() {
             <li>→ Land in Chifiti, Mozambique — actual land, where my grandfather&apos;s brother is chief</li>
             <li>→ The biggest family party you&apos;ve ever been to. 218 people minimum, probably more by the time this gets solved. Proper food, proper music.</li>
             <li>→ I&apos;m going to try to get{' '}
-              <a href="https://www.youtube.com/@SonnyDickson" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.youtube.com/@BestEverFoodReviewShow" target="_blank" rel="noopener noreferrer"
                 className="text-white/40 underline underline-offset-2 hover:text-white/60 transition-colors">
-                Sunny
+                Sonny Side
               </a>
               {' '}to come eat with us. No promises. High ambition.</li>
             <li>→ Also going to try to get MrBeast involved somehow. No plan yet. It&apos;ll come to me.</li>
@@ -69,6 +69,44 @@ export default function ChallengeBlock() {
             Family party subject to everyone showing up, which historically has not been a problem.
           </p>
         </div>
+
+        {/* ── Creator pitch ── */}
+        <div className="mt-10 pt-8 border-t border-white/[0.06]">
+          <p className="text-[10px] uppercase tracking-widest text-white/20 mb-5">If you make things for the internet</p>
+
+          <div className="space-y-4 text-sm leading-relaxed text-white/45">
+            <p>
+              This is a real story with a real arc: a family spread across three countries, two grandfathers
+              with eight wives between them, a chieftaincy in Mozambique nobody talks about, and a
+              grandson in Cape Town who built a custom genealogy renderer because every existing tool
+              quietly breaks on polygamous family structures.
+            </p>
+            <p>
+              The video writes itself. The party already exists — it just hasn&apos;t happened yet.
+              The land in Chifiti is real. The 218 people (and counting) are real.
+              The tech angle is real — six documented attempts at a layout algorithm that can handle
+              a family that looks nothing like a binary tree.
+            </p>
+            <p className="text-white/30">
+              If you&apos;re a creator — or you&apos;re with one — and this feels like something:
+            </p>
+          </div>
+
+          <a
+            href="mailto:brightontandabantu@gmail.com?subject=Family%20tree%20%2F%20Chifiti"
+            className="inline-flex items-center gap-2 mt-6 px-5 py-2.5 rounded-full border border-white/15 text-sm text-white/60 hover:text-white/90 hover:border-white/30 transition-all"
+          >
+            Get in touch
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M2 10L10 2M10 2H4M10 2v6" />
+            </svg>
+          </a>
+
+          <p className="mt-4 text-[11px] text-white/15 leading-relaxed">
+            Especially if your partner works in tech and you&apos;ve been looking for a reason to go to Zimbabwe.
+          </p>
+        </div>
+
       </div>
     </div>
   )
