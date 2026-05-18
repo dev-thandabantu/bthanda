@@ -236,29 +236,29 @@ export default function FamilyPage() {
           <AttemptSection
             number={6}
             title="Custom dendrogram — vertical sibling stacking"
-            status="current"
-            verdict="Trading width for height"
+            status="abandoned"
+            verdict="Right idea, broke on deep families"
             what={<>
               Same data model and SVG renderer as attempt 5, but the layout algorithm is flipped.
               Instead of siblings spreading horizontally in a row, each wife&apos;s children stack
               vertically in a column beneath her. Clusters of siblings grow downward; multiple
-              wife-columns spread rightward under each grandparent. The tree is tall and narrow
-              rather than wide and flat.
+              wife-columns spread rightward under each grandparent.
             </>}
             problem={<>
-              Generational alignment is gone. In attempt 5, all of Ifraim&apos;s grandchildren sit
-              on the same horizontal baseline regardless of which wife they come from — you can
-              scan a generation left-to-right. In the dendrogram, Wife 1&apos;s children may extend
-              further down the page than Wife 2&apos;s, so cousins of the same generation end up at
-              different y-positions. Cross-wife generational comparison becomes harder to read at a
-              glance.
+              The column model assumes each wife&apos;s subtree is self-contained — but descendants
+              of children (cousins, second cousins) also need to stack in the same column, and those
+              subtrees have wildly different depths. A wife with one child who has eight grandchildren
+              produces a column 10x taller than a wife with eight children who have none. Adjacent
+              columns at completely different depths collide visually and the layout becomes
+              unreadable. The approach works for one-generation families; it breaks on real ones.
             </>}
             learned={<>
-              Width vs height is a genuine tradeoff, not an improvement. The dendrogram is better
-              on mobile and better when you care about &ldquo;which wife&apos;s line is this?&rdquo; — the
-              vertical column makes that grouping immediately obvious. But it makes
-              &ldquo;what generation is this person?&rdquo; harder to answer visually. The right layout
-              depends on which question the viewer is trying to answer.
+              Dendrogram layout requires a sub-tree width calculation before placing anything —
+              you need to know how deep each subtree goes before deciding how wide each column
+              should be. A single-pass top-down placement (what this attempt does) cannot handle
+              variable-depth subtrees. A proper Reingold-Tilford algorithm does this in two passes:
+              one bottom-up to measure subtree widths, one top-down to assign final positions.
+              That&apos;s attempt 7 if we go there.
             </>}
           >
             <Attempt6Loader />
@@ -270,7 +270,7 @@ export default function FamilyPage() {
         <div className="mt-24 max-w-2xl">
           <p className="text-xs tracking-widest text-white/20 uppercase mb-6">What attempt 5 achieved</p>
           <p className="text-sm text-white/40 leading-relaxed mb-8">
-            Five attempts to get this right. Here&apos;s what the current renderer actually does — and where it still falls short.
+            Six attempts in. Attempt 5 is the most functional renderer so far — here&apos;s what it does, and where it still falls short.
           </p>
           <ul className="space-y-5 text-sm leading-relaxed text-white/45 list-none">
             <li className="flex gap-4"><span className="text-emerald-400/40 shrink-0 w-4 mt-0.5 text-xs">+</span><div><span className="text-white/65">All 218 people are present. </span>Both lineages fully rendered. No one dropped.</div></li>
