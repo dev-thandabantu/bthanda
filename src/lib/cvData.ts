@@ -10,7 +10,7 @@ export const cvHeader = {
 };
 
 export const cvSummary =
-  "Production AI and software engineer with 4+ years of experience designing, building, and operating end-to-end AI systems in Python and TypeScript. Specialises in RAG pipelines (HyDE, hybrid retrieval, RRF reranking), multi-step agent orchestration with tool use and structured output, async pipeline architecture (Inngest), and real-time inference APIs with full observability. Hands-on experience with Azure (Functions, AKS, ACR, Application Insights, AD B2C), Docker, CI/CD, and cloud-native deployment. Currently co-founding AnchorBase (London), an AI document search platform with 50+ users, and leading AgriData AI with live government pilots within Zimbabwe's Ministry of Agriculture. Works AI-natively with agentic tooling (Claude, Cursor, Copilot, Antigravity) as core development workflow.";
+  "Production AI and software engineer with 4+ years of experience designing, building, and operating end-to-end AI systems in Python and TypeScript. Specialises in RAG pipelines (query refinement, intent routing, blended reranking, metadata hydration), multi-step agent orchestration with tool use and structured output, async pipeline architecture (Inngest), and real-time inference APIs with full observability. Hands-on experience with Azure (Functions, AKS, ACR, Application Insights, AD B2C), Docker, CI/CD, and cloud-native deployment. Currently co-founding AnchorBase (London), an AI document search platform with 50+ users, and leading AgriData AI with live government pilots within Zimbabwe's Ministry of Agriculture. Works AI-natively with agentic tooling (Claude, Cursor, Copilot, Antigravity) as core development workflow.";
 
 export interface CvJob {
   title: string;
@@ -39,11 +39,11 @@ export const cvJobs: CvJob[] = [
     dates: "Feb 2026 – Present",
     bullets: [
       "Built and shipped an AI-powered document search platform for engineers working with codes, standards, and technical specifications — enabling natural language Q&A with precise citations. Pivoted from Project Machine after file-parsing and AI summarization work revealed the bigger opportunity.",
-      "Designed and implemented a full RAG pipeline: HyDE query expansion, embedding via Gemini gemini-embedding-001, semantic + keyword retrieval with RRF reranking, and hierarchical chunk expansion.",
-      "Architected multi-LLM routing: xAI/Grok for document Q&A; Gemini 2.5 Flash with Google Search grounding for internet-routed queries.",
-      "Built streaming answer delivery via SSE with real-time source citation, follow-up question generation, and an admin observability dashboard.",
-      "Implemented multi-step agent workflows: intent classification, query routing, context retrieval, answer generation, and follow-up suggestion — each step orchestrated as a discrete agent action with fallback handling.",
-      "Stack: React + TypeScript (frontend), FastAPI + Python (backend), Pinecone (vector search), Supabase (Postgres + auth), Cloudflare R2 (storage).",
+      "Designed and implemented a production RAG pipeline ('Agent Nicholas'): query refinement, intent-based routing to 5 parallel execution paths (vector search, document summaries, metadata, full-context, general LLM), embedding via Gemini gemini-embedding-001, Pinecone retrieval with blended semantic+lexical reranking, Supabase metadata hydration, and structured JSON output with real-time source citations.",
+      "Built internet-augmented Q&A: Grok Responses API with web_search tool combines Pinecone document chunks with live web results in a single call; circuit breaker degrades gracefully to document-only if the Responses API is unavailable.",
+      "Built a two-phase document parsing pipeline: Phase 1 (PyMuPDF + LlamaParse + Gemini figure descriptions, synchronous) + Phase 2 (Tesseract/ocrmypdf background OCR for scanned pages). Ran a systematic 5-provider parser evaluation (Docling, Google Document AI, Azure Document Intelligence, LlamaParse, Unstructured.io) and a 4-strategy chunking comparison to select and validate the current pipeline.",
+      "Shipped streaming answer delivery via SSE with an admin observability dashboard; implemented follow-up question generation and rolling conversation summarisation.",
+      "Stack: React + TypeScript (frontend), FastAPI + Python (backend), Pinecone (vector search), Supabase (Postgres + auth), Cloudflare R2 (storage), xAI/Grok, Gemini.",
       "Onboarded 50+ organic users since launch; actively onboarding pilot partners.",
     ],
   },
@@ -112,10 +112,10 @@ export interface CvSkill {
 }
 
 export const cvSkills: CvSkill[] = [
-  { label: "AI & ML Engineering", value: "RAG pipelines, LLM integration, vector search (pgvector, Pinecone), embeddings, HyDE, tool use / function calling, structured output, prompt engineering, multi-step agent orchestration, model evaluation, LLM-as-judge evals, voice AI (OpenAI Realtime API, WebRTC), OpenAI, Gemini, xAI/Grok" },
+  { label: "AI & ML Engineering", value: "RAG pipelines, LLM integration, vector search (pgvector, Pinecone), embeddings, query refinement, intent routing, blended reranking, tool use / function calling, structured output, prompt engineering, multi-step agent orchestration, model evaluation, LLM-as-judge evals, voice AI (OpenAI Realtime API, WebRTC), OpenAI, Gemini, xAI/Grok" },
   { label: "Languages", value: "Python, TypeScript, C#, JavaScript, SQL" },
   { label: "Pipeline & Orchestration", value: "Inngest (multi-step async pipelines), CI/CD (GitHub Actions, Azure DevOps, GitLab CI), batch + async job architecture, retry/recovery, event-driven workflows" },
-  { label: "Frameworks & Libraries", value: "FastAPI, Vercel AI SDK, ASP.NET Core, Next.js, React, Django, Entity Framework Core" },
+  { label: "Frameworks & Libraries", value: "FastAPI, Vercel AI SDK, ASP.NET Core, Next.js, React, Django, Entity Framework Core, LangChain, LlamaParse, Docling" },
   { label: "Databases & Storage", value: "PostgreSQL, SQL Server, Supabase, Firebase, Pinecone, Azure Blob Storage, Cloudflare R2" },
   { label: "Cloud & Infrastructure", value: "Microsoft Azure (Functions, AKS, ACR, AD B2C, Application Insights), AWS, Google Cloud, Docker, Docker Compose, Vercel, Fly.io" },
   { label: "Observability & Monitoring", value: "Sentry (errors + session replay), PostHog, structured JSON logging, Upstash Redis (rate limiting), Azure Application Insights, health checks, alerting" },
