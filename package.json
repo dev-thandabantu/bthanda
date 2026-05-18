@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "cytoscape": "^3.33.3",
+    "cytoscape-dagre": "^3.0.0",
     "docx": "^9.6.1",
     "family-chart": "^0.9.0",
     "file-saver": "^2.0.5",
@@ -21,6 +23,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/cytoscape": "^3.21.9",
     "@types/file-saver": "^2.0.7",
     "@types/node": "^20",
     "@types/react": "^19",
