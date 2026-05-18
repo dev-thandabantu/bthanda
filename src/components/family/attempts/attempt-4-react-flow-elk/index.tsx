@@ -25,21 +25,29 @@ import type { GraphNode, GraphEdge } from '@/data/family-graph'
 import { allPeople } from '@/data/family'
 
 // ── Accent colours ────────────────────────────────────────────────────────────
-const MATERNAL = '#eab308'
-const PATERNAL = '#818cf8'
-const EGO = '#ffffff'
+const MATERNAL_BG = '#fef3c7'
+const MATERNAL_BORDER = '#b45309'
+const MATERNAL_TEXT = '#78350f'
+const PATERNAL_BG = '#e0e7ff'
+const PATERNAL_BORDER = '#4338ca'
+const PATERNAL_TEXT = '#312e81'
+const EGO_BG = '#111111'
+const EGO_TEXT = '#ffffff'
+const NEUTRAL_BG = '#e5e5e5'
+const NEUTRAL_BORDER = '#999'
+const NEUTRAL_TEXT = '#1a1a1a'
 
-function accent(side?: string) {
-  if (side === 'maternal') return MATERNAL
-  if (side === 'paternal') return PATERNAL
-  return EGO
+function accentColor(side?: string) {
+  if (side === 'maternal') return MATERNAL_BORDER
+  if (side === 'paternal') return PATERNAL_BORDER
+  return '#555'
 }
 
 // ── ELK layout ────────────────────────────────────────────────────────────────
-const NODE_W = 130
-const NODE_H = 40
-const WIFE_W = 110
-const WIFE_H = 36
+const NODE_W = 150
+const NODE_H = 50
+const WIFE_W = 130
+const WIFE_H = 46
 const UNION_W = 1
 const UNION_H = 1
 
@@ -95,11 +103,9 @@ async function runElkLayout(
     target: e.target,
     type: 'smoothstep',
     style: {
-      stroke: e.edgeType === 'spouse-to-union'
-        ? 'rgba(255,255,255,0.1)'
-        : 'rgba(148,163,184,0.2)',
-      strokeWidth: 1,
-      strokeDasharray: e.edgeType === 'spouse-to-union' ? '4 3' : undefined,
+      stroke: e.edgeType === 'spouse-to-union' ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.35)',
+      strokeWidth: e.edgeType === 'spouse-to-union' ? 1.5 : 1.5,
+      strokeDasharray: e.edgeType === 'spouse-to-union' ? '5 4' : undefined,
     },
     animated: false,
   }))
@@ -111,9 +117,12 @@ async function runElkLayout(
 
 const PersonNode = memo(({ data, selected }: NodeProps) => {
   const gn = data as unknown as GraphNode
-  const a = accent(gn.side)
   const isEgo = gn.id === 'brighton'
   const dead = gn.status === 'deceased'
+
+  const bg = isEgo ? EGO_BG : gn.side === 'maternal' ? MATERNAL_BG : gn.side === 'paternal' ? PATERNAL_BG : NEUTRAL_BG
+  const border = isEgo ? EGO_BG : gn.side === 'maternal' ? MATERNAL_BORDER : gn.side === 'paternal' ? PATERNAL_BORDER : NEUTRAL_BORDER
+  const textColor = isEgo ? EGO_TEXT : gn.side === 'maternal' ? MATERNAL_TEXT : gn.side === 'paternal' ? PATERNAL_TEXT : NEUTRAL_TEXT
 
   return (
     <div
@@ -121,26 +130,27 @@ const PersonNode = memo(({ data, selected }: NodeProps) => {
         width: NODE_W,
         height: NODE_H,
         borderRadius: 8,
-        border: `${isEgo ? 1.5 : 1}px ${selected ? 'solid' : 'solid'}`,
-        borderColor: selected ? EGO : `${a}${isEgo ? 'cc' : '55'}`,
-        background: isEgo ? 'rgba(255,255,255,0.08)' : `${a}0a`,
+        border: `${isEgo ? 2.5 : 2}px solid`,
+        borderColor: selected ? '#000' : border,
+        background: bg,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        opacity: dead ? 0.35 : 1,
+        opacity: dead ? 0.45 : 1,
         cursor: 'grab',
-        boxShadow: selected ? `0 0 0 1px ${a}66` : undefined,
+        boxShadow: selected ? '0 0 0 2px #000' : '0 1px 3px rgba(0,0,0,0.12)',
       }}
     >
       <Handle type="target" position={Position.Top} style={{ opacity: 0, pointerEvents: 'none' }} />
       <span style={{
-        fontSize: isEgo ? 11 : 10,
-        color: isEgo ? 'rgba(255,255,255,0.92)' : `${a}dd`,
+        fontSize: isEgo ? 13 : 12,
+        fontWeight: 700,
+        color: textColor,
         fontFamily: 'var(--font-geist-sans), system-ui, sans-serif',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
-        maxWidth: NODE_W - 12,
+        maxWidth: NODE_W - 14,
         textAlign: 'center',
         textDecoration: dead ? 'line-through' : undefined,
       }}>
@@ -154,7 +164,9 @@ PersonNode.displayName = 'PersonNode'
 
 const WifeNode = memo(({ data, selected }: NodeProps) => {
   const gn = data as unknown as GraphNode
-  const a = accent(gn.side)
+  const bg = gn.side === 'maternal' ? '#fffbeb' : gn.side === 'paternal' ? '#eef2ff' : '#f5f5f5'
+  const border = gn.side === 'maternal' ? MATERNAL_BORDER : gn.side === 'paternal' ? PATERNAL_BORDER : '#aaa'
+  const textColor = gn.side === 'maternal' ? MATERNAL_TEXT : gn.side === 'paternal' ? PATERNAL_TEXT : '#555'
 
   return (
     <div
@@ -162,24 +174,25 @@ const WifeNode = memo(({ data, selected }: NodeProps) => {
         width: WIFE_W,
         height: WIFE_H,
         borderRadius: WIFE_H / 2,
-        border: `1px dashed ${a}44`,
-        background: `${a}06`,
+        border: `2px dashed ${border}`,
+        background: bg,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         cursor: 'grab',
-        boxShadow: selected ? `0 0 0 1px ${a}55` : undefined,
+        boxShadow: selected ? `0 0 0 2px ${border}` : '0 1px 3px rgba(0,0,0,0.08)',
       }}
     >
       <Handle type="target" position={Position.Top} style={{ opacity: 0, pointerEvents: 'none' }} />
       <span style={{
-        fontSize: 9,
-        color: `${a}88`,
+        fontSize: 11,
+        fontWeight: 600,
+        color: textColor,
         fontFamily: 'var(--font-geist-sans), system-ui, sans-serif',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
-        maxWidth: WIFE_W - 10,
+        maxWidth: WIFE_W - 12,
         textAlign: 'center',
       }}>
         {gn.label}
@@ -204,27 +217,27 @@ const nodeTypes = { personNode: PersonNode, wifeNode: WifeNode, unionNode: Union
 interface SelectedNode { id: string; name: string; relationship: string; side?: string; status?: string; country?: string; location?: string; notes?: string }
 
 function DetailPanel({ node, onClose }: { node: SelectedNode; onClose: () => void }) {
-  const a = accent(node.side)
+  const a = accentColor(node.side)
   return (
-    <div className="absolute top-3 right-3 w-56 rounded-2xl border border-white/[0.06] flex flex-col overflow-hidden z-10" style={{ background: '#0d0d12' }}>
+    <div className="absolute top-3 right-3 w-56 rounded-2xl border border-black/10 flex flex-col overflow-hidden z-10 shadow-lg" style={{ background: '#fff' }}>
       <div style={{ height: 3, background: `linear-gradient(90deg, ${a}bb, transparent)` }} />
       <div className="p-4">
         <div className="flex items-start justify-between gap-2 mb-4">
           <div>
             <p className="font-semibold text-sm leading-tight" style={{ color: a }}>{node.name}</p>
-            <p className="text-white/35 text-xs mt-0.5">{node.relationship}</p>
+            <p className="text-black/40 text-xs mt-0.5">{node.relationship}</p>
           </div>
-          <button onClick={onClose} className="text-white/20 hover:text-white/50 transition-colors shrink-0 mt-0.5">
+          <button onClick={onClose} className="text-black/25 hover:text-black/60 transition-colors shrink-0 mt-0.5">
             <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M2 2l10 10M12 2L2 12" /></svg>
           </button>
         </div>
         <div className="space-y-2">
-          {node.status && <Row label="status"><span className={node.status === 'deceased' ? 'line-through text-white/20' : 'text-white/55'}>{node.status}</span></Row>}
-          {node.country && <Row label="country"><span className="text-white/55">{node.country}</span></Row>}
-          {node.location && <Row label="location"><span className="text-white/55">{node.location}</span></Row>}
+          {node.status && <Row label="status"><span className={node.status === 'deceased' ? 'line-through text-black/25' : 'text-black/60'}>{node.status}</span></Row>}
+          {node.country && <Row label="country"><span className="text-black/60">{node.country}</span></Row>}
+          {node.location && <Row label="location"><span className="text-black/60">{node.location}</span></Row>}
           {node.side && <Row label="side"><span style={{ color: a }}>{node.side}</span></Row>}
         </div>
-        {node.notes && <p className="text-white/25 text-xs leading-relaxed mt-4 pt-4 border-t border-white/[0.05]">{node.notes}</p>}
+        {node.notes && <p className="text-black/35 text-xs leading-relaxed mt-4 pt-4 border-t border-black/[0.08]">{node.notes}</p>}
       </div>
     </div>
   )
@@ -233,7 +246,7 @@ function DetailPanel({ node, onClose }: { node: SelectedNode; onClose: () => voi
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex items-baseline gap-2">
-      <span className="text-white/20 text-[9px] uppercase tracking-widest w-14 shrink-0">{label}</span>
+      <span className="text-black/30 text-[9px] uppercase tracking-widest w-14 shrink-0">{label}</span>
       <span className="text-xs">{children}</span>
     </div>
   )
@@ -257,7 +270,7 @@ function DownloadButton({ getNodes }: { getNodes: () => Node[] }) {
     const transform = getViewportForBounds(bounds, imgW, imgH, 0.05, 4, padding / imgW)
 
     const dataUrl = await toPng(viewport, {
-      backgroundColor: '#080810',
+      backgroundColor: '#f8f7f4',
       width: imgW,
       height: imgH,
       style: {
@@ -327,20 +340,20 @@ function FamilyFlowInner() {
   return (
     <div className="flex flex-col gap-3 h-full">
       {/* Legend + download */}
-      <div className="flex items-center gap-4 shrink-0 text-[10px] text-white/20">
-        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-sm" style={{ background: 'rgba(234,179,8,0.5)' }} />maternal</span>
-        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-sm" style={{ background: 'rgba(129,140,248,0.5)' }} />paternal</span>
-        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-sm" style={{ background: 'rgba(255,255,255,0.5)' }} />Brighton</span>
-        <span className="flex items-center gap-1.5"><span className="w-8 border-t border-dashed border-white/20" />wife / grandmother</span>
+      <div className="flex items-center gap-4 shrink-0 text-[10px] text-black/35">
+        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-sm" style={{ background: MATERNAL_BG, border: `1px solid ${MATERNAL_BORDER}` }} />maternal</span>
+        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-sm" style={{ background: PATERNAL_BG, border: `1px solid ${PATERNAL_BORDER}` }} />paternal</span>
+        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-sm" style={{ background: EGO_BG }} />Brighton</span>
+        <span className="flex items-center gap-1.5"><span className="w-8 border-t border-dashed" style={{ borderColor: '#aaa' }} />wife / grandmother</span>
         <div className="ml-auto">
           <DownloadButton getNodes={getNodes} />
         </div>
       </div>
 
       {/* Canvas */}
-      <div className="relative flex-1 min-h-0 rounded-xl overflow-hidden border border-white/[0.06]" style={{ background: '#080810' }}>
+      <div className="relative flex-1 min-h-0 rounded-xl overflow-hidden border border-black/10" style={{ background: '#f8f7f4' }}>
         {loading && (
-          <div className="absolute inset-0 flex items-center justify-center text-white/20 text-sm z-10">
+          <div className="absolute inset-0 flex items-center justify-center text-black/30 text-sm z-10">
             Computing layout…
           </div>
         )}
@@ -361,8 +374,8 @@ function FamilyFlowInner() {
           elementsSelectable={true}
           colorMode="dark"
         >
-          <Background variant={BackgroundVariant.Dots} gap={24} size={1} color="rgba(255,255,255,0.04)" />
-          <Controls showInteractive={false} style={{ background: 'rgba(13,13,18,0.9)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8 }} />
+          <Background variant={BackgroundVariant.Dots} gap={24} size={1} color="rgba(0,0,0,0.08)" />
+          <Controls showInteractive={false} style={{ background: '#fff', border: '1px solid rgba(0,0,0,0.1)', borderRadius: 8 }} />
         </ReactFlow>
         {selected && <DetailPanel node={selected} onClose={() => setSelected(null)} />}
       </div>

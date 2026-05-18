@@ -19,8 +19,9 @@ interface SelectedNode {
 const MATERNAL = '#eab308'
 const PATERNAL = '#818cf8'
 const EGO = '#ffffff'
-const UNION_COLOR = 'rgba(255,255,255,0.06)'
-const EDGE_COLOR = 'rgba(148,163,184,0.18)'
+const BG = '#f8f7f4'
+const UNION_COLOR = 'rgba(0,0,0,0.08)'
+const EDGE_COLOR = 'rgba(30,30,30,0.3)'
 
 function getAccent(side?: string) {
   if (side === 'maternal') return MATERNAL
@@ -37,53 +38,54 @@ function buildStylesheet(): Array<{ selector: string; style: AnyStyle }> {
       selector: 'node[type="person"]',
       style: {
         shape: 'round-rectangle',
-        width: 120,
-        height: 40,
+        width: 150,
+        height: 50,
         label: 'data(label)',
-        'font-size': 10,
+        'font-size': 13,
+        'font-weight': 'bold',
         'font-family': 'var(--font-geist-sans), system-ui, sans-serif',
         'text-valign': 'center',
         'text-halign': 'center',
         'text-wrap': 'ellipsis',
-        'text-max-width': '110px',
-        color: 'rgba(255,255,255,0.6)',
-        'background-color': 'rgba(255,255,255,0.03)',
-        'border-width': 1,
-        'border-color': 'rgba(255,255,255,0.12)',
+        'text-max-width': '138px',
+        color: '#1a1a1a',
+        'background-color': '#e5e5e5',
+        'border-width': 2,
+        'border-color': '#999',
       },
     },
     {
       selector: 'node[type="person"][side="maternal"]',
       style: {
-        'border-color': 'rgba(234,179,8,0.4)',
-        'background-color': 'rgba(234,179,8,0.06)',
-        color: 'rgba(254,240,138,0.85)',
+        'border-color': '#b45309',
+        'background-color': '#fef3c7',
+        color: '#78350f',
       },
     },
     {
       selector: 'node[type="person"][side="paternal"]',
       style: {
-        'border-color': 'rgba(129,140,248,0.4)',
-        'background-color': 'rgba(99,102,241,0.06)',
-        color: 'rgba(199,210,254,0.85)',
+        'border-color': '#4338ca',
+        'background-color': '#e0e7ff',
+        color: '#312e81',
       },
     },
     {
       selector: 'node[type="person"][side="both"], node[id="brighton"]',
       style: {
-        'border-color': 'rgba(255,255,255,0.5)',
-        'background-color': 'rgba(255,255,255,0.08)',
-        color: 'rgba(255,255,255,0.95)',
-        'border-width': 1.5,
-        width: 130,
-        height: 44,
-        'font-size': 11,
+        'border-color': '#111',
+        'background-color': '#111',
+        color: '#ffffff',
+        'border-width': 2.5,
+        width: 160,
+        height: 54,
+        'font-size': 14,
       },
     },
     {
       selector: 'node[type="person"][status="deceased"]',
       style: {
-        opacity: 0.4,
+        opacity: 0.45,
         'border-style': 'dashed',
       },
     },
@@ -91,34 +93,36 @@ function buildStylesheet(): Array<{ selector: string; style: AnyStyle }> {
       selector: 'node[type="wife"]',
       style: {
         shape: 'ellipse',
-        width: 100,
-        height: 36,
+        width: 130,
+        height: 46,
         label: 'data(label)',
-        'font-size': 9,
+        'font-size': 12,
         'font-family': 'var(--font-geist-sans), system-ui, sans-serif',
         'text-valign': 'center',
         'text-halign': 'center',
         'text-wrap': 'ellipsis',
-        'text-max-width': '90px',
-        color: 'rgba(255,255,255,0.45)',
-        'background-color': 'rgba(255,255,255,0.02)',
-        'border-width': 1,
+        'text-max-width': '118px',
+        color: '#1a1a1a',
+        'background-color': '#f5f5f5',
+        'border-width': 2,
         'border-style': 'dashed',
-        'border-color': 'rgba(255,255,255,0.2)',
+        'border-color': '#aaa',
       },
     },
     {
       selector: 'node[type="wife"][side="maternal"]',
       style: {
-        'border-color': 'rgba(234,179,8,0.3)',
-        color: 'rgba(254,240,138,0.55)',
+        'border-color': '#b45309',
+        'background-color': '#fffbeb',
+        color: '#92400e',
       },
     },
     {
       selector: 'node[type="wife"][side="paternal"]',
       style: {
-        'border-color': 'rgba(129,140,248,0.3)',
-        color: 'rgba(199,210,254,0.55)',
+        'border-color': '#4338ca',
+        'background-color': '#eef2ff',
+        color: '#3730a3',
       },
     },
     {
@@ -133,7 +137,7 @@ function buildStylesheet(): Array<{ selector: string; style: AnyStyle }> {
     {
       selector: 'edge',
       style: {
-        width: 1,
+        width: 1.5,
         'line-color': EDGE_COLOR,
         'target-arrow-color': EDGE_COLOR,
         'target-arrow-shape': 'none',
@@ -145,14 +149,14 @@ function buildStylesheet(): Array<{ selector: string; style: AnyStyle }> {
       style: {
         'line-style': 'dashed',
         'line-color': UNION_COLOR,
-        width: 0.5,
+        width: 1,
       },
     },
     {
       selector: 'node:selected',
       style: {
-        'border-width': 2,
-        'border-color': EGO,
+        'border-width': 3,
+        'border-color': '#111',
       },
     },
   ]
@@ -313,7 +317,7 @@ export default function CytoscapeChart() {
   const handleDownload = useCallback(() => {
     const cy = cyRef.current
     if (!cy) return
-    const dataUrl = cy.png({ output: 'blob-promise', bg: '#080810', full: true, scale: 2 })
+    const dataUrl = cy.png({ output: 'blob-promise', bg: '#f8f7f4', full: true, scale: 2 })
     void (dataUrl as Promise<Blob>).then(blob => {
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
@@ -378,7 +382,7 @@ export default function CytoscapeChart() {
       </div>
 
       {/* Canvas */}
-      <div className="relative flex-1 min-h-0 rounded-xl overflow-hidden border border-white/[0.06]" style={{ background: '#080810' }}>
+      <div className="relative flex-1 min-h-0 rounded-xl overflow-hidden border border-black/10" style={{ background: '#f8f7f4' }}>
         <div ref={containerRef} className="w-full h-full" />
         {selectedPerson && (
           <DetailPanel node={selectedPerson} onClose={() => setSelectedPerson(null)} />
