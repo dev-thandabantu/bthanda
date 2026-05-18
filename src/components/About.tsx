@@ -5,7 +5,7 @@ const skills = [
   "Microsoft Azure", "AWS", "Google Cloud",
   "Docker", "CI/CD", "Azure Functions",
   "Flutter", "Firebase",
-  "AI / LLM integration", "RAG pipelines", "Vector search",
+  "AI / LLM integration", "RAG pipelines", "Vector search", "Voice AI",
   "Scrum", "Kanban",
 ];
 

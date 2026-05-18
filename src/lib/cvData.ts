@@ -26,6 +26,7 @@ export const cvJobs: CvJob[] = [
     dates: "Nov 2025 – Jan 2026",
     bullets: [
       "Co-founded an AI-powered visual project management SaaS — canvas-based task planning with an AI chat assistant, multi-user collaboration, and file upload with AI summarization.",
+      "Implemented a voice-first prototype using OpenAI Realtime API (WebRTC) — users spoke to an AI that manipulated the canvas in real time, creating and updating tasks through natural conversation.",
       "Built the full backend: 16-table PostgreSQL schema with Drizzle ORM, 31+ REST endpoints (projects, tasks, subtasks, comments, assignments, canvas snapshots, collaborators, file parsing, AI chat, Excel export), RLS policies, and Swagger/OpenAPI documentation.",
       "Implemented file text extraction pipeline with AI summarization (OpenAI), AI chat with context assembly and usage logging, and multi-user invite/collaboration system.",
       "107 tests passing; shelved Jan 2026 when document parsing work pointed toward AnchorBase.",
@@ -111,7 +112,7 @@ export interface CvSkill {
 }
 
 export const cvSkills: CvSkill[] = [
-  { label: "AI & ML Engineering", value: "RAG pipelines, LLM integration, vector search (pgvector, Pinecone), embeddings, HyDE, prompt engineering, multi-step agent orchestration, model evaluation, OpenAI, Gemini, xAI/Grok" },
+  { label: "AI & ML Engineering", value: "RAG pipelines, LLM integration, vector search (pgvector, Pinecone), embeddings, HyDE, prompt engineering, multi-step agent orchestration, model evaluation, voice AI (OpenAI Realtime API, WebRTC), OpenAI, Gemini, xAI/Grok" },
   { label: "Languages", value: "Python, TypeScript, C#, JavaScript, SQL" },
   { label: "Pipeline & Orchestration", value: "Inngest (multi-step async pipelines), CI/CD (GitHub Actions, Azure DevOps, GitLab CI), batch + async job architecture, retry/recovery, event-driven workflows" },
   { label: "Frameworks & Libraries", value: "FastAPI, Vercel AI SDK, ASP.NET Core, Next.js, React, Django, Entity Framework Core" },

@@ -14,8 +14,8 @@ const projects = [
     role: "Co-founder & builder",
     period: "Nov 2025 – Jan 2026",
     description:
-      "AI-powered visual project management SaaS — canvas-based task planning (ReactFlow) with an AI chat assistant, multi-user collaboration, and file upload with AI summarization. Built the full backend: 16-table PostgreSQL schema, 31+ REST endpoints (projects, tasks, subtasks, comments, assignments, canvas snapshots, collaborators, file parsing, AI chat, Excel export), RLS policies, 107 tests, and Swagger/OpenAPI docs. Co-built with a frontend collaborator. Shelved at the end of Jan 2026 when the document parsing and AI summarization work pointed toward a clearer, deeper problem — which became AnchorBase.",
-    tags: ["AI", "Next.js", "TypeScript", "Supabase", "ReactFlow", "OpenAI", "SaaS"],
+      "AI-powered visual project management SaaS — canvas-based task planning (ReactFlow) with an AI chat assistant, multi-user collaboration, and file upload with AI summarization. Core hypothesis: planning should be voice-first — implemented using OpenAI Realtime API (WebRTC) so users could speak to an AI that manipulated the canvas in real time. Built the full backend: 16-table PostgreSQL schema, 31+ REST endpoints (projects, tasks, subtasks, comments, assignments, canvas snapshots, collaborators, file parsing, AI chat, Excel export), RLS policies, 107 tests, and Swagger/OpenAPI docs. Co-built with a frontend collaborator. Shelved Jan 2026 when the document parsing and AI summarization work pointed toward a clearer, deeper problem — which became AnchorBase.",
+    tags: ["AI", "Voice AI", "OpenAI Realtime API", "Next.js", "TypeScript", "Supabase", "ReactFlow", "SaaS"],
   },
   {
     name: "AgriData AI",
