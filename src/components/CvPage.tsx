@@ -3,6 +3,14 @@
 import { useState } from "react";
 import { generateDocx } from "@/lib/generateDocx";
 import { generatePdf } from "@/lib/generatePdf";
+import {
+  cvHeader,
+  cvSummary,
+  cvJobs,
+  cvSkills,
+  cvEducation,
+  cvAwards,
+} from "@/lib/cvData";
 
 function DownloadBar() {
   const [loadingPdf, setLoadingPdf] = useState(false);
@@ -28,7 +36,7 @@ function DownloadBar() {
 
   return (
     <div className="download-bar">
-      <span className="download-label">Brighton Tandabantu — CV</span>
+      <span className="download-label">{cvHeader.name} — CV</span>
       <div className="download-buttons">
         <button onClick={downloadPdf} disabled={loadingPdf} className="btn">
           {loadingPdf ? "Generating..." : "Download PDF"}
@@ -187,13 +195,13 @@ export default function CvPage() {
       <div className="cv-sheet" id="cv-content">
         {/* Header */}
         <div style={{ marginBottom: 24 }}>
-          <div className="cv-name">Brighton Tandabantu</div>
-          <div className="cv-title">AI Engineer &amp; Founder</div>
+          <div className="cv-name">{cvHeader.name}</div>
+          <div className="cv-title">{cvHeader.title}</div>
           <div className="cv-contact">
-            <span>(+27) 64 129 5093</span>
-            <a href="mailto:brightontandabantu@gmail.com">brightontandabantu@gmail.com</a>
-            <a href="https://www.linkedin.com/in/bthanda/" target="_blank" rel="noopener noreferrer">linkedin.com/in/bthanda</a>
-            <a href="https://bthanda.vercel.app" target="_blank" rel="noopener noreferrer">bthanda.vercel.app</a>
+            <span>{cvHeader.phone}</span>
+            <a href={`mailto:${cvHeader.email}`}>{cvHeader.email}</a>
+            <a href={cvHeader.linkedinUrl} target="_blank" rel="noopener noreferrer">{cvHeader.linkedin}</a>
+            <a href={cvHeader.websiteUrl} target="_blank" rel="noopener noreferrer">{cvHeader.website}</a>
           </div>
         </div>
 
@@ -202,17 +210,7 @@ export default function CvPage() {
         {/* Summary */}
         <section className="summary">
           <h2>Professional Summary</h2>
-          <p>
-            Production AI and software engineer with 4+ years of experience designing, building, and operating
-            end-to-end data and AI pipelines in Python and TypeScript. Proven record of taking complex,
-            multi-step AI workflows from prototype to production — including async pipeline orchestration,
-            vector-indexed data systems, real-time inference APIs, and full observability stacks (structured
-            logging, error tracking, performance monitoring, alerting). Hands-on experience with Azure
-            (Functions, AKS, ACR, Application Insights, AD B2C), Docker, CI/CD, and cloud-native deployment.
-            Currently co-founding AnchorBase (London) — an AI document search platform — and leading AgriData AI,
-            running live government pilots within Zimbabwe&apos;s Ministry of Agriculture.
-            Works AI-natively with agentic tooling (Claude, Cursor, Copilot, Antigravity) as core development workflow.
-          </p>
+          <p>{cvSummary}</p>
         </section>
 
         <hr className="light" />
@@ -220,95 +218,20 @@ export default function CvPage() {
         {/* Work Experience */}
         <section>
           <h2>Work Experience</h2>
-
-          <div className="job">
-            <div className="job-header">
-              <span className="job-title">Co-Founder &amp; AI Engineer</span>
-              <span className="job-dates">Feb 2026 – Present</span>
+          {cvJobs.map((job) => (
+            <div key={job.title + job.org} className="job">
+              <div className="job-header">
+                <span className="job-title">{job.title}</span>
+                <span className="job-dates">{job.dates}</span>
+              </div>
+              <div className="job-org">{job.org}</div>
+              <ul>
+                {job.bullets.map((b, i) => (
+                  <li key={i}>{b}</li>
+                ))}
+              </ul>
             </div>
-            <div className="job-org">AnchorBase · London, UK (Remote)</div>
-            <ul>
-              <li>Built and shipped an AI-powered document search platform for engineers working with codes, standards, and technical specifications — enabling natural language Q&amp;A with precise citations. Pivoted from Project Machine (Nov 2025) after deep work on document parsing and RAG pipelines revealed the bigger opportunity.</li>
-              <li>Designed and implemented a full RAG pipeline: HyDE query expansion, embedding via Gemini gemini-embedding-001, semantic + keyword retrieval with RRF reranking, and hierarchical chunk expansion.</li>
-              <li>Architected multi-LLM routing: xAI/Grok for document Q&amp;A; Gemini 2.5 Flash with Google Search grounding for internet-routed queries.</li>
-              <li>Built streaming answer delivery via SSE with real-time source citation, follow-up question generation, and an admin observability dashboard.</li>
-              <li>Implemented multi-step agent workflows: intent classification, query routing, context retrieval, answer generation, and follow-up suggestion — each step orchestrated as a discrete agent action with fallback handling.</li>
-              <li>Stack: React + TypeScript (frontend), FastAPI + Python (backend), Pinecone (vector search), Supabase (Postgres + auth), Cloudflare R2 (storage).</li>
-              <li>Onboarded 50+ organic users since launch; actively onboarding pilot partners.</li>
-            </ul>
-          </div>
-
-          <div className="job">
-            <div className="job-header">
-              <span className="job-title">Founder &amp; AI Engineer</span>
-              <span className="job-dates">2025 – Present</span>
-            </div>
-            <div className="job-org">AgriData AI · Zimbabwe</div>
-            <ul>
-              <li>Built an AI system for Zimbabwe&apos;s agricultural sector, processing farmer and extension officer queries via a WhatsApp-native interface.</li>
-              <li>Deployed live pilots with the Migratory Pests &amp; Biosecurity Control (MPBC) team within Zimbabwe&apos;s Ministry of Agriculture — system has processed 5,000+ messages from 22+ extension officers.</li>
-              <li>Running an active pilot with the Tobacco Research Board (Kutsaga); in contract deliberations with the Zimbabwe Sugarcane Association Experiment Station (ZSAES).</li>
-              <li>Finalist, Kutsaga Innovation Challenge 2025.</li>
-            </ul>
-          </div>
-
-          <div className="job">
-            <div className="job-header">
-              <span className="job-title">Co-Founder &amp; CEO</span>
-              <span className="job-dates">Jun 2024 – Present</span>
-            </div>
-            <div className="job-org">AakiTech · Remote</div>
-            <ul>
-              <li>Founded and led AakiTech, building digital tools for African schools and small businesses in underserved, low-resource environments.</li>
-              <li>Built and led a cross-functional team of 7 — developers, business operations, and growth specialists.</li>
-              <li>Shipped multiple products across edtech and SME operations — including a platform now serving 1,000+ users, engineered for low-bandwidth, mobile-first environments.</li>
-              <li>Selected: Mastercard FAST Build 2024. 2nd place, Unity Challenge 2025 (AL for Professionals). Finalist, Kutsaga Innovation Challenge 2025.</li>
-            </ul>
-          </div>
-
-          <div className="job">
-            <div className="job-header">
-              <span className="job-title">Builder</span>
-              <span className="job-dates">2026</span>
-            </div>
-            <div className="job-org">BOQ Generator · Remote</div>
-            <ul>
-              <li>Built an AI-powered Bill of Quantities platform for the Zambian construction market — upload a Scope of Work PDF, receive a structured and priced BOQ; or upload an unrated Excel BOQ and have AI fill Zambian market rates calibrated to province, site accessibility, labour source, and margin.</li>
-              <li>Architected a 7-step async generation pipeline using Inngest to handle large documents beyond Vercel's serverless timeout limits: extract → structure → save → rate-fill → QA → save → notify.</li>
-              <li>Built a vector-indexed rate library (pgvector) sourced from real Zambian construction BOQs, used to ground AI pricing with temporal rate anchors — rates carry <code>rate_date</code> for auditability.</li>
-              <li>Implemented full payment gate via Stripe (dynamic pricing by BOQ size and item count), Google OAuth, in-browser BOQ editor with auto-save, Excel export in Zambian tender format, and a streaming AI edit assistant.</li>
-              <li>Observability stack: Sentry (errors + session replay), PostHog (server events), structured JSON logging, Upstash Redis rate limiting, Inngest dashboard for per-step execution traces.</li>
-              <li>Stack: Next.js 15, TypeScript, Supabase (Postgres + RLS), Gemini 2.5 Pro/Flash, Inngest, Stripe, Vercel.</li>
-            </ul>
-          </div>
-
-          <div className="job">
-            <div className="job-header">
-              <span className="job-title">Software Consultant</span>
-              <span className="job-dates">Sep 2023 – Jun 2024</span>
-            </div>
-            <div className="job-org">Kindred for Business · London (Remote)</div>
-            <ul>
-              <li>Led migration of multiple C# Azure Functions applications to .NET 8 LTS, ensuring zero-downtime transitions.</li>
-              <li>Triaged and resolved backend bugs detected via Azure Function Monitor and Application Insights, improving system resilience.</li>
-              <li>Collaborated with distributed service desk and engineering teams on backend stability and delivery.</li>
-            </ul>
-          </div>
-
-          <div className="job">
-            <div className="job-header">
-              <span className="job-title">Software Developer</span>
-              <span className="job-dates">2021 – Sep 2023</span>
-            </div>
-            <div className="job-org">Full Stack (Pty) Ltd · Cape Town</div>
-            <ul>
-              <li>Brokers Platform: Built a brokers management platform using OutSystems and ASP.NET Core; automated test suites with Selenium and Katalon.</li>
-              <li>Mortgage Application Platform: Deployed application, SQL database, and storage on AWS; implemented gRPC/Proto Buffers for frontend-backend communication.</li>
-              <li>Jupyter Data Science Portal: Developed a high-security data analysis portal — Angular frontend, ASP.NET Core + YARP middleware, customized JupyterHub on Azure Kubernetes Cluster with custom images on ACR.</li>
-              <li>File Submission &amp; Review System: Led Umbraco 8 → 10 migration; integrated Azure AD B2C authentication and Azure Blob Storage; delivered within 6-month timeline.</li>
-              <li>Phase II CMS: Contributed to Umbraco + ASP.NET project; managed deployment across dev, staging, and production; delivered with a 4-person team in 2 months.</li>
-            </ul>
-          </div>
+          ))}
         </section>
 
         <hr className="light" />
@@ -317,14 +240,12 @@ export default function CvPage() {
         <section>
           <h2>Skills</h2>
           <div className="skills-grid">
-            <div className="skill-row"><span className="skill-label">AI &amp; ML Engineering</span><span className="skill-value">RAG pipelines, LLM integration, vector search (pgvector, Pinecone), embeddings, HyDE, prompt engineering, multi-step agent orchestration, model evaluation, OpenAI, Gemini, xAI/Grok</span></div>
-            <div className="skill-row"><span className="skill-label">Languages</span><span className="skill-value">Python, TypeScript, C#, JavaScript, SQL</span></div>
-            <div className="skill-row"><span className="skill-label">Pipeline &amp; Orchestration</span><span className="skill-value">Inngest (multi-step async pipelines), CI/CD (GitHub Actions, Azure DevOps, GitLab CI), batch + async job architecture, retry/recovery, event-driven workflows</span></div>
-            <div className="skill-row"><span className="skill-label">Frameworks &amp; Libraries</span><span className="skill-value">FastAPI, Vercel AI SDK, ASP.NET Core, Next.js, React, Django, Entity Framework Core</span></div>
-            <div className="skill-row"><span className="skill-label">Databases &amp; Storage</span><span className="skill-value">PostgreSQL, SQL Server, Supabase, Firebase, Pinecone, Azure Blob Storage, Cloudflare R2</span></div>
-            <div className="skill-row"><span className="skill-label">Cloud &amp; Infrastructure</span><span className="skill-value">Microsoft Azure (Functions, AKS, ACR, AD B2C, Application Insights), AWS, Google Cloud, Docker, Docker Compose, Vercel, Fly.io</span></div>
-            <div className="skill-row"><span className="skill-label">Observability &amp; Monitoring</span><span className="skill-value">Sentry (errors + session replay), PostHog, structured JSON logging, Upstash Redis (rate limiting), Azure Application Insights, health checks, alerting</span></div>
-            <div className="skill-row"><span className="skill-label">Tools &amp; Practices</span><span className="skill-value">Git, GitHub, Azure DevOps, Jupyter, Scrum, Kanban, gRPC, Selenium</span></div>
+            {cvSkills.map((s) => (
+              <div key={s.label} className="skill-row">
+                <span className="skill-label">{s.label}</span>
+                <span className="skill-value">{s.value}</span>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -333,32 +254,20 @@ export default function CvPage() {
         {/* Education */}
         <section>
           <h2>Education</h2>
-          <div className="edu-item">
-            <div className="edu-header">
-              <span className="edu-degree">BSc Computer Science</span>
-              <span className="edu-dates">2017 – 2021</span>
+          {cvEducation.map((edu) => (
+            <div key={edu.degree} className="edu-item">
+              <div className="edu-header">
+                <span className="edu-degree">{edu.degree}</span>
+                <span className="edu-dates">{edu.dates}</span>
+              </div>
+              <div className="edu-school">{edu.school}</div>
+              <ul className="edu-notes">
+                {edu.notes.map((n, i) => (
+                  <li key={i}>{n}</li>
+                ))}
+              </ul>
             </div>
-            <div className="edu-school">University of Cape Town (UCT)</div>
-            <ul className="edu-notes">
-              <li>Mastercard Foundation Scholar (full scholarship)</li>
-              <li>Chairperson, Space &amp; Astronomy Society (SpaceSoc)</li>
-              <li>Co-Founder, SEDS South Africa — enrolled 3 universities; organized 10+ events nationally</li>
-              <li>Keynote speaker, 4th SA-GEO National Symposium, CSIR (2022)</li>
-              <li>Relevant electives: Statistics, Philosophy, Astronomy, African Studies</li>
-            </ul>
-          </div>
-          <div className="edu-item">
-            <div className="edu-header">
-              <span className="edu-degree">O-Level &amp; A-Level (ZIMSEC)</span>
-              <span className="edu-dates">2010 – 2015</span>
-            </div>
-            <div className="edu-school">Mt Selinda High School</div>
-            <ul className="edu-notes">
-              <li>Head Boy</li>
-              <li>8 As and 1 B at O-Level</li>
-              <li>Recipient, United States Achievers Program (USAP)</li>
-            </ul>
-          </div>
+          ))}
         </section>
 
         <hr className="light" />
@@ -366,11 +275,12 @@ export default function CvPage() {
         {/* Recognition */}
         <section>
           <h2>Recognition &amp; Awards</h2>
-          <div className="rec-item"><span className="rec-year">2026</span><span className="rec-text">AIM Founding to Give 2026 Cohort — selected after multiple rigorous rounds</span></div>
-          <div className="rec-item"><span className="rec-year">2025</span><span className="rec-text">Mastercard Foundation Scholars — Alumni Panellist</span></div>
-          <div className="rec-item"><span className="rec-year">2025</span><span className="rec-text">Unity Challenge — 2nd Place (AL for Professionals)</span></div>
-          <div className="rec-item"><span className="rec-year">2025</span><span className="rec-text">Kutsaga Innovation Challenge — Finalist</span></div>
-          <div className="rec-item"><span className="rec-year">2024</span><span className="rec-text">Mastercard FAST Build — Recipient</span></div>
+          {cvAwards.map((a) => (
+            <div key={a.year + a.text} className="rec-item">
+              <span className="rec-year">{a.year}</span>
+              <span className="rec-text">{a.text}</span>
+            </div>
+          ))}
         </section>
       </div>
     </>

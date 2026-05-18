@@ -1,0 +1,155 @@
+export const cvHeader = {
+  name: "Brighton Tandabantu",
+  title: "AI Engineer & Founder",
+  phone: "(+27) 64 129 5093",
+  email: "brightontandabantu@gmail.com",
+  linkedin: "linkedin.com/in/bthanda",
+  linkedinUrl: "https://www.linkedin.com/in/bthanda/",
+  website: "bthanda.vercel.app",
+  websiteUrl: "https://bthanda.vercel.app",
+};
+
+export const cvSummary =
+  "Production AI and software engineer with 4+ years of experience designing, building, and operating end-to-end data and AI pipelines in Python and TypeScript. Proven record of taking complex, multi-step AI workflows from prototype to production — including async pipeline orchestration, vector-indexed data systems, real-time inference APIs, and full observability stacks (structured logging, error tracking, performance monitoring, alerting). Hands-on experience with Azure (Functions, AKS, ACR, Application Insights, AD B2C), Docker, CI/CD, and cloud-native deployment. Currently co-founding AnchorBase (London) — an AI document search platform — and leading AgriData AI, running live government pilots within Zimbabwe's Ministry of Agriculture. Works AI-natively with agentic tooling (Claude, Cursor, Copilot, Antigravity) as core development workflow.";
+
+export interface CvJob {
+  title: string;
+  org: string;
+  dates: string;
+  bullets: string[];
+}
+
+export const cvJobs: CvJob[] = [
+  {
+    title: "Co-Founder & AI Engineer",
+    org: "AnchorBase · London, UK (Remote)",
+    dates: "Feb 2026 – Present",
+    bullets: [
+      "Built and shipped an AI-powered document search platform for engineers working with codes, standards, and technical specifications — enabling natural language Q&A with precise citations. Pivoted from Project Machine (Nov 2025) after deep work on document parsing and RAG pipelines revealed the bigger opportunity.",
+      "Designed and implemented a full RAG pipeline: HyDE query expansion, embedding via Gemini gemini-embedding-001, semantic + keyword retrieval with RRF reranking, and hierarchical chunk expansion.",
+      "Architected multi-LLM routing: xAI/Grok for document Q&A; Gemini 2.5 Flash with Google Search grounding for internet-routed queries.",
+      "Built streaming answer delivery via SSE with real-time source citation, follow-up question generation, and an admin observability dashboard.",
+      "Implemented multi-step agent workflows: intent classification, query routing, context retrieval, answer generation, and follow-up suggestion — each step orchestrated as a discrete agent action with fallback handling.",
+      "Stack: React + TypeScript (frontend), FastAPI + Python (backend), Pinecone (vector search), Supabase (Postgres + auth), Cloudflare R2 (storage).",
+      "Onboarded 50+ organic users since launch; actively onboarding pilot partners.",
+    ],
+  },
+  {
+    title: "Founder & AI Engineer",
+    org: "AgriData AI · Zimbabwe",
+    dates: "2025 – Present",
+    bullets: [
+      "Built an AI system for Zimbabwe's agricultural sector, processing farmer and extension officer queries via a WhatsApp-native interface.",
+      "Deployed live pilots with the Migratory Pests & Biosecurity Control (MPBC) team within Zimbabwe's Ministry of Agriculture — system has processed 5,000+ messages from 22+ extension officers.",
+      "Running an active pilot with the Tobacco Research Board (Kutsaga); in contract deliberations with the Zimbabwe Sugarcane Association Experiment Station (ZSAES).",
+      "Finalist, Kutsaga Innovation Challenge 2025.",
+    ],
+  },
+  {
+    title: "Co-Founder & CEO",
+    org: "AakiTech · Remote",
+    dates: "Jun 2024 – Present",
+    bullets: [
+      "Founded and led AakiTech, building digital tools for African schools and small businesses in underserved, low-resource environments.",
+      "Built and led a cross-functional team of 7 — developers, business operations, and growth specialists.",
+      "Shipped multiple products across edtech and SME operations — including a platform now serving 1,000+ users, engineered for low-bandwidth, mobile-first environments.",
+      "Selected: Mastercard FAST Build 2024. 2nd place, Unity Challenge 2025 (AL for Professionals). Finalist, Kutsaga Innovation Challenge 2025.",
+    ],
+  },
+  {
+    title: "Builder",
+    org: "BOQ Generator · Remote",
+    dates: "2026",
+    bullets: [
+      "Built an AI-powered Bill of Quantities platform for the Zambian construction market — upload a Scope of Work PDF, receive a structured and priced BOQ; or upload an unrated Excel BOQ and have AI fill Zambian market rates calibrated to province, site accessibility, labour source, and margin.",
+      "Architected a 7-step async generation pipeline using Inngest to handle large documents beyond Vercel's serverless timeout limits: extract → structure → save → rate-fill → QA → save → notify.",
+      "Built a vector-indexed rate library (pgvector) sourced from real Zambian construction BOQs, used to ground AI pricing with temporal rate anchors — rates carry rate_date for auditability.",
+      "Implemented full payment gate via Stripe (dynamic pricing by BOQ size and item count), Google OAuth, in-browser BOQ editor with auto-save, Excel export in Zambian tender format, and a streaming AI edit assistant.",
+      "Observability stack: Sentry (errors + session replay), PostHog (server events), structured JSON logging, Upstash Redis rate limiting, Inngest dashboard for per-step execution traces.",
+      "Stack: Next.js 15, TypeScript, Supabase (Postgres + RLS), Gemini 2.5 Pro/Flash, Inngest, Stripe, Vercel.",
+    ],
+  },
+  {
+    title: "Software Consultant",
+    org: "Kindred for Business · London (Remote)",
+    dates: "Sep 2023 – Jun 2024",
+    bullets: [
+      "Led migration of multiple C# Azure Functions applications to .NET 8 LTS, ensuring zero-downtime transitions.",
+      "Triaged and resolved backend bugs detected via Azure Function Monitor and Application Insights, improving system resilience.",
+      "Collaborated with distributed service desk and engineering teams on backend stability and delivery.",
+    ],
+  },
+  {
+    title: "Software Developer",
+    org: "Full Stack (Pty) Ltd · Cape Town",
+    dates: "2021 – Sep 2023",
+    bullets: [
+      "Brokers Platform: Built a brokers management platform using OutSystems and ASP.NET Core; automated test suites with Selenium and Katalon.",
+      "Mortgage Application Platform: Deployed application, SQL database, and storage on AWS; implemented gRPC/Proto Buffers for frontend-backend communication.",
+      "Jupyter Data Science Portal: Developed a high-security data analysis portal — Angular frontend, ASP.NET Core + YARP middleware, customized JupyterHub on Azure Kubernetes Cluster with custom images on ACR.",
+      "File Submission & Review System: Led Umbraco 8 → 10 migration; integrated Azure AD B2C authentication and Azure Blob Storage; delivered within 6-month timeline.",
+      "Phase II CMS: Contributed to Umbraco + ASP.NET project; managed deployment across dev, staging, and production; delivered with a 4-person team in 2 months.",
+    ],
+  },
+];
+
+export interface CvSkill {
+  label: string;
+  value: string;
+}
+
+export const cvSkills: CvSkill[] = [
+  { label: "AI & ML Engineering", value: "RAG pipelines, LLM integration, vector search (pgvector, Pinecone), embeddings, HyDE, prompt engineering, multi-step agent orchestration, model evaluation, OpenAI, Gemini, xAI/Grok" },
+  { label: "Languages", value: "Python, TypeScript, C#, JavaScript, SQL" },
+  { label: "Pipeline & Orchestration", value: "Inngest (multi-step async pipelines), CI/CD (GitHub Actions, Azure DevOps, GitLab CI), batch + async job architecture, retry/recovery, event-driven workflows" },
+  { label: "Frameworks & Libraries", value: "FastAPI, Vercel AI SDK, ASP.NET Core, Next.js, React, Django, Entity Framework Core" },
+  { label: "Databases & Storage", value: "PostgreSQL, SQL Server, Supabase, Firebase, Pinecone, Azure Blob Storage, Cloudflare R2" },
+  { label: "Cloud & Infrastructure", value: "Microsoft Azure (Functions, AKS, ACR, AD B2C, Application Insights), AWS, Google Cloud, Docker, Docker Compose, Vercel, Fly.io" },
+  { label: "Observability & Monitoring", value: "Sentry (errors + session replay), PostHog, structured JSON logging, Upstash Redis (rate limiting), Azure Application Insights, health checks, alerting" },
+  { label: "Tools & Practices", value: "Git, GitHub, Azure DevOps, Jupyter, Scrum, Kanban, gRPC, Selenium" },
+];
+
+export interface CvEdu {
+  degree: string;
+  school: string;
+  dates: string;
+  notes: string[];
+}
+
+export const cvEducation: CvEdu[] = [
+  {
+    degree: "BSc Computer Science",
+    school: "University of Cape Town (UCT)",
+    dates: "2017 – 2021",
+    notes: [
+      "Mastercard Foundation Scholar (full scholarship)",
+      "Chairperson, Space & Astronomy Society (SpaceSoc)",
+      "Co-Founder, SEDS South Africa — enrolled 3 universities; organized 10+ events nationally",
+      "Keynote speaker, 4th SA-GEO National Symposium, CSIR (2022)",
+      "Relevant electives: Statistics, Philosophy, Astronomy, African Studies",
+    ],
+  },
+  {
+    degree: "O-Level & A-Level (ZIMSEC)",
+    school: "Mt Selinda High School",
+    dates: "2010 – 2015",
+    notes: [
+      "Head Boy",
+      "8 As and 1 B at O-Level",
+      "Recipient, United States Achievers Program (USAP)",
+    ],
+  },
+];
+
+export interface CvAward {
+  year: string;
+  text: string;
+}
+
+export const cvAwards: CvAward[] = [
+  { year: "2026", text: "AIM Founding to Give 2026 Cohort — selected after multiple rigorous rounds" },
+  { year: "2025", text: "Mastercard Foundation Scholars — Alumni Panellist" },
+  { year: "2025", text: "Unity Challenge — 2nd Place (AL for Professionals)" },
+  { year: "2025", text: "Kutsaga Innovation Challenge — Finalist" },
+  { year: "2024", text: "Mastercard FAST Build — Recipient" },
+];
