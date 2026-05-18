@@ -54,6 +54,15 @@ const applications: Application[] = [
       "Huzzle places you in-house with a client company. Full-time, independent contractor. JD: LLMs, RAG, Python, scalable APIs, MLOps. Submitted CV + tools/industries answers + cover letter leading with AnchorBase RAG pipeline and AgriData AI government pilots.",
   },
   {
+    company: "Momentum Group",
+    role: "Machine Learning Engineer",
+    date: "2026-05-18",
+    status: "Applied",
+    url: "https://momentumgroupltd.erecruit.co/candidateapp/Jobs/View/MMH260511-1",
+    notes:
+      "Large South African financial services group (insurance, savings, investments). Role: ML Engineer on a data/AI team — model development, deployment, monitoring, and MLOps. JD asked for Python, ML frameworks, Azure/AWS, CI/CD, and experience deploying models to production. Honest gap: no pure ML/data science background (no sklearn pipelines, model training, feature engineering). The fit is on the engineering and deployment side — pipelines, observability, async orchestration, cloud infra — which maps well to production AI work done on AnchorBase, AgriData, BOQ Generator. Decision to apply: came via a personal contact's referral link (friend sent the specific role). Not a perfect fit on paper but the engineering depth is real and the gap is learnable fast, especially with agentic dev tooling. Reasoning: 'what exactly can't I do or learn with my background?' was the framing. Shot taken. CV temporarily reframed for this role: pipeline engineering emphasis, Python first in languages, new 'Pipeline & Orchestration' and 'Observability & Monitoring' skill rows added, AnchorBase location updated to London UK. Cover letter written emphasising production pipeline engineering, observability stack (Sentry, PostHog, structured logging), and async orchestration (Inngest 7-step pipeline) as direct analogues to MLOps concerns. Experience dropdowns: ML engineering 1-2 years, insurance/financial 0 years, similar position 1-2 years. Salary: R70,000/month (R840,000 per annum). CV refactor happened same session: all CV content extracted to src/lib/cvData.ts — single source of truth for web page, PDF, and Word doc.",
+  },
+  {
     company: "DeepMetis",
     role: "Senior AI Engineer",
     date: "2026-05-17",
