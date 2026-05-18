@@ -146,8 +146,29 @@ export function computeLayout(nodes: GraphNode[], edges: GraphEdge[]): Layout {
   const { gpCx: patGpCx, bottomY: patBottom } =
     placeDendrogramSubtree('wilson-maphutukezi', paternalClusters, patStartX, layout)
 
-  // Brighton below both trees
-  const brightonY = Math.max(matBottom, patBottom) + 60
+  // For every person node that is already placed and has direct children (not
+  // Brighton), stack those children vertically below them in the same column.
+  let globalBottom = Math.max(matBottom, patBottom)
+  for (const n of nodes) {
+    if (n.type !== 'person' || n.id === 'brighton') continue
+    const parentRect = layout.get(n.id)
+    if (!parentRect) continue
+    const childIds = edges
+      .filter(e => e.source === n.id && e.edgeType === 'direct' && e.target !== 'brighton')
+      .map(e => e.target)
+    if (childIds.length === 0) continue
+    const colCx = parentRect.x + parentRect.w / 2
+    let cy = parentRect.y + parentRect.h + CHILD_OFFSET
+    for (const childId of childIds) {
+      if (layout.has(childId)) continue
+      layout.set(childId, { x: colCx - NODE_W / 2, y: cy, w: NODE_W, h: NODE_H })
+      cy += NODE_H + V_GAP
+    }
+    globalBottom = Math.max(globalBottom, cy)
+  }
+
+  // Brighton below both trees, centred between his two parents
+  const brightonY = globalBottom + 60
   const maternalParent = layout.get('beauty-pakaisai')
   const paternalParent = layout.get('dennis-maphutukezi')
   const brightonCx = maternalParent && paternalParent
@@ -155,7 +176,7 @@ export function computeLayout(nodes: GraphNode[], edges: GraphEdge[]): Layout {
     : (matGpCx + patGpCx) / 2
   layout.set('brighton', { x: brightonCx - NODE_W / 2, y: brightonY, w: NODE_W, h: NODE_H })
 
-  // Place any remaining nodes (union points as invisible 1×1)
+  // Union nodes: invisible 1×1 midpoint between their source and first target
   for (const n of nodes) {
     if (layout.has(n.id)) continue
     if (n.type === 'union') {
@@ -331,16 +352,16 @@ export default function DendrogramTree() {
     const srcEdge = edges.find(e => e.target === n.id)
     const color = srcEdge ? edgeColor(srcEdge, nodeById) : 'rgba(120,120,120,0.35)'
 
-    // Grandparent → wife: elbow from gp bottom-centre to wife left-middle
+    // Grandparent → wife: drop from gp bottom to a shared rail, then drop into wife top
     if (srcEdge) {
       const gpRect = layout.get(srcEdge.source)
       if (gpRect) {
-        const gpCx = gpRect.x + gpRect.w / 2
+        const gpCx    = gpRect.x + gpRect.w / 2
         const gpBottom = gpRect.y + gpRect.h
-        const wifeMidY = wifeRect.y + wifeRect.h / 2
-        const wifeLeft = wifeRect.x
-        const elbowY = gpBottom + (wifeMidY - gpBottom) * 0.4
-        const d = `M ${gpCx} ${gpBottom} L ${gpCx} ${elbowY} L ${wifeLeft} ${elbowY} L ${wifeLeft} ${wifeMidY}`
+        const wifeCx  = wifeRect.x + wifeRect.w / 2
+        const wifeTop = wifeRect.y
+        const railY   = gpBottom + (wifeTop - gpBottom) * 0.45
+        const d = `M ${gpCx} ${gpBottom} L ${gpCx} ${railY} L ${wifeCx} ${railY} L ${wifeCx} ${wifeTop}`
         edgeElements.push(
           <path key={`gp-wife-${n.id}`} d={d} stroke={color} fill="none" strokeWidth={1.5} strokeDasharray="5 4" />
         )
