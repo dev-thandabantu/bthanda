@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useCallback, useEffect } from 'react'
+import { useRef, useState, useCallback, useEffect, useMemo } from 'react'
 import { buildFamilyGraph, wifeById } from '@/data/family-graph'
 import type { GraphNode, GraphEdge } from '@/data/family-graph'
 import { allPeople } from '@/data/family'
@@ -176,6 +176,7 @@ function placeGrandparentSubtree(
  */
 export function computeLayout(nodes: GraphNode[], edges: GraphEdge[]): Layout {
   const layout: Layout = new Map()
+  const rowMaxX = new Map<number, number[]>()
 
   const maternalClusters = clustersFor('ifraim-musabani', nodes, edges)
   const paternalClusters = clustersFor('wilson-maphutukezi', nodes, edges)
@@ -224,9 +225,11 @@ export function computeLayout(nodes: GraphNode[], edges: GraphEdge[]): Layout {
     }
     // Remaining persons: place by generation at far right
     const y = generationY(n.generation)
-    const existing = [...layout.values()].filter(r => r.y === y)
-    const maxX = existing.length ? Math.max(...existing.map(r => r.x + r.w)) : 0
-    layout.set(n.id, { x: maxX + H_GAP, y, w: NODE_W, h: NODE_H })
+    const rowRects = rowMaxX.get(y) ?? []
+    const maxX = rowRects.length ? Math.max(...rowRects) : 0
+    const nextX = maxX + H_GAP
+    rowMaxX.set(y, [...rowRects, nextX + NODE_W])
+    layout.set(n.id, { x: nextX, y, w: NODE_W, h: NODE_H })
   }
 
   return layout
@@ -355,13 +358,14 @@ export default function FamilyTreeSVG() {
   const [tx, setTx] = useState(40)
   const [ty, setTy] = useState(40)
   const [scale, setScale] = useState(0.55)
-  const dragging = useRef(false)
-  const lastPos  = useRef({ x: 0, y: 0 })
+  const dragging    = useRef(false)
+  const lastPos     = useRef({ x: 0, y: 0 })
+  const [isDragging, setIsDragging] = useState(false)
 
-  // Build graph once
-  const { nodes, edges } = buildFamilyGraph()
-  const layout           = computeLayout(nodes, edges)
-  const nodeById         = new Map(nodes.map(n => [n.id, n]))
+  // Build graph once — memoized so pan/zoom state changes don't re-layout
+  const { nodes, edges } = useMemo(() => buildFamilyGraph(), [])
+  const layout           = useMemo(() => computeLayout(nodes, edges), [nodes, edges])
+  const nodeById         = useMemo(() => new Map(nodes.map(n => [n.id, n])), [nodes])
 
   // Bounding box of the layout
   const rects = [...layout.values()]
@@ -378,6 +382,7 @@ export default function FamilyTreeSVG() {
   const onPointerDown = useCallback((e: React.PointerEvent) => {
     if ((e.target as Element).closest('rect,ellipse,text')) return
     dragging.current = true
+    setIsDragging(true)
     lastPos.current = { x: e.clientX, y: e.clientY };
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId)
   }, [])
@@ -391,10 +396,11 @@ export default function FamilyTreeSVG() {
     setTy(y => y + dy)
   }, [])
 
-  const onPointerUp = useCallback(() => { dragging.current = false }, [])
+  const onPointerUp = useCallback(() => { dragging.current = false; setIsDragging(false) }, [])
 
   // ── Node click ────────────────────────────────────────────────────────────
-  const handleNodeClick = useCallback((id: string) => {
+  const handleNodeClick = useCallback((e: React.MouseEvent, id: string) => {
+    e.stopPropagation()
     const gn = nodeById.get(id)
     if (!gn || gn.type === 'union') return
 
@@ -415,12 +421,16 @@ export default function FamilyTreeSVG() {
   const handleDownload = useCallback(async () => {
     const el = containerRef.current
     if (!el) return
-    const { toPng } = await import('html-to-image')
-    const dataUrl = await toPng(el, { backgroundColor: '#f8f7f4' })
-    const a = document.createElement('a')
-    a.href = dataUrl
-    a.download = 'family-tree-attempt-5.png'
-    a.click()
+    try {
+      const { toPng } = await import('html-to-image')
+      const dataUrl = await toPng(el, { backgroundColor: '#f8f7f4' })
+      const a = document.createElement('a')
+      a.href = dataUrl
+      a.download = 'family-tree-attempt-5.png'
+      a.click()
+    } catch {
+      // toPng can fail on cross-origin content; silently no-op
+    }
   }, [])
 
   // ── Fit to container on mount ─────────────────────────────────────────────
@@ -529,7 +539,7 @@ export default function FamilyTreeSVG() {
       nodeElements.push(
         <g
           key={n.id}
-          onClick={() => handleNodeClick(n.id)}
+          onClick={(e) => handleNodeClick(e, n.id)}
           style={{ cursor: 'pointer' }}
           opacity={dead ? 0.4 : 1}
         >
@@ -558,7 +568,7 @@ export default function FamilyTreeSVG() {
       nodeElements.push(
         <g
           key={n.id}
-          onClick={() => handleNodeClick(n.id)}
+          onClick={(e) => handleNodeClick(e, n.id)}
           style={{ cursor: 'pointer' }}
           opacity={dead ? 0.45 : 1}
         >
@@ -620,7 +630,7 @@ export default function FamilyTreeSVG() {
       <div
         ref={containerRef}
         className="relative flex-1 min-h-0 rounded-xl overflow-hidden select-none"
-        style={{ background: '#f8f7f4', cursor: dragging.current ? 'grabbing' : 'grab' }}
+        style={{ background: '#f8f7f4', cursor: isDragging ? 'grabbing' : 'grab' }}
         onWheel={onWheel}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
