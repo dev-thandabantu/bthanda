@@ -42,7 +42,14 @@ export default function About() {
           >
             written down
           </a>
-          .
+          . The rest I&apos;m trying to{" "}
+          <a
+            href="/family"
+            className="text-white/70 underline underline-offset-4 decoration-white/20 hover:decoration-white/60 transition-all"
+          >
+            map out
+          </a>
+          {" "}— 218 relatives across Zimbabwe, South Africa, and Mozambique — and still counting.
         </p>
 
         <div className="pt-4">

@@ -8,6 +8,7 @@ const links: { label: string; href: string; external?: boolean }[] = [
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
   { label: "CV", href: "/cv" },
+  { label: "where i come from", href: "/family" },
 ];
 
 export default function Nav() {
