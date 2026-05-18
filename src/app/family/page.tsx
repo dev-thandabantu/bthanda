@@ -225,8 +225,35 @@ export default function FamilyPage() {
 
         </div>
 
+        {/* ── What winning looks like ── */}
+        <div className="mt-24 max-w-2xl">
+          <p className="text-xs tracking-widest text-white/20 uppercase mb-6">What winning looks like</p>
+          <p className="text-sm text-white/40 leading-relaxed mb-8">
+            After three attempts, I know what I&apos;m actually looking for. A winning visualisation satisfies all of this:
+          </p>
+          <ol className="space-y-5 text-sm leading-relaxed text-white/45 list-none">
+            {[
+              ['All 218 people are present', 'No one gets dropped. Brighton is the ego node. Both lineages — maternal (Musabani) and paternal (Maphutukezi) — are fully rendered.'],
+              ['All 8 grandmothers are visible as nodes', 'The five wives of Ifraim and the three wives of Wilson must appear as distinct, labelled nodes — not ghost placeholders, not edge labels. They existed. They matter.'],
+              ['Children connect to their correct mother, not just to their grandfather', 'A child of Ifraim + Wife 3 must be visually distinct from a child of Ifraim + Wife 1. The connector routes through a partnership unit.'],
+              ['Generations are legible as rows', 'Ifraim and Wilson at the top. Their children one row below. Their grandchildren one row below that. Brighton as the convergence point of both lineages. Top-to-bottom = older to younger.'],
+              ['It fits a screen, with zoom and pan', 'Navigable. An initial view that fits the whole tree at a readable scale. Zoom and pan required.'],
+              ['Clicking a person shows their details', 'Name, relationship, country, status, notes.'],
+              ["It doesn’t look terrible", "This is a portfolio piece. Dark background, minimal aesthetic. It doesn’t need to be beautiful. It needs to not be ugly."],
+            ].map(([title, desc], i) => (
+              <li key={i} className="flex gap-4">
+                <span className="text-white/15 tabular-nums shrink-0 w-4 mt-0.5">{i + 1}</span>
+                <div>
+                  <span className="text-white/65">{title}. </span>
+                  {desc}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
         {/* ── Challenge ── */}
-        <div className="mt-24">
+        <div className="mt-20">
           <ChallengeBlock />
         </div>
 
