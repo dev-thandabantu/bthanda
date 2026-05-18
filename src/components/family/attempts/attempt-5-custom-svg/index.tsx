@@ -53,21 +53,6 @@ function generationY(gen: number): number {
 }
 
 /**
- * Lay out a flat list of nodes left-to-right with H_GAP spacing.
- * Returns the total width occupied and mutates `layout`.
- */
-function placeRow(ids: string[], cx: number, y: number, w: number, h: number, layout: Layout): number {
-  if (ids.length === 0) return 0
-  const totalW = ids.length * w + (ids.length - 1) * H_GAP
-  let x = cx - totalW / 2
-  for (const id of ids) {
-    layout.set(id, { x, y, w, h })
-    x += w + H_GAP
-  }
-  return totalW
-}
-
-/**
  * Lay out one wife-cluster: wife node centred above her children.
  * Returns the total width of the cluster.
  */
@@ -191,7 +176,6 @@ function placeGrandparentSubtree(
  */
 export function computeLayout(nodes: GraphNode[], edges: GraphEdge[]): Layout {
   const layout: Layout = new Map()
-  const nodeById = new Map(nodes.map(n => [n.id, n]))
 
   const maternalClusters = clustersFor('ifraim-musabani', nodes, edges)
   const paternalClusters = clustersFor('wilson-maphutukezi', nodes, edges)
@@ -244,8 +228,6 @@ export function computeLayout(nodes: GraphNode[], edges: GraphEdge[]): Layout {
     const maxX = existing.length ? Math.max(...existing.map(r => r.x + r.w)) : 0
     layout.set(n.id, { x: maxX + H_GAP, y, w: NODE_W, h: NODE_H })
   }
-
-  void nodeById // suppress unused warning
 
   return layout
 }
