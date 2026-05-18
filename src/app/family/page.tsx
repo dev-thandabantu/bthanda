@@ -3,6 +3,7 @@ import FamilyStats from '@/components/FamilyStats'
 import Attempt1Loader from '@/components/family/attempts/attempt-1-react-d3-tree/Loader'
 import Attempt2Loader from '@/components/family/attempts/attempt-2-family-chart/Loader'
 import Attempt3Loader from '@/components/family/attempts/attempt-3-cytoscape/Loader'
+import Attempt4Loader from '@/components/family/attempts/attempt-4-react-flow-elk/Loader'
 import AttemptSection from '@/components/family/AttemptSection'
 import ChallengeBlock from '@/components/family/ChallengeBlock'
 
@@ -140,7 +141,7 @@ export default function FamilyPage() {
           <AttemptSection
             number={3}
             title="Cytoscape.js — union node model"
-            status="current"
+            status="abandoned"
             verdict="First approach to correctly model polygamy"
             what={<>
               Each wife-grandfather pairing becomes an invisible &ldquo;union node&rdquo; in the graph.
@@ -170,29 +171,35 @@ export default function FamilyPage() {
 
           <AttemptSection
             number={4}
-            title="React Flow + ELK — coming soon"
-            status="experimental"
-            verdict="Most promising remaining option"
+            title="React Flow + ELK — layered layout"
+            status="current"
+            verdict="Better layout, same data model"
             what={<>
-              <a href="https://reactflow.dev" target="_blank" rel="noopener noreferrer">React Flow</a> (xyflow) is the
-              current standard for interactive node graphs in React — DOM-based, accessible, well-maintained.
-              Paired with <a href="https://eclipse.dev/elk/" target="_blank" rel="noopener noreferrer">ELK</a> (Eclipse Layout Kernel),
-              which has a dedicated hierarchical layout algorithm designed for genealogy-style graphs.
-              Reference: <a href="https://reactflow.dev/examples/layout/elkjs" target="_blank" rel="noopener noreferrer">React Flow + ELK example</a>.
+              Same union-node data model as Attempt 3, but swapped the renderer and layout engine.{' '}
+              <a href="https://reactflow.dev" target="_blank" rel="noopener noreferrer">React Flow</a> (xyflow) renders
+              nodes as DOM elements — CSS styling, accessibility, and custom React components instead of
+              Cytoscape&apos;s canvas.{' '}
+              <a href="https://eclipse.dev/elk/" target="_blank" rel="noopener noreferrer">ELK</a> (Eclipse Layout Kernel)
+              computes positions using its <code>layered</code> algorithm, which is designed for
+              hierarchical directed graphs and respects generation depth more reliably than dagre.
             </>}
             problem={<>
-              Not yet attempted. The union node pattern from Attempt 3 would carry over — ELK&apos;s
-              &ldquo;mrtree&rdquo; or &ldquo;layered&rdquo; algorithm may produce better generational alignment than dagre.
-              Main unknown: whether ELK handles the union-node topology cleanly or fights it.
+              ELK&apos;s <code>layered</code> algorithm still treats this as a general directed graph —
+              it doesn&apos;t know that wife nodes and their children should form a horizontal cluster.
+              With 8 grandmothers each fanning out to multiple children, the layout can still produce
+              wide, hard-to-read generations. The data model is correct; the layout algorithm
+              is still the bottleneck.
             </>}
             learned={<>
-              Documented as the next attempt. React Flow&apos;s DOM-based rendering would allow CSS
-              styling, accessibility, and easier custom node components — advantages over Cytoscape&apos;s canvas approach.
+              DOM-based rendering is a clear improvement over canvas — nodes are selectable, zoomable,
+              and styleable without fighting the library. ELK&apos;s layered algorithm does produce
+              cleaner generational rows than dagre in most cases.
+              The remaining problem is not the library — it&apos;s that no general-purpose layout
+              algorithm knows to group &ldquo;Wilson + Wife 1&apos;s children&rdquo; as a visual unit.
+              That grouping requires either a custom layout pass or a library purpose-built for kinship diagrams.
             </>}
           >
-            <div className="h-full flex items-center justify-center text-white/20 text-sm">
-              Not yet built.
-            </div>
+            <Attempt4Loader />
           </AttemptSection>
 
           <AttemptSection
