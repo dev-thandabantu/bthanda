@@ -62,7 +62,7 @@ export const cvJobs: CvJob[] = [
     dates: "2026",
     bullets: [
       "Built an AI-powered Bill of Quantities platform for the Zambian construction market — upload a Scope of Work PDF, receive a structured and priced BOQ; or upload an unrated Excel BOQ and have AI fill Zambian market rates calibrated to province, site accessibility, labour source, and margin.",
-      "Architected a 7-step async generation pipeline using Inngest to handle large documents beyond Vercel's serverless timeout limits: extract → structure → save → rate-fill → QA → save → notify.",
+      "Architected a 7-step async generation pipeline using Inngest to handle large documents beyond Vercel's serverless timeout limits: extract > structure > save > rate-fill > QA > save > notify.",
       "Built a vector-indexed rate library (pgvector) sourced from real Zambian construction BOQs, used to ground AI pricing with temporal rate anchors — rates carry rate_date for auditability.",
       "Implemented full payment gate via Stripe (dynamic pricing by BOQ size and item count), Google OAuth, in-browser BOQ editor with auto-save, Excel export in Zambian tender format, and a streaming AI edit assistant.",
       "Observability stack: Sentry (errors + session replay), PostHog (server events), structured JSON logging, Upstash Redis rate limiting, Inngest dashboard for per-step execution traces.",
@@ -87,7 +87,7 @@ export const cvJobs: CvJob[] = [
       "Brokers Platform: Built a brokers management platform using OutSystems and ASP.NET Core; automated test suites with Selenium and Katalon.",
       "Mortgage Application Platform: Deployed application, SQL database, and storage on AWS; implemented gRPC/Proto Buffers for frontend-backend communication.",
       "Jupyter Data Science Portal: Developed a high-security data analysis portal — Angular frontend, ASP.NET Core + YARP middleware, customized JupyterHub on Azure Kubernetes Cluster with custom images on ACR.",
-      "File Submission & Review System: Led Umbraco 8 → 10 migration; integrated Azure AD B2C authentication and Azure Blob Storage; delivered within 6-month timeline.",
+      "File Submission & Review System: Led Umbraco 8 to 10 migration; integrated Azure AD B2C authentication and Azure Blob Storage; delivered within 6-month timeline.",
       "Phase II CMS: Contributed to Umbraco + ASP.NET project; managed deployment across dev, staging, and production; delivered with a 4-person team in 2 months.",
     ],
   },
