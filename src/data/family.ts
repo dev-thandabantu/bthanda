@@ -648,7 +648,18 @@ const maphutukezi: FamilyPerson = {
       status: 'living',
       country: 'ZW',
       children: [
-        { id: 'fungai-c', name: 'Fungai', displayName: 'Fungai', relationship: 'Paternal 1st cousin', side: 'paternal', generation: 0, status: 'living', country: 'ZW', notes: '4 children' },
+        {
+          id: 'fungai-c', name: 'Fungai', displayName: 'Fungai', relationship: 'Paternal 1st cousin', side: 'paternal', generation: 0, status: 'living', country: 'ZW',
+          children: [
+            {
+              id: 'trace-fungai', name: 'Trace', displayName: 'Trace', relationship: 'Paternal 2nd cousin', side: 'paternal', generation: 1, status: 'living', country: 'ZW',
+              children: [
+                { id: 'nicholas-trace', name: 'Nicholas / Nicco', displayName: 'Nicco', relationship: 'Paternal 3rd cousin', side: 'paternal', generation: 2, status: 'living', country: 'ZW' },
+              ],
+            },
+            { id: 'fungai-c-child2', name: 'Unknown', displayName: '(3 others)', relationship: 'Paternal 2nd cousin', side: 'paternal', generation: 1, status: 'unknown', notes: '3 other children of Fungai not yet documented' },
+          ],
+        },
         { id: 'lovemore-c', name: 'Lovemore', displayName: 'Lovemore', relationship: 'Paternal 1st cousin', side: 'paternal', generation: 0, status: 'living', country: 'ZW', notes: '2 children' },
         { id: 'joseph-c', name: 'Joseph', displayName: 'Joseph', relationship: 'Paternal 1st cousin', side: 'paternal', generation: 0, status: 'living', country: 'ZW', notes: '~4 children' },
         { id: 'david-c', name: 'David', displayName: 'David', relationship: 'Paternal 1st cousin', side: 'paternal', generation: 0, status: 'living', country: 'ZW', notes: '3 children' },
