@@ -203,15 +203,15 @@ export default function CvPage() {
         <section className="summary">
           <h2>Professional Summary</h2>
           <p>
-            AI engineer and founder with 4+ years of experience building and shipping full-stack software products.
-            Deep hands-on expertise in RAG pipelines, LLM integration, vector search, and AI-powered SaaS.
-            Currently co-founding AnchorBase — an AI document search platform for engineers — and leading
-            AgriData AI, which is running live government pilots within Zimbabwe&apos;s Ministry of Agriculture.
-            Works AI-natively: Claude, Cursor, GitHub Copilot, and Antigravity are active parts of the daily
-            development workflow — used for agentic task execution, plan-mode iteration, prompt engineering,
-            and output verification. Proven record of taking products from zero to production, leading
-            cross-functional teams, and securing recognition in competitive startup programs across Africa.
-            Available for select freelance and contract engagements in AI engineering and full-stack development.
+            Production AI and software engineer with 4+ years of experience designing, building, and operating
+            end-to-end data and AI pipelines in Python and TypeScript. Proven record of taking complex,
+            multi-step AI workflows from prototype to production — including async pipeline orchestration,
+            vector-indexed data systems, real-time inference APIs, and full observability stacks (structured
+            logging, error tracking, performance monitoring, alerting). Hands-on experience with Azure
+            (Functions, AKS, ACR, Application Insights, AD B2C), Docker, CI/CD, and cloud-native deployment.
+            Currently co-founding AnchorBase (London) — an AI document search platform — and leading AgriData AI,
+            running live government pilots within Zimbabwe&apos;s Ministry of Agriculture.
+            Works AI-natively with agentic tooling (Claude, Cursor, Copilot, Antigravity) as core development workflow.
           </p>
         </section>
 
@@ -317,13 +317,14 @@ export default function CvPage() {
         <section>
           <h2>Skills</h2>
           <div className="skills-grid">
-            <div className="skill-row"><span className="skill-label">AI &amp; Machine Learning</span><span className="skill-value">RAG pipelines, LLM integration, vector search, embeddings, HyDE, prompt engineering, OpenAI, Gemini, xAI/Grok, OpenRouter, ElevenLabs</span></div>
-            <div className="skill-row"><span className="skill-label">Languages</span><span className="skill-value">TypeScript, Python, C#, JavaScript, Dart, SQL</span></div>
-            <div className="skill-row"><span className="skill-label">Frameworks &amp; Libraries</span><span className="skill-value">Vercel AI SDK, FastAPI, ASP.NET Core, Next.js, React, Angular, Blazor, Flutter, Django, Entity Framework Core</span></div>
+            <div className="skill-row"><span className="skill-label">AI &amp; ML Engineering</span><span className="skill-value">RAG pipelines, LLM integration, vector search (pgvector, Pinecone), embeddings, HyDE, prompt engineering, multi-step agent orchestration, model evaluation, OpenAI, Gemini, xAI/Grok</span></div>
+            <div className="skill-row"><span className="skill-label">Languages</span><span className="skill-value">Python, TypeScript, C#, JavaScript, SQL</span></div>
+            <div className="skill-row"><span className="skill-label">Pipeline &amp; Orchestration</span><span className="skill-value">Inngest (multi-step async pipelines), CI/CD (GitHub Actions, Azure DevOps, GitLab CI), batch + async job architecture, retry/recovery, event-driven workflows</span></div>
+            <div className="skill-row"><span className="skill-label">Frameworks &amp; Libraries</span><span className="skill-value">FastAPI, Vercel AI SDK, ASP.NET Core, Next.js, React, Django, Entity Framework Core</span></div>
             <div className="skill-row"><span className="skill-label">Databases &amp; Storage</span><span className="skill-value">PostgreSQL, SQL Server, Supabase, Firebase, Pinecone, Azure Blob Storage, Cloudflare R2</span></div>
-            <div className="skill-row"><span className="skill-label">Cloud &amp; Infrastructure</span><span className="skill-value">Microsoft Azure (Functions, AKS, ACR, AD B2C, Application Insights), AWS, Google Cloud, Docker, CI/CD, Vercel, Fly.io</span></div>
-            <div className="skill-row"><span className="skill-label">AI Dev Tools</span><span className="skill-value">Claude (Claude Code), Cursor, GitHub Copilot, Antigravity — daily agentic workflow, plan-mode iteration, prompt engineering, output verification</span></div>
-            <div className="skill-row"><span className="skill-label">Tools &amp; Practices</span><span className="skill-value">Git, GitHub, Azure DevOps, Scrum, Kanban, Jupyter, OutSystems, YARP, gRPC, Selenium, Katalon</span></div>
+            <div className="skill-row"><span className="skill-label">Cloud &amp; Infrastructure</span><span className="skill-value">Microsoft Azure (Functions, AKS, ACR, AD B2C, Application Insights), AWS, Google Cloud, Docker, Docker Compose, Vercel, Fly.io</span></div>
+            <div className="skill-row"><span className="skill-label">Observability &amp; Monitoring</span><span className="skill-value">Sentry (errors + session replay), PostHog, structured JSON logging, Upstash Redis (rate limiting), Azure Application Insights, health checks, alerting</span></div>
+            <div className="skill-row"><span className="skill-label">Tools &amp; Practices</span><span className="skill-value">Git, GitHub, Azure DevOps, Jupyter, Scrum, Kanban, gRPC, Selenium</span></div>
           </div>
         </section>
 
