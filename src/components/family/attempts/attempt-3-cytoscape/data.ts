@@ -1,11 +1,12 @@
 import type { FamilyPerson } from '@/data/family-types'
-import { familyTree } from '@/data/family'
+import { familyTree, wivesOf } from '@/data/family'
+import type { Wife } from '@/data/family'
 
 export interface CyNode {
   data: {
     id: string
     label: string
-    type: 'person' | 'union'
+    type: 'person' | 'union' | 'wife'
     side?: 'maternal' | 'paternal' | 'both'
     status?: string
     generation?: number
@@ -23,25 +24,45 @@ export interface CyEdge {
   }
 }
 
+// Map wife IDs to their display objects for click-to-detail
+export const wifeById = new Map<string, Wife>()
+for (const wives of Object.values(wivesOf)) {
+  for (const w of wives) wifeById.set(w.id, w)
+}
+
+// Maps line key → wife ID for each grandparent.
+// Derived from the wife arrays so the mapping stays in one place.
+const wifeKeyToId: Record<string, Record<string, string>> = {
+  'ifraim-musabani': {
+    'Bhesi':       'wife-ifraim-bhesi',
+    'aMutigo':     'wife-ifraim-amutigo',
+    'aNgarika':    'wife-ifraim-angarika',
+    'Makhuya':     'wife-ifraim-amakhuya',
+    'Musarisari':  'wife-ifraim-amusarisari',
+  },
+  'wilson-maphutukezi': {
+    'Wife 1': 'wife-wilson-ester',
+    'Wife 2': 'wife-wilson-dzakatsumbe',
+    'Wife 3': 'wife-wilson-wife3',
+  },
+}
+
 // Extract which wife group a child belongs to from the relationship string.
-// Returns a key like 'Bhesi line', 'Wife 1', 'Wife 2', etc., or null for direct children.
 function extractWifeKey(relationship: string): string | null {
   // Paternal: "(Wife 1)", "(Wife 2)", "(Wife 3)"
   const wifeNumMatch = relationship.match(/\(Wife (\d+)\)/)
   if (wifeNumMatch) return `Wife ${wifeNumMatch[1]}`
 
-  // Maternal: "(Bhesi line)", "(aMutigo line)", "(aNgarika line)", "(Makhuya line)", "(Musarisari line)"
+  // Maternal: "(Bhesi line)", "(aMutigo line)", "(Makhuya line)", "(Musarisari line)"
   const lineMatch = relationship.match(/\(([^)]+) line\)/)
   if (lineMatch) return lineMatch[1]
 
-  // Also catch aMutigo/Selina, Ngarika
-  if (relationship.includes('aNgarika') || relationship.includes('Ngarika')) return 'aNgarika'
+  // aNgarika appears without "line" in some entries
+  if (relationship.includes('Ngarika')) return 'aNgarika'
 
   return null
 }
 
-// Group direct children of a grandparent by their wife key.
-// Returns a map: wifeKey → person[] for each wife group, plus null → ungrouped
 function groupChildrenByWife(children: FamilyPerson[]): Map<string, FamilyPerson[]> {
   const groups = new Map<string, FamilyPerson[]>()
   for (const child of children) {
@@ -73,6 +94,23 @@ function addPerson(p: FamilyPerson) {
   })
 }
 
+function addWife(w: Wife, side: 'maternal' | 'paternal', generation: number) {
+  if (seen.has(w.id)) return
+  seen.add(w.id)
+  nodes.push({
+    data: {
+      id: w.id,
+      label: w.displayName,
+      type: 'wife',
+      side,
+      status: 'unknown',
+      generation,
+      relationship: `${side === 'maternal' ? 'Maternal' : 'Paternal'} great-grandmother`,
+      notes: w.notes,
+    },
+  })
+}
+
 function addUnion(unionId: string, side: 'maternal' | 'paternal') {
   if (seen.has(unionId)) return
   seen.add(unionId)
@@ -88,27 +126,36 @@ function addEdge(source: string, target: string, edgeType: CyEdge['data']['edgeT
   edges.push({ data: { id, source, target, edgeType } })
 }
 
-// Walk a grandparent's children, creating union nodes per wife group,
-// then recursively walk all descendants.
 function walkGrandparent(grandparent: FamilyPerson) {
   addPerson(grandparent)
   if (!grandparent.children?.length) return
 
+  const side = grandparent.side as 'maternal' | 'paternal'
   const groups = groupChildrenByWife(grandparent.children)
+  const keyToId = wifeKeyToId[grandparent.id] ?? {}
+  const gpWives = wivesOf[grandparent.id] ?? []
 
   for (const [wifeKey, children] of groups) {
     if (wifeKey === '__direct') {
-      // No wife grouping — connect directly
       for (const child of children) {
         addPerson(child)
         addEdge(grandparent.id, child.id, 'direct')
         walkDescendants(child)
       }
     } else {
+      const wifeId = keyToId[wifeKey]
+      const wifeObj = wifeId ? gpWives.find(w => w.id === wifeId) : undefined
       const unionId = `union--${grandparent.id}--${wifeKey.replace(/\s+/g, '-')}`
-      const side = grandparent.side as 'maternal' | 'paternal'
+
       addUnion(unionId, side)
       addEdge(grandparent.id, unionId, 'spouse-to-union')
+
+      if (wifeObj) {
+        // Wives are one generation below the grandparent (same generation as their children's parents)
+        addWife(wifeObj, side, grandparent.generation + 1)
+        addEdge(wifeObj.id, unionId, 'spouse-to-union')
+      }
+
       for (const child of children) {
         addPerson(child)
         addEdge(unionId, child.id, 'union-to-child')
@@ -121,7 +168,6 @@ function walkGrandparent(grandparent: FamilyPerson) {
 function walkDescendants(person: FamilyPerson) {
   if (!person.children?.length) return
   for (const child of person.children) {
-    // Skip Brighton — he's the ego node added separately; don't create duplicate edges
     if (child.id === 'brighton') continue
     addPerson(child)
     addEdge(person.id, child.id, 'direct')
@@ -129,16 +175,14 @@ function walkDescendants(person: FamilyPerson) {
   }
 }
 
-// Brighton is the ego node — add him first, then both grandparent lineages
+// Brighton is the ego node — add first, then both lineages
 addPerson(familyTree)
 
-// familyTree.children = [musabaniMaternal, maphutukezi]
 const [maternal, paternal] = familyTree.children ?? []
 if (maternal) walkGrandparent(maternal)
 if (paternal) walkGrandparent(paternal)
 
-// Connect Brighton to his parents (beauty-pakaisai on maternal, dennis-maphutukezi on paternal)
-// These edges are direct (not union-routed) since Brighton is the leaf connection point
+// Connect Brighton to his parents
 const maternalParentId = 'beauty-pakaisai'
 const paternalParentId = 'dennis-maphutukezi'
 if (seen.has(maternalParentId)) addEdge(maternalParentId, 'brighton', 'direct')

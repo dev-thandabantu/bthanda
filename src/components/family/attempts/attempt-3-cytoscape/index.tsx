@@ -1,9 +1,20 @@
 'use client'
 
 import { useEffect, useRef, useState, useCallback } from 'react'
-import { cytoscapeElements } from './data'
+import { cytoscapeElements, wifeById } from './data'
 import { allPeople } from '@/data/family'
-import type { FamilyPerson } from '@/data/family-types'
+
+// Unified "selected node" — either a FamilyPerson or a wife stub
+interface SelectedNode {
+  id: string
+  name: string
+  relationship: string
+  side?: string
+  status?: string
+  country?: string
+  location?: string
+  notes?: string
+}
 
 const MATERNAL = '#eab308'
 const PATERNAL = '#818cf8'
@@ -77,6 +88,40 @@ function buildStylesheet(): Array<{ selector: string; style: AnyStyle }> {
       },
     },
     {
+      selector: 'node[type="wife"]',
+      style: {
+        shape: 'ellipse',
+        width: 100,
+        height: 36,
+        label: 'data(label)',
+        'font-size': 9,
+        'font-family': 'var(--font-geist-sans), system-ui, sans-serif',
+        'text-valign': 'center',
+        'text-halign': 'center',
+        'text-wrap': 'ellipsis',
+        'text-max-width': '90px',
+        color: 'rgba(255,255,255,0.45)',
+        'background-color': 'rgba(255,255,255,0.02)',
+        'border-width': 1,
+        'border-style': 'dashed',
+        'border-color': 'rgba(255,255,255,0.2)',
+      },
+    },
+    {
+      selector: 'node[type="wife"][side="maternal"]',
+      style: {
+        'border-color': 'rgba(234,179,8,0.3)',
+        color: 'rgba(254,240,138,0.55)',
+      },
+    },
+    {
+      selector: 'node[type="wife"][side="paternal"]',
+      style: {
+        'border-color': 'rgba(129,140,248,0.3)',
+        color: 'rgba(199,210,254,0.55)',
+      },
+    },
+    {
       selector: 'node[type="union"]',
       style: {
         width: 1,
@@ -114,9 +159,9 @@ function buildStylesheet(): Array<{ selector: string; style: AnyStyle }> {
 }
 
 // ── Detail panel ──────────────────────────────────────────────────────────────
-function DetailPanel({ person, onClose }: { person: FamilyPerson; onClose: () => void }) {
-  const accent = getAccent(person.side)
-  const isDead = person.status === 'deceased'
+function DetailPanel({ node, onClose }: { node: SelectedNode; onClose: () => void }) {
+  const accent = getAccent(node.side)
+  const isDead = node.status === 'deceased'
 
   return (
     <div
@@ -127,8 +172,8 @@ function DetailPanel({ person, onClose }: { person: FamilyPerson; onClose: () =>
       <div className="p-4 overflow-y-auto">
         <div className="flex items-start justify-between gap-2 mb-4">
           <div>
-            <p className="font-semibold text-sm leading-tight" style={{ color: accent }}>{person.name}</p>
-            <p className="text-white/35 text-xs mt-0.5">{person.relationship}</p>
+            <p className="font-semibold text-sm leading-tight" style={{ color: accent }}>{node.name}</p>
+            <p className="text-white/35 text-xs mt-0.5">{node.relationship}</p>
           </div>
           <button onClick={onClose} className="text-white/20 hover:text-white/50 transition-colors shrink-0 mt-0.5">
             <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
@@ -137,16 +182,18 @@ function DetailPanel({ person, onClose }: { person: FamilyPerson; onClose: () =>
           </button>
         </div>
         <div className="space-y-2.5">
-          <Row label="status">
-            <span className={isDead ? 'line-through text-white/20' : 'text-white/55'}>{person.status}</span>
-          </Row>
-          {person.country && <Row label="country"><span className="text-white/55">{person.country}</span></Row>}
-          {person.location && <Row label="location"><span className="text-white/55">{person.location}</span></Row>}
-          <Row label="side"><span style={{ color: accent }}>{person.side}</span></Row>
+          {node.status && (
+            <Row label="status">
+              <span className={isDead ? 'line-through text-white/20' : 'text-white/55'}>{node.status}</span>
+            </Row>
+          )}
+          {node.country && <Row label="country"><span className="text-white/55">{node.country}</span></Row>}
+          {node.location && <Row label="location"><span className="text-white/55">{node.location}</span></Row>}
+          {node.side && <Row label="side"><span style={{ color: accent }}>{node.side}</span></Row>}
         </div>
-        {person.notes && (
+        {node.notes && (
           <p className="text-white/25 text-xs leading-relaxed mt-4 pt-4 border-t border-white/[0.05]">
-            {person.notes}
+            {node.notes}
           </p>
         )}
       </div>
@@ -167,7 +214,7 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
 export default function CytoscapeChart() {
   const containerRef = useRef<HTMLDivElement>(null)
   const cyRef = useRef<import('cytoscape').Core | null>(null)
-  const [selectedPerson, setSelectedPerson] = useState<FamilyPerson | null>(null)
+  const [selectedPerson, setSelectedPerson] = useState<SelectedNode | null>(null)
   const [showDeceased, setShowDeceased] = useState(true)
   const [search, setSearch] = useState('')
 
@@ -206,10 +253,21 @@ export default function CytoscapeChart() {
         maxZoom: 3,
       })
 
-      cy.on('tap', 'node[type="person"]', (e) => {
+      cy.on('tap', 'node[type="person"], node[type="wife"]', (e) => {
         const id = e.target.data('id') as string
-        const person = allPeople.find(p => p.id === id) ?? null
-        setSelectedPerson(prev => prev?.id === id ? null : person)
+        const side = e.target.data('side') as string | undefined
+        const rel = e.target.data('relationship') as string | undefined
+
+        let node: SelectedNode | null = null
+        const fp = allPeople.find(p => p.id === id)
+        if (fp) {
+          node = { id: fp.id, name: fp.name, relationship: fp.relationship, side: fp.side, status: fp.status, country: fp.country, location: fp.location, notes: fp.notes }
+        } else {
+          const wife = wifeById.get(id)
+          if (wife) node = { id: wife.id, name: wife.fullName, relationship: rel ?? 'Great-grandmother', side, status: 'unknown', notes: wife.notes }
+        }
+
+        setSelectedPerson(prev => prev?.id === id ? null : node)
       })
 
       cy.on('tap', (e) => {
@@ -300,7 +358,7 @@ export default function CytoscapeChart() {
       <div className="relative flex-1 min-h-0 rounded-xl overflow-hidden border border-white/[0.06]" style={{ background: '#080810' }}>
         <div ref={containerRef} className="w-full h-full" />
         {selectedPerson && (
-          <DetailPanel person={selectedPerson} onClose={() => setSelectedPerson(null)} />
+          <DetailPanel node={selectedPerson} onClose={() => setSelectedPerson(null)} />
         )}
       </div>
     </div>

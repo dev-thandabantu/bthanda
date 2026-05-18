@@ -842,3 +842,30 @@ function flatten(person: FamilyPerson): FamilyPerson[] {
 }
 
 export const allPeople = flatten(familyTree)
+
+// ─── WIVES (for visualisations that model marriage as a node) ────────────────
+// These women are not in the tree data because the source-of-truth tree is
+// Brighton-centric — wives are only known by their "house" name, not as
+// full family members. This map provides just enough to render them as nodes.
+
+export interface Wife {
+  id: string
+  displayName: string
+  fullName: string
+  notes?: string
+}
+
+export const wivesOf: Record<string, Wife[]> = {
+  'ifraim-musabani': [
+    { id: 'wife-ifraim-bhesi',       displayName: 'Bhesi',    fullName: 'Bhesi Manase',          notes: 'Sotho/SA. Wife 1.' },
+    { id: 'wife-ifraim-amutigo',     displayName: 'aMutigo',  fullName: 'Selina (aMutigo)',       notes: '1st wife in Zimbabwe. Wife 2.' },
+    { id: 'wife-ifraim-angarika',    displayName: 'aNgarika', fullName: 'aNgarika (kwaMukweni)',  notes: 'Wife 3.' },
+    { id: 'wife-ifraim-amakhuya',    displayName: 'aMakhuya', fullName: 'Laiza (aMakhuya)',       notes: "Brighton's direct maternal line. Wife 4." },
+    { id: 'wife-ifraim-amusarisari', displayName: 'aMusarisari', fullName: 'aMusarisari / aFemberwi', notes: 'Wife 5.' },
+  ],
+  'wilson-maphutukezi': [
+    { id: 'wife-wilson-ester',        displayName: 'Mbuya Ester',       fullName: 'Mbuya aMamba / Ester',   notes: 'Wife 1. Still alive.' },
+    { id: 'wife-wilson-dzakatsumbe',  displayName: 'Mbuya Dzakatsumbe', fullName: 'Mbuya Dzakatsumbe',      notes: 'Wife 2. Still alive.' },
+    { id: 'wife-wilson-wife3',        displayName: 'Wife 3',            fullName: 'Wife 3 (informal)',      notes: 'Informal third wife. Still alive.' },
+  ],
+}
