@@ -423,7 +423,7 @@ export default function FamilyTreeSVG() {
     if (!el) return
     try {
       const { toPng } = await import('html-to-image')
-      const dataUrl = await toPng(el, { backgroundColor: '#f8f7f4' })
+      const dataUrl = await toPng(el, { backgroundColor: '#ffffff' })
       const a = document.createElement('a')
       a.href = dataUrl
       a.download = 'family-tree-attempt-5.png'
@@ -630,7 +630,7 @@ export default function FamilyTreeSVG() {
       <div
         ref={containerRef}
         className="relative flex-1 min-h-0 rounded-xl overflow-hidden select-none"
-        style={{ background: '#f8f7f4', cursor: isDragging ? 'grabbing' : 'grab' }}
+        style={{ background: '#ffffff', cursor: isDragging ? 'grabbing' : 'grab' }}
         onWheel={onWheel}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}

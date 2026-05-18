@@ -270,7 +270,7 @@ function DownloadButton({ getNodes }: { getNodes: () => Node[] }) {
     const transform = getViewportForBounds(bounds, imgW, imgH, 0.05, 4, padding / imgW)
 
     const dataUrl = await toPng(viewport, {
-      backgroundColor: '#f8f7f4',
+      backgroundColor: '#ffffff',
       width: imgW,
       height: imgH,
       style: {
@@ -351,7 +351,7 @@ function FamilyFlowInner() {
       </div>
 
       {/* Canvas */}
-      <div className="relative flex-1 min-h-0 rounded-xl overflow-hidden border border-black/10" style={{ background: '#f8f7f4' }}>
+      <div className="relative flex-1 min-h-0 rounded-xl overflow-hidden border border-black/10" style={{ background: '#ffffff' }}>
         {loading && (
           <div className="absolute inset-0 flex items-center justify-center text-black/30 text-sm z-10">
             Computing layout…

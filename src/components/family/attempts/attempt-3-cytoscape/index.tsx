@@ -19,7 +19,7 @@ interface SelectedNode {
 const MATERNAL = '#eab308'
 const PATERNAL = '#818cf8'
 const EGO = '#ffffff'
-const BG = '#f8f7f4'
+const BG = '#ffffff'
 const UNION_COLOR = 'rgba(0,0,0,0.08)'
 const EDGE_COLOR = 'rgba(30,30,30,0.3)'
 
@@ -382,7 +382,7 @@ export default function CytoscapeChart() {
       </div>
 
       {/* Canvas */}
-      <div className="relative flex-1 min-h-0 rounded-xl overflow-hidden border border-black/10" style={{ background: '#f8f7f4' }}>
+      <div className="relative flex-1 min-h-0 rounded-xl overflow-hidden border border-black/10" style={{ background: '#ffffff' }}>
         <div ref={containerRef} className="w-full h-full" />
         {selectedPerson && (
           <DetailPanel node={selectedPerson} onClose={() => setSelectedPerson(null)} />

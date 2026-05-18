@@ -31,7 +31,7 @@ export default function Attempt1() {
   const treeData = toD3Node({ ...familyTree })
 
   return (
-    <div ref={containerRef} className="w-full h-full">
+    <div ref={containerRef} className="w-full h-full bg-white">
       <Tree
         data={treeData}
         orientation="vertical"
