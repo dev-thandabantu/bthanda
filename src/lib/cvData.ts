@@ -10,7 +10,7 @@ export const cvHeader = {
 };
 
 export const cvSummary =
-  "Production AI and software engineer with 4+ years of experience designing, building, and operating end-to-end data and AI pipelines in Python and TypeScript. Proven record of taking complex, multi-step AI workflows from prototype to production — including async pipeline orchestration, vector-indexed data systems, real-time inference APIs, and full observability stacks (structured logging, error tracking, performance monitoring, alerting). Hands-on experience with Azure (Functions, AKS, ACR, Application Insights, AD B2C), Docker, CI/CD, and cloud-native deployment. Currently co-founding AnchorBase (London), an AI document search platform, and leading AgriData AI with live government pilots within Zimbabwe's Ministry of Agriculture. Works AI-natively with agentic tooling (Claude, Cursor, Copilot, Antigravity) as core development workflow.";
+  "Production AI and software engineer with 4+ years of experience designing, building, and operating end-to-end AI systems in Python and TypeScript. Specialises in RAG pipelines (HyDE, hybrid retrieval, RRF reranking), multi-step agent orchestration with tool use and structured output, async pipeline architecture (Inngest), and real-time inference APIs with full observability. Hands-on experience with Azure (Functions, AKS, ACR, Application Insights, AD B2C), Docker, CI/CD, and cloud-native deployment. Currently co-founding AnchorBase (London), an AI document search platform with 50+ users, and leading AgriData AI with live government pilots within Zimbabwe's Ministry of Agriculture. Works AI-natively with agentic tooling (Claude, Cursor, Copilot, Antigravity) as core development workflow.";
 
 export interface CvJob {
   title: string;
@@ -112,7 +112,7 @@ export interface CvSkill {
 }
 
 export const cvSkills: CvSkill[] = [
-  { label: "AI & ML Engineering", value: "RAG pipelines, LLM integration, vector search (pgvector, Pinecone), embeddings, HyDE, prompt engineering, multi-step agent orchestration, model evaluation, voice AI (OpenAI Realtime API, WebRTC), OpenAI, Gemini, xAI/Grok" },
+  { label: "AI & ML Engineering", value: "RAG pipelines, LLM integration, vector search (pgvector, Pinecone), embeddings, HyDE, tool use / function calling, structured output, prompt engineering, multi-step agent orchestration, model evaluation, LLM-as-judge evals, voice AI (OpenAI Realtime API, WebRTC), OpenAI, Gemini, xAI/Grok" },
   { label: "Languages", value: "Python, TypeScript, C#, JavaScript, SQL" },
   { label: "Pipeline & Orchestration", value: "Inngest (multi-step async pipelines), CI/CD (GitHub Actions, Azure DevOps, GitLab CI), batch + async job architecture, retry/recovery, event-driven workflows" },
   { label: "Frameworks & Libraries", value: "FastAPI, Vercel AI SDK, ASP.NET Core, Next.js, React, Django, Entity Framework Core" },
