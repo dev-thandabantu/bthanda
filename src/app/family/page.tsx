@@ -56,12 +56,12 @@ export default function FamilyPage() {
             <p>
               Both grandfathers had multiple wives. Wilson Maphutukezi had three, with children born across
               Zimbabwe and Mozambique. Ifraim Musabani had five. That&apos;s not a tree — it&apos;s a graph.
-              Every genealogy library I&apos;ve tried quietly panics at it.
+              Every genealogy library I tried quietly panics at it.
             </p>
             <p>
-              This page is a running experiment. Each attempt below is a real try at solving the
-              visualisation problem. I&apos;m documenting what worked, what didn&apos;t, and what I learned.
-              Eventually one of them — or something I haven&apos;t built yet — will be the answer.
+              Five attempts to get this right are documented below — what each one tried, where it broke,
+              and what it taught me. Attempt 5 finally solved the rendering. The problem that&apos;s left
+              isn&apos;t technical.
             </p>
           </div>
         </div>
@@ -225,6 +225,8 @@ export default function FamilyPage() {
               The wife-cluster grouping — centering a wife node over her children with a kinship bracket —
               is about 30 lines of geometry. Every attempt before this spent more than 30 lines working
               around library assumptions that prevented exactly this grouping.
+              The rendering is done. The open problem now is data: 218 people documented,
+              an unknown number still untraced, and most of the family reachable only by WhatsApp.
             </>}
           >
             <Attempt5Loader />
@@ -232,31 +234,21 @@ export default function FamilyPage() {
 
         </div>
 
-        {/* ── What winning looks like ── */}
+        {/* ── What the renderer achieved ── */}
         <div className="mt-24 max-w-2xl">
-          <p className="text-xs tracking-widest text-white/20 uppercase mb-6">What winning looks like</p>
+          <p className="text-xs tracking-widest text-white/20 uppercase mb-6">What attempt 5 achieved</p>
           <p className="text-sm text-white/40 leading-relaxed mb-8">
-            After three attempts, I know what I&apos;m actually looking for. A winning visualisation satisfies all of this:
+            Five attempts to get this right. Here&apos;s what the current renderer actually does — and where it still falls short.
           </p>
-          <ol className="space-y-5 text-sm leading-relaxed text-white/45 list-none">
-            {[
-              ['All 218 people are present', 'No one gets dropped. Brighton is the ego node. Both lineages — maternal (Musabani) and paternal (Maphutukezi) — are fully rendered.'],
-              ['All 8 grandmothers are visible as nodes', 'The five wives of Ifraim and the three wives of Wilson must appear as distinct, labelled nodes — not ghost placeholders, not edge labels. They existed. They matter.'],
-              ['Children connect to their correct mother, not just to their grandfather', 'A child of Ifraim + Wife 3 must be visually distinct from a child of Ifraim + Wife 1. The connector routes through a partnership unit.'],
-              ['Generations are legible as rows', 'Ifraim and Wilson at the top. Their children one row below. Their grandchildren one row below that. Brighton as the convergence point of both lineages. Top-to-bottom = older to younger.'],
-              ['It fits a screen, with zoom and pan', 'Navigable. An initial view that fits the whole tree at a readable scale. Zoom and pan required.'],
-              ['Clicking a person shows their details', 'Name, relationship, country, status, notes.'],
-              ["It doesn’t look terrible", "This is a portfolio piece. Dark background, minimal aesthetic. It doesn’t need to be beautiful. It needs to not be ugly."],
-            ].map(([title, desc], i) => (
-              <li key={i} className="flex gap-4">
-                <span className="text-white/15 tabular-nums shrink-0 w-4 mt-0.5">{i + 1}</span>
-                <div>
-                  <span className="text-white/65">{title}. </span>
-                  {desc}
-                </div>
-              </li>
-            ))}
-          </ol>
+          <ul className="space-y-5 text-sm leading-relaxed text-white/45 list-none">
+            <li className="flex gap-4"><span className="text-emerald-400/40 shrink-0 w-4 mt-0.5 text-xs">+</span><div><span className="text-white/65">All 218 people are present. </span>Both lineages fully rendered. No one dropped.</div></li>
+            <li className="flex gap-4"><span className="text-emerald-400/40 shrink-0 w-4 mt-0.5 text-xs">+</span><div><span className="text-white/65">All 8 grandmothers visible as nodes. </span>The five wives of Ifraim and three of Wilson appear as distinct labelled nodes &mdash; dashed ellipses, not ghost placeholders. They existed. They matter.</div></li>
+            <li className="flex gap-4"><span className="text-emerald-400/40 shrink-0 w-4 mt-0.5 text-xs">+</span><div><span className="text-white/65">Children connect to their correct mother. </span>A child of Ifraim + Wife 3 is visually distinct from a child of Ifraim + Wife 1. Connectors route through the partnership cluster.</div></li>
+            <li className="flex gap-4"><span className="text-emerald-400/40 shrink-0 w-4 mt-0.5 text-xs">+</span><div><span className="text-white/65">Generations are legible as rows. </span>Ifraim and Wilson at the top. Their children one row below. Brighton as the convergence point of both lineages.</div></li>
+            <li className="flex gap-4"><span className="text-emerald-400/40 shrink-0 w-4 mt-0.5 text-xs">+</span><div><span className="text-white/65">Zoom and pan. </span>Wheel to zoom, drag to pan. Fits the whole tree on load.</div></li>
+            <li className="flex gap-4"><span className="text-emerald-400/40 shrink-0 w-4 mt-0.5 text-xs">+</span><div><span className="text-white/65">Clicking a person shows their details. </span>Name, relationship, country, status, notes.</div></li>
+            <li className="flex gap-4"><span className="text-white/15 shrink-0 w-4 mt-0.5 text-xs">~</span><div><span className="text-white/35">Very wide generations. </span>The maternal side has a lot of siblings per wife. Some rows are wide enough that you&apos;re panning more than reading &mdash; a known tradeoff of the flat generational model.</div></li>
+          </ul>
         </div>
 
         {/* ── Challenge ── */}
