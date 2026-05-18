@@ -150,7 +150,7 @@ export async function generatePdf() {
   // ── SUMMARY ──
   sectionHeading("Professional Summary");
   const summary =
-    "AI engineer and founder with 4+ years of experience building and shipping full-stack software products. Deep hands-on expertise in RAG pipelines, LLM integration, vector search, and AI-powered SaaS. Currently co-founding AnchorBase -an AI document search platform for engineers -and leading AgriData AI, which is running live government pilots within Zimbabwe's Ministry of Agriculture. Proven record of taking products from zero to production, leading cross-functional teams, and securing recognition in competitive startup programs across Africa. Available for select freelance and contract engagements in AI engineering and full-stack development.";
+    "Production AI and software engineer with 4+ years of experience designing, building, and operating end-to-end data and AI pipelines in Python and TypeScript. Proven record of taking complex, multi-step AI workflows from prototype to production — including async pipeline orchestration, vector-indexed data systems, real-time inference APIs, and full observability stacks (structured logging, error tracking, performance monitoring, alerting). Hands-on experience with Azure (Functions, AKS, ACR, Application Insights, AD B2C), Docker, CI/CD, and cloud-native deployment. Currently co-founding AnchorBase (London) — an AI document search platform — and leading AgriData AI, running live government pilots within Zimbabwe's Ministry of Agriculture. Works AI-natively with agentic tooling (Claude, Cursor, Copilot, Antigravity) as core development workflow.";
   const summaryLines = pdf.splitTextToSize(summary, CONTENT_W);
   pdf.setFontSize(9.5);
   pdf.setFont("helvetica", "normal");
@@ -183,6 +183,14 @@ export async function generatePdf() {
   bullet("Selected: Mastercard FAST Build 2024. 2nd place, Unity Challenge 2025. Finalist, Kutsaga Innovation Challenge 2025.");
   y += 2;
 
+  jobHeader("Builder", "BOQ Generator  |Remote", "2026");
+  bullet("Built an AI-powered Bill of Quantities platform for the Zambian construction market — upload a Scope of Work PDF, receive a structured and priced BOQ; or upload an unrated Excel BOQ and have AI fill Zambian market rates calibrated to province, site accessibility, labour source, and margin.");
+  bullet("Architected a 7-step async generation pipeline using Inngest to handle large documents beyond serverless timeout limits: extract → structure → save → rate-fill → QA → save → notify. Includes retry logic and per-step execution traces.");
+  bullet("Built a vector-indexed rate library (pgvector) sourced from real Zambian construction BOQs, grounding AI pricing with temporal rate anchors — rates carry rate_date for auditability.");
+  bullet("Full observability stack: Sentry (errors + session replay), PostHog (server events), structured JSON logging, Upstash Redis rate limiting, Inngest dashboard for pipeline traces.");
+  bullet("Stack: Next.js 15, TypeScript, Supabase (Postgres + RLS), Gemini 2.5 Pro/Flash, Inngest, Stripe, Vercel.");
+  y += 2;
+
   jobHeader("Software Consultant", "Kindred for Business  |London (Remote)", "Sep 2023 -Jun 2024");
   bullet("Led migration of multiple C# Azure Functions applications to .NET 8 LTS, ensuring zero-downtime transitions.");
   bullet("Triaged and resolved backend bugs via Azure Function Monitor and Application Insights, improving system resilience.");
@@ -197,12 +205,14 @@ export async function generatePdf() {
 
   // ── SKILLS ──
   sectionHeading("Skills");
-  skillRow("AI & ML", "RAG pipelines, LLM integration, vector search, embeddings, HyDE, prompt engineering, OpenAI, Gemini, xAI/Grok, OpenRouter, ElevenLabs");
-  skillRow("Languages", "Python, C#, TypeScript, JavaScript, Dart, SQL");
-  skillRow("Frameworks", "FastAPI, ASP.NET Core, Next.js, React, Angular, Blazor, Flutter, Django, Entity Framework Core");
+  skillRow("AI & ML Engineering", "RAG pipelines, LLM integration, vector search (pgvector, Pinecone), embeddings, HyDE, prompt engineering, multi-step agent orchestration, model evaluation, OpenAI, Gemini, xAI/Grok");
+  skillRow("Languages", "Python, TypeScript, C#, JavaScript, SQL");
+  skillRow("Pipeline & Orchestration", "Inngest (multi-step async pipelines), CI/CD (GitHub Actions, Azure DevOps, GitLab CI), batch + async job architecture, retry/recovery, event-driven workflows");
+  skillRow("Frameworks", "FastAPI, Vercel AI SDK, ASP.NET Core, Next.js, React, Django, Entity Framework Core");
   skillRow("Databases", "PostgreSQL, SQL Server, Supabase, Firebase, Pinecone, Azure Blob Storage, Cloudflare R2");
-  skillRow("Cloud & Infra", "Azure (Functions, AKS, ACR, AD B2C, App Insights), AWS, Google Cloud, Docker, CI/CD, Vercel, Fly.io");
-  skillRow("Tools", "Git, GitHub, Azure DevOps, Scrum, Kanban, Jupyter, OutSystems, YARP, gRPC, Selenium, Katalon");
+  skillRow("Cloud & Infra", "Azure (Functions, AKS, ACR, AD B2C, App Insights), AWS, Google Cloud, Docker, Docker Compose, Vercel, Fly.io");
+  skillRow("Observability", "Sentry (errors + session replay), PostHog, structured JSON logging, Upstash Redis, Azure Application Insights, health checks, alerting");
+  skillRow("Tools", "Git, GitHub, Azure DevOps, Jupyter, Scrum, Kanban, gRPC, Selenium");
   y += 2;
 
   // ── EDUCATION ──
