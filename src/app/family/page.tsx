@@ -5,6 +5,7 @@ import Attempt2Loader from '@/components/family/attempts/attempt-2-family-chart/
 import Attempt3Loader from '@/components/family/attempts/attempt-3-cytoscape/Loader'
 import Attempt4Loader from '@/components/family/attempts/attempt-4-react-flow-elk/Loader'
 import Attempt5Loader from '@/components/family/attempts/attempt-5-custom-svg/Loader'
+import Attempt6Loader from '@/components/family/attempts/attempt-6-dendrogram/Loader'
 import AttemptSection from '@/components/family/AttemptSection'
 import ChallengeBlock from '@/components/family/ChallengeBlock'
 
@@ -206,7 +207,7 @@ export default function FamilyPage() {
           <AttemptSection
             number={5}
             title="Custom generational SVG renderer"
-            status="current"
+            status="abandoned"
             verdict="No library — full control over layout"
             what={<>
               No layout library at all. Positions are computed in a pure JS layout pass:
@@ -230,6 +231,37 @@ export default function FamilyPage() {
             </>}
           >
             <Attempt5Loader />
+          </AttemptSection>
+
+          <AttemptSection
+            number={6}
+            title="Custom dendrogram — vertical sibling stacking"
+            status="current"
+            verdict="Trading width for height"
+            what={<>
+              Same data model and SVG renderer as attempt 5, but the layout algorithm is flipped.
+              Instead of siblings spreading horizontally in a row, each wife&apos;s children stack
+              vertically in a column beneath her. Clusters of siblings grow downward; multiple
+              wife-columns spread rightward under each grandparent. The tree is tall and narrow
+              rather than wide and flat.
+            </>}
+            problem={<>
+              Generational alignment is gone. In attempt 5, all of Ifraim&apos;s grandchildren sit
+              on the same horizontal baseline regardless of which wife they come from — you can
+              scan a generation left-to-right. In the dendrogram, Wife 1&apos;s children may extend
+              further down the page than Wife 2&apos;s, so cousins of the same generation end up at
+              different y-positions. Cross-wife generational comparison becomes harder to read at a
+              glance.
+            </>}
+            learned={<>
+              Width vs height is a genuine tradeoff, not an improvement. The dendrogram is better
+              on mobile and better when you care about &ldquo;which wife&apos;s line is this?&rdquo; — the
+              vertical column makes that grouping immediately obvious. But it makes
+              &ldquo;what generation is this person?&rdquo; harder to answer visually. The right layout
+              depends on which question the viewer is trying to answer.
+            </>}
+          >
+            <Attempt6Loader />
           </AttemptSection>
 
         </div>
