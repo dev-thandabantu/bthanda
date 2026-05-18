@@ -21,11 +21,23 @@ export interface CvJob {
 
 export const cvJobs: CvJob[] = [
   {
+    title: "Co-Founder & Builder",
+    org: "Project Machine · Remote",
+    dates: "Nov 2025 – Jan 2026",
+    bullets: [
+      "Co-founded an AI-powered visual project management SaaS — canvas-based task planning with an AI chat assistant, multi-user collaboration, and file upload with AI summarization.",
+      "Built the full backend: 16-table PostgreSQL schema with Drizzle ORM, 31+ REST endpoints (projects, tasks, subtasks, comments, assignments, canvas snapshots, collaborators, file parsing, AI chat, Excel export), RLS policies, and Swagger/OpenAPI documentation.",
+      "Implemented file text extraction pipeline with AI summarization (OpenAI), AI chat with context assembly and usage logging, and multi-user invite/collaboration system.",
+      "107 tests passing; shelved Jan 2026 when document parsing work pointed toward AnchorBase.",
+      "Stack: Next.js 15, TypeScript, ReactFlow, Supabase (Postgres + auth + storage), Drizzle ORM, OpenAI.",
+    ],
+  },
+  {
     title: "Co-Founder & AI Engineer",
     org: "AnchorBase · London, UK (Remote)",
     dates: "Feb 2026 – Present",
     bullets: [
-      "Built and shipped an AI-powered document search platform for engineers working with codes, standards, and technical specifications — enabling natural language Q&A with precise citations. Pivoted from Project Machine (Nov 2025) after deep work on document parsing and RAG pipelines revealed the bigger opportunity.",
+      "Built and shipped an AI-powered document search platform for engineers working with codes, standards, and technical specifications — enabling natural language Q&A with precise citations. Pivoted from Project Machine after file-parsing and AI summarization work revealed the bigger opportunity.",
       "Designed and implemented a full RAG pipeline: HyDE query expansion, embedding via Gemini gemini-embedding-001, semantic + keyword retrieval with RRF reranking, and hierarchical chunk expansion.",
       "Architected multi-LLM routing: xAI/Grok for document Q&A; Gemini 2.5 Flash with Google Search grounding for internet-routed queries.",
       "Built streaming answer delivery via SSE with real-time source citation, follow-up question generation, and an admin observability dashboard.",

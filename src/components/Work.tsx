@@ -5,8 +5,17 @@ const projects = [
     role: "Co-founder & builder",
     period: "Feb 2026 – present",
     description:
-      "AI-powered document search for engineers buried in codes, standards, and technical specs. Upload PDFs, ask natural language questions, get precise answers with citations. Pivoted from Project Machine (Nov 2025) after deep work on document parsing and RAG pipelines revealed the bigger opportunity. Built with React, FastAPI, Pinecone, xAI/Grok, Gemini, and Supabase. Actively onboarding pilot partners.",
+      "AI-powered document search for engineers buried in codes, standards, and technical specs. Upload PDFs, ask natural language questions, get precise answers with citations. Pivoted from Project Machine after the file-parsing and AI summarization work revealed the bigger opportunity. Built with React, FastAPI, Pinecone, xAI/Grok, Gemini, and Supabase. Actively onboarding pilot partners.",
     tags: ["AI", "RAG", "FastAPI", "React", "Pinecone", "SaaS", "Document Parsing"],
+  },
+  {
+    name: "Project Machine",
+    url: null,
+    role: "Co-founder & builder",
+    period: "Nov 2025 – Jan 2026",
+    description:
+      "AI-powered visual project management SaaS — canvas-based task planning (ReactFlow) with an AI chat assistant, multi-user collaboration, and file upload with AI summarization. Built the full backend: 16-table PostgreSQL schema, 31+ REST endpoints (projects, tasks, subtasks, comments, assignments, canvas snapshots, collaborators, file parsing, AI chat, Excel export), RLS policies, 107 tests, and Swagger/OpenAPI docs. Co-built with a frontend collaborator. Shelved at the end of Jan 2026 when the document parsing and AI summarization work pointed toward a clearer, deeper problem — which became AnchorBase.",
+    tags: ["AI", "Next.js", "TypeScript", "Supabase", "ReactFlow", "OpenAI", "SaaS"],
   },
   {
     name: "AgriData AI",
