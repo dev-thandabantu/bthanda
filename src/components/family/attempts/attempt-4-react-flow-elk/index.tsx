@@ -8,6 +8,9 @@ import {
   Controls,
   useNodesState,
   useEdgesState,
+  useReactFlow,
+  getNodesBounds,
+  getViewportForBounds,
   type Node,
   type Edge,
   type NodeProps,
@@ -15,6 +18,7 @@ import {
   Handle,
   Position,
 } from '@xyflow/react'
+import { toPng } from 'html-to-image'
 import '@xyflow/react/dist/style.css'
 import { buildFamilyGraph, wifeById } from '@/data/family-graph'
 import type { GraphNode, GraphEdge } from '@/data/family-graph'
@@ -235,12 +239,62 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
   )
 }
 
+// ── Download helper ───────────────────────────────────────────────────────────
+function DownloadButton({ getNodes }: { getNodes: () => Node[] }) {
+  const { getViewport } = useReactFlow()
+
+  const download = useCallback(async () => {
+    const viewport = document.querySelector('.react-flow__viewport') as HTMLElement | null
+    if (!viewport) return
+
+    const nodes = getNodes().filter(n => n.type !== 'unionNode')
+    const bounds = getNodesBounds(nodes)
+    const padding = 60
+    const imgW = Math.round(bounds.width + padding * 2)
+    const imgH = Math.round(bounds.height + padding * 2)
+
+    const vp = getViewport()
+    const transform = getViewportForBounds(bounds, imgW, imgH, 0.05, 4, padding / imgW)
+
+    const dataUrl = await toPng(viewport, {
+      backgroundColor: '#080810',
+      width: imgW,
+      height: imgH,
+      style: {
+        width: `${imgW}px`,
+        height: `${imgH}px`,
+        transform: `translate(${transform.x}px, ${transform.y}px) scale(${transform.zoom})`,
+        transformOrigin: 'top left',
+      },
+    })
+
+    void vp // suppress unused warning
+    const a = document.createElement('a')
+    a.href = dataUrl
+    a.download = 'family-tree-attempt-4.png'
+    a.click()
+  }, [getNodes, getViewport])
+
+  return (
+    <button
+      onClick={download}
+      className="text-xs px-3 py-1.5 rounded-full border border-white/15 text-white/50 hover:text-white/70 hover:border-white/25 transition-colors flex items-center gap-1.5"
+    >
+      <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M6 1v7M3 5l3 3 3-3M1 10h10" />
+      </svg>
+      save as image
+    </button>
+  )
+}
+
 // ── Main ──────────────────────────────────────────────────────────────────────
 function FamilyFlowInner() {
   const [nodes, setNodes, onNodesChange] = useNodesState<Node>([])
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([])
   const [selected, setSelected] = useState<SelectedNode | null>(null)
   const [loading, setLoading] = useState(true)
+  const { getNodes } = useReactFlow()
 
   useEffect(() => {
     const { nodes: gn, edges: ge } = buildFamilyGraph()
@@ -272,12 +326,15 @@ function FamilyFlowInner() {
 
   return (
     <div className="flex flex-col gap-3 h-full">
-      {/* Legend */}
+      {/* Legend + download */}
       <div className="flex items-center gap-4 shrink-0 text-[10px] text-white/20">
         <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-sm" style={{ background: 'rgba(234,179,8,0.5)' }} />maternal</span>
         <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-sm" style={{ background: 'rgba(129,140,248,0.5)' }} />paternal</span>
         <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-sm" style={{ background: 'rgba(255,255,255,0.5)' }} />Brighton</span>
         <span className="flex items-center gap-1.5"><span className="w-8 border-t border-dashed border-white/20" />wife / grandmother</span>
+        <div className="ml-auto">
+          <DownloadButton getNodes={getNodes} />
+        </div>
       </div>
 
       {/* Canvas */}

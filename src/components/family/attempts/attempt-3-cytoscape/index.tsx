@@ -310,6 +310,20 @@ export default function CytoscapeChart() {
     cyRef.current?.fit(undefined, 40)
   }, [])
 
+  const handleDownload = useCallback(() => {
+    const cy = cyRef.current
+    if (!cy) return
+    const dataUrl = cy.png({ output: 'blob-promise', bg: '#080810', full: true, scale: 2 })
+    void (dataUrl as Promise<Blob>).then(blob => {
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'family-tree-attempt-3.png'
+      a.click()
+      URL.revokeObjectURL(url)
+    })
+  }, [])
+
   return (
     <div className="flex flex-col gap-3 h-full">
       {/* Controls */}
@@ -337,6 +351,15 @@ export default function CytoscapeChart() {
           className="text-xs px-3 py-1.5 rounded-full border border-white/15 text-white/50 hover:text-white/70 hover:border-white/25 transition-colors"
         >
           fit to screen
+        </button>
+        <button
+          onClick={handleDownload}
+          className="text-xs px-3 py-1.5 rounded-full border border-white/15 text-white/50 hover:text-white/70 hover:border-white/25 transition-colors flex items-center gap-1.5"
+        >
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M6 1v7M3 5l3 3 3-3M1 10h10" />
+          </svg>
+          save as image
         </button>
         <div className="flex items-center gap-3 ml-auto text-[10px] text-white/20">
           <span className="flex items-center gap-1.5">
