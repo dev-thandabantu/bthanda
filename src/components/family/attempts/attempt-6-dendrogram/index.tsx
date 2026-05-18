@@ -146,25 +146,32 @@ export function computeLayout(nodes: GraphNode[], edges: GraphEdge[]): Layout {
   const { gpCx: patGpCx, bottomY: patBottom } =
     placeDendrogramSubtree('wilson-maphutukezi', paternalClusters, patStartX, layout)
 
-  // For every person node that is already placed and has direct children (not
-  // Brighton), stack those children vertically below them in the same column.
+  // Recursively place all descendants of already-placed person nodes.
+  // Returns the bottom-most y reached in this subtree.
   let globalBottom = Math.max(matBottom, patBottom)
-  for (const n of nodes) {
-    if (n.type !== 'person' || n.id === 'brighton') continue
-    const parentRect = layout.get(n.id)
-    if (!parentRect) continue
+
+  function placeDescendants(personId: string, colCx: number, startY: number): number {
     const childIds = edges
-      .filter(e => e.source === n.id && e.edgeType === 'direct' && e.target !== 'brighton')
+      .filter(e => e.source === personId && e.edgeType === 'direct' && e.target !== 'brighton')
       .map(e => e.target)
-    if (childIds.length === 0) continue
-    const colCx = parentRect.x + parentRect.w / 2
-    let cy = parentRect.y + parentRect.h + CHILD_OFFSET
+    let cy = startY
     for (const childId of childIds) {
       if (layout.has(childId)) continue
       layout.set(childId, { x: colCx - NODE_W / 2, y: cy, w: NODE_W, h: NODE_H })
-      cy += NODE_H + V_GAP
+      // recurse: this child's children go below it in the same column
+      const subtreeBottom = placeDescendants(childId, colCx, cy + NODE_H + V_GAP)
+      cy = subtreeBottom + V_GAP
+      globalBottom = Math.max(globalBottom, subtreeBottom)
     }
-    globalBottom = Math.max(globalBottom, cy)
+    return cy
+  }
+
+  // Seed with all nodes placed by the grandparent subtrees
+  const seeded = [...layout.keys()]
+  for (const id of seeded) {
+    const r = layout.get(id)!
+    if (r.w <= 1) continue // skip union 1×1 nodes
+    placeDescendants(id, r.x + r.w / 2, r.y + r.h + CHILD_OFFSET)
   }
 
   // Brighton below both trees, centred between his two parents
