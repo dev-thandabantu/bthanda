@@ -147,19 +147,27 @@ function walkGrandparent(grandparent: FamilyPerson) {
       const wifeObj = wifeId ? gpWives.find(w => w.id === wifeId) : undefined
       const unionId = `union--${grandparent.id}--${wifeKey.replace(/\s+/g, '-')}`
 
-      addUnion(unionId, side)
-      addEdge(grandparent.id, unionId, 'spouse-to-union')
-
       if (wifeObj) {
-        // Wives are one generation below the grandparent (same generation as their children's parents)
+        // Wife node is visible — connect grandparent → wife, wife → each child.
+        // Skips the invisible union node entirely for layout purposes; dagre
+        // can place wife in the same row as her children without the spider-web
+        // produced by routing through a zero-size invisible node.
         addWife(wifeObj, side, grandparent.generation + 1)
-        addEdge(wifeObj.id, unionId, 'spouse-to-union')
-      }
-
-      for (const child of children) {
-        addPerson(child)
-        addEdge(unionId, child.id, 'union-to-child')
-        walkDescendants(child)
+        addEdge(grandparent.id, wifeObj.id, 'spouse-to-union')
+        for (const child of children) {
+          addPerson(child)
+          addEdge(wifeObj.id, child.id, 'union-to-child')
+          walkDescendants(child)
+        }
+      } else {
+        // No known wife — fall back to invisible union node
+        addUnion(unionId, side)
+        addEdge(grandparent.id, unionId, 'spouse-to-union')
+        for (const child of children) {
+          addPerson(child)
+          addEdge(unionId, child.id, 'union-to-child')
+          walkDescendants(child)
+        }
       }
     }
   }
