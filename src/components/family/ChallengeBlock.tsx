@@ -49,11 +49,26 @@ export default function ChallengeBlock() {
 
         <p className="mt-6 text-[11px] text-white/20 leading-relaxed">
           I&apos;ve never been to Chifiti. But I&apos;m told it&apos;s beautiful.
-          <br />
-          <span className="text-white/15">
-            Prize subject to Brighton having recently confirmed his grandfather is still in charge of land allocation.
-          </span>
         </p>
+
+        <div className="mt-8 pt-6 border-t border-white/[0.06] space-y-2 text-[11px] text-white/30 leading-relaxed">
+          <p className="text-white/40 text-xs">The prize (updated, because why not):</p>
+          <ul className="space-y-1.5 text-white/25">
+            <li>→ Land in Chifiti, Mozambique (the original offer, still on the table)</li>
+            <li>→ The biggest family party you&apos;ve ever been to — 218 people, proper food, proper music</li>
+            <li>→ I&apos;m going to try to get{' '}
+              <a href="https://www.youtube.com/@SonnyDickson" target="_blank" rel="noopener noreferrer"
+                className="text-white/40 underline underline-offset-2 hover:text-white/60 transition-colors">
+                Sunny
+              </a>
+              {' '}(the guy who travels the world eating everything) to come eat with us. No promises. High ambition.</li>
+            <li>→ I&apos;m also going to try to get MrBeast involved somehow. I don&apos;t know how yet. It&apos;ll come to me.</li>
+          </ul>
+          <p className="text-white/15 pt-2">
+            Prize subject to Brighton having recently confirmed his grandfather&apos;s brother is still in charge of land allocation.
+            Family party subject to everyone actually showing up, which historically has not been a problem.
+          </p>
+        </div>
       </div>
     </div>
   )
