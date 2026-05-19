@@ -80,6 +80,14 @@ const applications: Application[] = [
       "Metis is a retail ecommerce intelligence platform (AWS, TypeScript, React, Lambda, CDK, Bedrock) — role posted via MediaVision Interactive on Indeed. Key differentiator: autonomous delivery pipeline — spec-gated PRs, post-deploy monitoring, overnight fix agent. Cover letter led with autonomous pipeline framing ('not a threat, the most interesting part'), AnchorBase and BOQ Generator as production TypeScript systems, honest CDK gap acknowledged, and real AI tooling opinions (well-specified problems vs architectural decisions). Noted UK-aligned hours from Cape Town and prior remote contract experience via Kindred. CV updated same session: AWS surfaced prominently in skills (Lambda, S3, EC2, RDS, API Gateway), AWS attribution corrected to Full Stack Mortgage Platform, AakiTech updated with Flutter/Firebase mobile work (edtech client, Play Store/App Store/Huawei App Gallery) and AWS client bullet — client names removed. Salary: R80,000–R90,000/month.",
   },
   {
+    company: "Hire with Reef",
+    role: "AI Developer (Contract)",
+    date: "2026-05-19",
+    status: "Applied",
+    notes:
+      "Remote contract role — scope, design, and build AI workflows and internal tools for business efficiency. JD: LLMs, RAG, agents, automation platforms (N8N/Zapier/Make.com), API integration, stakeholder communication. CV-only application, no cover letter field. Honest gap: N8N/Zapier/Make.com not in background — custom pipeline experience (Inngest, FastAPI) is the closest analogue. Strong fit on RAG, LLM integration, agents, prompt engineering, fast iteration, and stakeholder translation (AgriData government pilots, AakiTech client delivery).",
+  },
+  {
     company: "DeepMetis",
     role: "Senior AI Engineer",
     date: "2026-05-17",
