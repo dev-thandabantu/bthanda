@@ -10,7 +10,7 @@ const projects = [
   },
   {
     name: "Project Machine",
-    url: "https://the-project-machine-inky.vercel.app/",
+    url: "https://the-project-machine.vercel.app/",
     role: "Co-founder & builder",
     period: "Nov 2025 – Jan 2026",
     description:
