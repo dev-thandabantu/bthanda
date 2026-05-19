@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "@xyflow/react": "^12.10.2",
     "cytoscape": "^3.33.3",
     "cytoscape-dagre": "^3.0.0",
