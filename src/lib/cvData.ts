@@ -21,19 +21,6 @@ export interface CvJob {
 
 export const cvJobs: CvJob[] = [
   {
-    title: "Co-Founder & Builder",
-    org: "Project Machine · Remote",
-    dates: "Nov 2025 – Jan 2026",
-    bullets: [
-      "Co-founded an AI-powered visual project management SaaS — canvas-based task planning with an AI chat assistant, multi-user collaboration, and file upload with AI summarization.",
-      "Implemented a voice-first prototype using OpenAI Realtime API (WebRTC) — users spoke to an AI that manipulated the canvas in real time, creating and updating tasks through natural conversation.",
-      "Built the full backend: 16-table PostgreSQL schema with Drizzle ORM, 31+ REST endpoints (projects, tasks, subtasks, comments, assignments, canvas snapshots, collaborators, file parsing, AI chat, Excel export), RLS policies, and Swagger/OpenAPI documentation.",
-      "Implemented file text extraction pipeline with AI summarization (OpenAI), AI chat with context assembly and usage logging, and multi-user invite/collaboration system.",
-      "107 tests passing; shelved Jan 2026 when document parsing work pointed toward AnchorBase.",
-      "Stack: Next.js 15, TypeScript, ReactFlow, Supabase (Postgres + auth + storage), Drizzle ORM, OpenAI.",
-    ],
-  },
-  {
     title: "Co-Founder & AI Engineer",
     org: "AnchorBase · London, UK (Remote)",
     dates: "Feb 2026 – Present",
@@ -45,6 +32,32 @@ export const cvJobs: CvJob[] = [
       "Shipped streaming answer delivery via SSE with an admin observability dashboard; implemented follow-up question generation and rolling conversation summarisation.",
       "Stack: React + TypeScript (frontend), FastAPI + Python (backend), Pinecone (vector search), Supabase (Postgres + auth), Cloudflare R2 (storage), xAI/Grok, Gemini.",
       "Onboarded 50+ organic users since launch; actively onboarding pilot partners.",
+    ],
+  },
+  {
+    title: "Builder",
+    org: "BOQ Generator · Remote",
+    dates: "2026",
+    bullets: [
+      "Built an AI-powered Bill of Quantities platform for the Zambian construction market — upload a Scope of Work PDF, receive a structured and priced BOQ; or upload an unrated Excel BOQ and have AI fill Zambian market rates calibrated to province, site accessibility, labour source, and margin.",
+      "Architected a 7-step async generation pipeline using Inngest to handle large documents beyond Vercel's serverless timeout limits: extract > structure > save > rate-fill > QA > save > notify.",
+      "Built a vector-indexed rate library (pgvector) sourced from real Zambian construction BOQs, used to ground AI pricing with temporal rate anchors — rates carry rate_date for auditability.",
+      "Implemented full payment gate via Stripe (dynamic pricing by BOQ size and item count), Google OAuth, in-browser BOQ editor with auto-save, Excel export in Zambian tender format, and a streaming AI edit assistant.",
+      "Observability stack: Sentry (errors + session replay), PostHog (server events), structured JSON logging, Upstash Redis rate limiting, Inngest dashboard for per-step execution traces.",
+      "Stack: Next.js 15, TypeScript, Supabase (Postgres + RLS), Gemini 2.5 Pro/Flash, Inngest, Stripe, Vercel.",
+    ],
+  },
+  {
+    title: "Co-Founder & Builder",
+    org: "Project Machine · Remote",
+    dates: "Nov 2025 – Jan 2026",
+    bullets: [
+      "Co-founded an AI-powered visual project management SaaS — canvas-based task planning with an AI chat assistant, multi-user collaboration, and file upload with AI summarization.",
+      "Implemented a voice-first prototype using OpenAI Realtime API (WebRTC) — users spoke to an AI that manipulated the canvas in real time, creating and updating tasks through natural conversation.",
+      "Built the full backend: 16-table PostgreSQL schema with Drizzle ORM, 31+ REST endpoints (projects, tasks, subtasks, comments, assignments, canvas snapshots, collaborators, file parsing, AI chat, Excel export), RLS policies, and Swagger/OpenAPI documentation.",
+      "Implemented file text extraction pipeline with AI summarization (OpenAI), AI chat with context assembly and usage logging, and multi-user invite/collaboration system.",
+      "107 tests passing; shelved Jan 2026 when document parsing work pointed toward AnchorBase.",
+      "Stack: Next.js 15, TypeScript, ReactFlow, Supabase (Postgres + auth + storage), Drizzle ORM, OpenAI.",
     ],
   },
   {
@@ -69,19 +82,6 @@ export const cvJobs: CvJob[] = [
       "Client delivery included a Flutter mobile app for an edtech client — shipped across Play Store, App Store, and Huawei App Gallery — plus React web apps, all backed by Firebase.",
       "Other client work included AWS-hosted (S3, Lambda, EC2) production systems.",
       "Selected: Mastercard FAST Build 2024. 2nd place, Unity Challenge 2025 (AL for Professionals). Finalist, Kutsaga Innovation Challenge 2025.",
-    ],
-  },
-  {
-    title: "Builder",
-    org: "BOQ Generator · Remote",
-    dates: "2026",
-    bullets: [
-      "Built an AI-powered Bill of Quantities platform for the Zambian construction market — upload a Scope of Work PDF, receive a structured and priced BOQ; or upload an unrated Excel BOQ and have AI fill Zambian market rates calibrated to province, site accessibility, labour source, and margin.",
-      "Architected a 7-step async generation pipeline using Inngest to handle large documents beyond Vercel's serverless timeout limits: extract > structure > save > rate-fill > QA > save > notify.",
-      "Built a vector-indexed rate library (pgvector) sourced from real Zambian construction BOQs, used to ground AI pricing with temporal rate anchors — rates carry rate_date for auditability.",
-      "Implemented full payment gate via Stripe (dynamic pricing by BOQ size and item count), Google OAuth, in-browser BOQ editor with auto-save, Excel export in Zambian tender format, and a streaming AI edit assistant.",
-      "Observability stack: Sentry (errors + session replay), PostHog (server events), structured JSON logging, Upstash Redis rate limiting, Inngest dashboard for per-step execution traces.",
-      "Stack: Next.js 15, TypeScript, Supabase (Postgres + RLS), Gemini 2.5 Pro/Flash, Inngest, Stripe, Vercel.",
     ],
   },
   {
