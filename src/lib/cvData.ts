@@ -65,7 +65,7 @@ export const cvJobs: CvJob[] = [
     bullets: [
       "Founded and led AakiTech, building digital tools for African schools and small businesses in underserved, low-resource environments.",
       "Built and led a cross-functional team of 7 — developers, business operations, and growth specialists.",
-      "Shipped multiple products across edtech and SME operations — including a platform now serving 1,000+ users, engineered for low-bandwidth, mobile-first environments.",
+      "Shipped multiple products across edtech and SME operations — including a platform now serving 1,000+ users, engineered for low-bandwidth, mobile-first environments. Client work included TTT and MoneySage, both running on AWS (S3, Lambda, EC2).",
       "Selected: Mastercard FAST Build 2024. 2nd place, Unity Challenge 2025 (AL for Professionals). Finalist, Kutsaga Innovation Challenge 2025.",
     ],
   },
@@ -97,7 +97,7 @@ export const cvJobs: CvJob[] = [
     dates: "2021 – Sep 2023",
     bullets: [
       "Brokers Platform: Built a brokers management platform using OutSystems and ASP.NET Core; automated test suites with Selenium and Katalon.",
-      "Mortgage Application Platform: Deployed application, SQL database, and storage on AWS; implemented gRPC/Proto Buffers for frontend-backend communication.",
+      "Mortgage Application Platform: Deployed application, SQL database, and storage on AWS (EC2, RDS, S3); implemented gRPC/Proto Buffers for frontend-backend communication.",
       "Jupyter Data Science Portal: Developed a high-security data analysis portal — Angular frontend, ASP.NET Core + YARP middleware, customized JupyterHub on Azure Kubernetes Cluster with custom images on ACR.",
       "File Submission & Review System: Led Umbraco 8 to 10 migration; integrated Azure AD B2C authentication and Azure Blob Storage; delivered within 6-month timeline.",
       "Phase II CMS: Contributed to Umbraco + ASP.NET project; managed deployment across dev, staging, and production; delivered with a 4-person team in 2 months.",
@@ -116,7 +116,7 @@ export const cvSkills: CvSkill[] = [
   { label: "Pipeline & Orchestration", value: "Inngest (multi-step async pipelines), CI/CD (GitHub Actions, Azure DevOps, GitLab CI), batch + async job architecture, retry/recovery, event-driven workflows" },
   { label: "Frameworks & Libraries", value: "FastAPI, Vercel AI SDK, ASP.NET Core, Next.js, React, Django, Entity Framework Core, LangChain, LlamaParse, PyMuPDF" },
   { label: "Databases & Storage", value: "PostgreSQL, SQL Server, Supabase, Firebase, Pinecone, Azure Blob Storage, Cloudflare R2" },
-  { label: "Cloud & Infrastructure", value: "Microsoft Azure (Functions, AKS, ACR, AD B2C, Application Insights), AWS, Google Cloud, Docker, Docker Compose, Vercel, Fly.io" },
+  { label: "Cloud & Infrastructure", value: "AWS (Lambda, S3, EC2, RDS, API Gateway), Microsoft Azure (Functions, AKS, ACR, AD B2C, Application Insights), Google Cloud, Docker, Docker Compose, Vercel, Fly.io" },
   { label: "Observability & Monitoring", value: "Sentry (errors + session replay), PostHog, structured JSON logging, Upstash Redis (rate limiting), Azure Application Insights, health checks, alerting" },
   { label: "Tools & Practices", value: "Git, GitHub, Azure DevOps, Jupyter, Scrum, Kanban, gRPC, Selenium" },
 ];
