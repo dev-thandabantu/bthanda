@@ -71,6 +71,15 @@ const applications: Application[] = [
       "Small AI product studio hiring via Indeed — builds intelligent software systems for clients, production-only, no demos or slide decks. Role: AI-native product development, full-stack (Python/TypeScript, GCP, FastAPI, React/Vite, Firestore/Postgres, Cloud Run), end-to-end delivery. Required: daily use of Claude Code/Cursor/Codex, Anthropic SDK, systems thinking, strong written comms. Applied with updated CV (summary rewritten for this role specifically — mirrors their 'LLMs drive core application logic' framing, names AnchorBase and AgriData as production systems), cover letter leading with production bias and specific architectural decisions (5-path RAG routing, 7-step Inngest pipeline, circuit breaker), Loom video recorded (https://www.loom.com/share/3a503e93d5b543419990d446618dc4be), and typing test passed (71 WPM, 98% accuracy, 81% consistency). Also submitted portfolio link (bthanda.vercel.app). Multi-step process: initial application → video intro → homework assignment → recruitment interview → executive interview → client interview → background check → offer.",
   },
   {
+    company: "MediaVision Interactive / Metis",
+    role: "Senior Software Engineer",
+    date: "2026-05-19",
+    status: "Applied",
+    url: "https://za.indeed.com/viewjob?jk=bfe78112002e4cd8",
+    notes:
+      "Metis is a retail ecommerce intelligence platform (AWS, TypeScript, React, Lambda, CDK, Bedrock) — role posted via MediaVision Interactive on Indeed. Key differentiator: autonomous delivery pipeline — spec-gated PRs, post-deploy monitoring, overnight fix agent. Cover letter led with autonomous pipeline framing ('not a threat, the most interesting part'), AnchorBase and BOQ Generator as production TypeScript systems, honest CDK gap acknowledged, and real AI tooling opinions (well-specified problems vs architectural decisions). Noted UK-aligned hours from Cape Town and prior remote contract experience via Kindred. CV updated same session: AWS surfaced prominently in skills (Lambda, S3, EC2, RDS, API Gateway), AWS attribution corrected to Full Stack Mortgage Platform, AakiTech updated with Flutter/Firebase mobile work (edtech client, Play Store/App Store/Huawei App Gallery) and AWS client bullet — client names removed. Salary: R80,000–R90,000/month.",
+  },
+  {
     company: "DeepMetis",
     role: "Senior AI Engineer",
     date: "2026-05-17",
