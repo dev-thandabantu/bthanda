@@ -10,7 +10,7 @@ export const cvHeader = {
 };
 
 export const cvSummary =
-  "Production AI and software engineer with 4+ years of experience designing, building, and operating end-to-end AI systems in Python and TypeScript. Specialises in RAG pipelines (query refinement, intent routing, blended reranking), multi-step agent orchestration with tool use and structured output, async pipeline architecture (Inngest), and real-time inference APIs with full observability. Hands-on experience with Azure, Docker, CI/CD, and cloud-native deployment. Currently co-founding AnchorBase (London), an AI document search platform with 50+ users, and leading AgriData AI with live government pilots within Zimbabwe's Ministry of Agriculture. Works AI-natively with agentic tooling (Claude, Cursor, Copilot, Antigravity) as core development workflow.";
+  "AI engineer and full-stack builder with 4+ years of experience shipping production systems where LLMs drive core application logic. Specialises in RAG pipelines (query refinement, intent routing, blended reranking), multi-step agent orchestration with tool use and structured output, async pipeline architecture (Inngest), and real-time inference APIs with full observability. Currently co-founding AnchorBase (London), an AI document search platform with 50+ users, and leading AgriData AI with live government pilots within Zimbabwe's Ministry of Agriculture. Owns delivery end-to-end — from initial design through deployment and iteration. Uses Claude Code, Cursor, and agentic tooling as primary development workflow, not as a supplement. Writes production-quality Python and TypeScript across backend and frontend; comfortable across GCP, Azure, Docker, and cloud-native deployment.";
 
 export interface CvJob {
   title: string;
@@ -53,7 +53,7 @@ export const cvJobs: CvJob[] = [
     dates: "2025 – Present",
     bullets: [
       "Built an AI system for Zimbabwe's agricultural sector, processing farmer and extension officer queries via a WhatsApp-native interface.",
-      "Deployed live pilots with the Migratory Pests & Biosecurity Control (MPBC) team within Zimbabwe's Ministry of Agriculture — system has processed 5,000+ messages from 22+ extension officers.",
+      "Deployed live pilots with the Migratory Pests & Biosecurity Control (MPBC) team within Zimbabwe's Ministry of Agriculture — system has processed 5,000+ reports from 22+ extension officers.",
       "Running an active pilot with the Tobacco Research Board (Kutsaga); in contract deliberations with the Zimbabwe Sugarcane Association Experiment Station (ZSAES).",
       "Finalist, Kutsaga Innovation Challenge 2025.",
     ],
