@@ -63,6 +63,14 @@ const applications: Application[] = [
       "Large South African financial services group (insurance, savings, investments). Role: ML Engineer on a data/AI team — model development, deployment, monitoring, and MLOps. JD asked for Python, ML frameworks, Azure/AWS, CI/CD, and experience deploying models to production. Honest gap: no pure ML/data science background (no sklearn pipelines, model training, feature engineering). The fit is on the engineering and deployment side — pipelines, observability, async orchestration, cloud infra — which maps well to production AI work done on AnchorBase, AgriData, BOQ Generator. Decision to apply: came via a personal contact's referral link (friend sent the specific role). Not a perfect fit on paper but the engineering depth is real and the gap is learnable fast, especially with agentic dev tooling. Reasoning: 'what exactly can't I do or learn with my background?' was the framing. Shot taken. CV temporarily reframed for this role: pipeline engineering emphasis, Python first in languages, new 'Pipeline & Orchestration' and 'Observability & Monitoring' skill rows added, AnchorBase location updated to London UK. Cover letter written emphasising production pipeline engineering, observability stack (Sentry, PostHog, structured logging), and async orchestration (Inngest 7-step pipeline) as direct analogues to MLOps concerns. Experience dropdowns: ML engineering 1-2 years, insurance/financial 0 years, similar position 1-2 years. Salary: R70,000/month (R840,000 per annum). CV refactor happened same session: all CV content extracted to src/lib/cvData.ts — single source of truth for web page, PDF, and Word doc.",
   },
   {
+    company: "AI Product Studio (Indeed)",
+    role: "AI Engineer",
+    date: "2026-05-19",
+    status: "Applied",
+    notes:
+      "Small AI product studio hiring via Indeed — builds intelligent software systems for clients, production-only, no demos or slide decks. Role: AI-native product development, full-stack (Python/TypeScript, GCP, FastAPI, React/Vite, Firestore/Postgres, Cloud Run), end-to-end delivery. Required: daily use of Claude Code/Cursor/Codex, Anthropic SDK, systems thinking, strong written comms. Applied with updated CV (summary rewritten for this role specifically — mirrors their 'LLMs drive core application logic' framing, names AnchorBase and AgriData as production systems), cover letter leading with production bias and specific architectural decisions (5-path RAG routing, 7-step Inngest pipeline, circuit breaker), Loom video recorded, and typing test passed (71 WPM, 98% accuracy, 81% consistency). Also submitted portfolio link (bthanda.vercel.app). Multi-step process: initial application → video intro → homework assignment → recruitment interview → executive interview → client interview → background check → offer.",
+  },
+  {
     company: "DeepMetis",
     role: "Senior AI Engineer",
     date: "2026-05-17",
