@@ -88,7 +88,7 @@ export const cvJobs: CvJob[] = [
     dates: "Sep 2023 – Jun 2024",
     bullets: [
       "Led legacy modernisation across multiple C# applications — migrating from ASP.NET Framework to ASP.NET Core and from .NET 6 to .NET 8 LTS, ensuring zero-downtime transitions throughout.",
-      "Sole developer on multiple internal admin tooling projects — built async processing pipelines integrating Azure Storage Queues, Blob Storage, and other Azure services to automate background workloads for operations staff.",
+      "Sole developer on multiple Power Apps — built async processing pipelines integrating Azure Storage Queues, Blob Storage, and other Azure services to automate background workloads for operations staff.",
     ],
   },
   {
