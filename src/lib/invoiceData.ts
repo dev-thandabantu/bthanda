@@ -3,11 +3,14 @@ export const invoiceDate = "19 May 2026";
 
 export const contractor = {
   name: "Dennies & Rewards Construction",
+  address: "10 Isis Dr, Phoenix, Milnerton, 7441",
   phone: "+27 74 990 9420",
-  bankName: "[BANK NAME]",
-  accountHolder: "[ACCOUNT HOLDER]",
-  accountNumber: "[ACCOUNT NUMBER]",
-  branchCode: "[BRANCH CODE]",
+  email: "denniestamdabantu69@gmail.com",
+  bankName: "Capitec Bank",
+  accountType: "Savings Account",
+  accountHolder: "Dennis Tamdabantu",
+  accountNumber: "1561544610",
+  branchCode: "470010",
 };
 
 export const client = {
@@ -19,7 +22,7 @@ export const client = {
 };
 
 export const incidentReport =
-  "Due to bad weather conditions, the boundary wall fell on the sewerage pipe. Some nutec planks also broke. At the gate, an enforcing steel became loose and came off.";
+  "Due to bad weather conditions on 11 May 2026, the boundary wall fell on the sewerage pipe. Some nutec planks also broke. At the gate, an enforcing steel became loose and came off.";
 
 export const lineItems = [
   {
@@ -27,7 +30,7 @@ export const lineItems = [
     amount: 4729,
   },
   {
-    description: "Labour – Wall Rebuild, Plastering, Gate Steel Reinforcement & Sewerage Pipe Repair",
+    description: "Labour – Wall Rebuild, Plastering & Gate Steel Reinforcement",
     amount: 5150,
   },
 ];

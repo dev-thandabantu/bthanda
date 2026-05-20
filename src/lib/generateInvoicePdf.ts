@@ -75,7 +75,7 @@ export async function generateInvoicePdf() {
   pdf.setFont("helvetica", "normal");
   setColor(MID);
 
-  const contractorLines = [contractor.phone];
+  const contractorLines = [contractor.address, contractor.phone, contractor.email];
   const clientLines = [client.address, client.city, client.email, client.phone];
 
   const maxLines = Math.max(contractorLines.length, clientLines.length);
@@ -144,6 +144,7 @@ export async function generateInvoicePdf() {
 
   const bankRows = [
     ["Bank:", contractor.bankName],
+    ["Account Type:", contractor.accountType],
     ["Account Holder:", contractor.accountHolder],
     ["Account Number:", contractor.accountNumber],
     ["Branch Code:", contractor.branchCode],

@@ -78,7 +78,11 @@ export default function InvoicePage() {
             <div>
               <div style={{ fontSize: 10, fontWeight: 700, color: "#888", letterSpacing: 1, marginBottom: 6 }}>FROM (CONTRACTOR)</div>
               <div style={{ fontWeight: 700, fontSize: 14, color: "#1a1a1a", marginBottom: 4 }}>{contractor.name}</div>
-              <div style={{ fontSize: 12, color: "#666" }}>{contractor.phone}</div>
+              <div style={{ fontSize: 12, color: "#666", lineHeight: 1.7 }}>
+                {contractor.address}<br />
+                {contractor.phone}<br />
+                {contractor.email}
+              </div>
             </div>
             <div>
               <div style={{ fontSize: 10, fontWeight: 700, color: "#888", letterSpacing: 1, marginBottom: 6 }}>TO (CLIENT)</div>
@@ -138,6 +142,7 @@ export default function InvoicePage() {
             <table style={{ fontSize: 13, borderCollapse: "collapse" }}>
               {[
                 ["Bank:", contractor.bankName],
+                ["Account Type:", contractor.accountType],
                 ["Account Holder:", contractor.accountHolder],
                 ["Account Number:", contractor.accountNumber],
                 ["Branch Code:", contractor.branchCode],
