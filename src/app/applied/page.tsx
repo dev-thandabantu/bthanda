@@ -96,6 +96,15 @@ const applications: Application[] = [
       "Cape Town-based software startup, product called Conquest One. Stack: Next.js 16 App Router, React 19, TypeScript strict, Mantine, Redux Toolkit, RTK Query, React Hook Form, Zod, PostgreSQL, Drizzle ORM, Better Auth, Entra ID, Azure Blob, Pino, Sentry, Vitest, Playwright. JD explicitly requires Claude Code and AGENTS.md/CLAUDE.md — written by someone who uses agentic tooling daily. Near-perfect fit. Applied via Indeed one-click. Also sent cold email to enquiries@conquest.co.za asking recipient to forward to the right person — led with 'this email was drafted in Claude Code' and called out that we spent real effort trying to find a direct email and failed. Cover letter led with the 'agentic coding non-negotiable' line and mirrored JD language (Plan Mode, Git worktrees, AGENTS.md). Salary: R70,000–R90,000/month.",
   },
   {
+    company: "Sagan",
+    role: "Automation & Integration Engineer",
+    date: "2026-05-20",
+    status: "Applied",
+    url: "https://za.indeed.com/viewjob?jk=HR36818",
+    notes:
+      "Remote, independent contractor. Salary: $1,400–$4,200 USD/month. PST hours (8:30–5:30). Role is IT automation, workflow integration, and AI tooling for a US-facing talent placement company. Deliberately below technical ceiling — applied for the sandbox value: immediate impact, experimentation with N8N/Make/Zapier, and AI-augmented internal tooling. Cover letter was honest about that framing: 'this role is below my current technical ceiling, and that's exactly why I want it.' Led with production AI background then pivoted to the appeal of high-visibility, fast-turnaround automation work. Noted N8N/Make gap honestly but framed custom pipeline experience as equivalent logic.",
+  },
+  {
     company: "DeepMetis",
     role: "Senior AI Engineer",
     date: "2026-05-17",
