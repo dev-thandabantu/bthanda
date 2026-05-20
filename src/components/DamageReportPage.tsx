@@ -12,6 +12,7 @@ const client = {
 };
 
 const incidentDate = "11 May 2026";
+const repairDate = "14 – 16 May 2026";
 const reportDate = "19 May 2026";
 
 const damageItems = [
@@ -22,9 +23,9 @@ const damageItems = [
 ];
 
 const repairsCompleted = [
-  "Boundary wall rebuilt and plastered.",
-  "Broken nutec planks fully replaced.",
-  "Gate steel reinforcement re-secured and fitted.",
+  "Boundary wall rebuilt and plastered (14 – 16 May 2026).",
+  "Broken nutec planks fully replaced (14 – 16 May 2026).",
+  "Gate steel reinforcement re-secured and fitted (14 – 16 May 2026).",
 ];
 
 const outstandingRepairs = [
@@ -117,11 +118,12 @@ async function generateReportPdf() {
   // Meta row
   const metaItems = [
     ["INCIDENT DATE", incidentDate],
+    ["REPAIRS COMPLETED", repairDate],
     ["REPORT DATE", reportDate],
     ["REFERENCE", "WDR-2026-001"],
   ];
   pdf.setFontSize(8.5);
-  const colW = CONTENT_W / metaItems.length;
+  const colW = CONTENT_W / 4;
   for (let i = 0; i < metaItems.length; i++) {
     const x = MARGIN + i * colW;
     pdf.setFont("helvetica", "bold");
@@ -318,8 +320,8 @@ export default function DamageReportPage() {
           </div>
 
           {/* Meta */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 28 }}>
-            {[["INCIDENT DATE", incidentDate], ["REPORT DATE", reportDate], ["REFERENCE", "WDR-2026-001"]].map(([label, val]) => (
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 16, marginBottom: 28 }}>
+            {[["INCIDENT DATE", incidentDate], ["REPAIRS COMPLETED", repairDate], ["REPORT DATE", reportDate], ["REFERENCE", "WDR-2026-001"]].map(([label, val]) => (
               <div key={label}>
                 <div style={{ fontSize: 10, fontWeight: 700, color: "#888", letterSpacing: 1, marginBottom: 3 }}>{label}</div>
                 <div style={{ fontSize: 13, fontWeight: 700, color: "#1a1a1a" }}>{val}</div>
