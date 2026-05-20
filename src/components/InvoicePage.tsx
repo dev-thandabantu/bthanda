@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { generateInvoicePdf } from "@/lib/generateInvoicePdf";
-import { contractor, client, incidentReport, lineItems, invoiceNumber, invoiceDate } from "@/lib/invoiceData";
+import { contractor, client, lineItems, invoiceNumber, invoiceDate } from "@/lib/invoiceData";
 
 const subtotal = lineItems.reduce((s, i) => s + i.amount, 0);
 
@@ -27,7 +27,7 @@ export default function InvoicePage() {
         display: "flex", alignItems: "center", justifyContent: "space-between",
       }}>
         <span style={{ color: "#fff", fontFamily: "helvetica, sans-serif", fontSize: 14, fontWeight: 600 }}>
-          Insurance Claim Invoice — {invoiceNumber}
+          Tax Invoice — {invoiceNumber}
         </span>
         <button
           onClick={handleDownload}
@@ -56,8 +56,9 @@ export default function InvoicePage() {
           {/* Header */}
           <div style={{ borderBottom: "3px solid #1e50a0", paddingBottom: 14, marginBottom: 20 }}>
             <h1 style={{ margin: 0, fontSize: 22, color: "#1e50a0", fontWeight: 700, letterSpacing: 1 }}>
-              INSURANCE CLAIM INVOICE
+              TAX INVOICE
             </h1>
+            <div style={{ marginTop: 6, fontSize: 13, color: "#666" }}>Dennies &amp; Rewards Construction</div>
           </div>
 
           {/* Meta */}
@@ -80,7 +81,7 @@ export default function InvoicePage() {
               <div style={{ fontSize: 12, color: "#666" }}>{contractor.phone}</div>
             </div>
             <div>
-              <div style={{ fontSize: 10, fontWeight: 700, color: "#888", letterSpacing: 1, marginBottom: 6 }}>TO (CLAIMANT)</div>
+              <div style={{ fontSize: 10, fontWeight: 700, color: "#888", letterSpacing: 1, marginBottom: 6 }}>TO (CLIENT)</div>
               <div style={{ fontWeight: 700, fontSize: 14, color: "#1a1a1a", marginBottom: 4 }}>{client.name}</div>
               <div style={{ fontSize: 12, color: "#666", lineHeight: 1.7 }}>
                 {client.address}<br />
@@ -89,17 +90,6 @@ export default function InvoicePage() {
                 {client.phone}
               </div>
             </div>
-          </div>
-
-          {/* Incident report */}
-          <div style={{
-            background: "#f0f4fc", borderLeft: "4px solid #1e50a0",
-            padding: "14px 18px", marginBottom: 32, borderRadius: "0 6px 6px 0",
-          }}>
-            <div style={{ fontSize: 10, fontWeight: 700, color: "#1e50a0", letterSpacing: 1, marginBottom: 6 }}>INCIDENT REPORT</div>
-            <p style={{ margin: 0, fontSize: 13, color: "#444", fontStyle: "italic", lineHeight: 1.65 }}>
-              &ldquo;{incidentReport}&rdquo;
-            </p>
           </div>
 
           {/* Line items table */}
@@ -163,7 +153,7 @@ export default function InvoicePage() {
           {/* Footer */}
           <div style={{ marginTop: 36, borderTop: "1px solid #e8e8e8", paddingTop: 14 }}>
             <p style={{ margin: 0, fontSize: 11, color: "#aaa", fontStyle: "italic" }}>
-              This invoice is submitted in support of an insurance claim for storm/weather damage repairs.
+              Please ensure payment is made directly to Dennies &amp; Rewards Construction using the banking details above.
             </p>
           </div>
         </div>

@@ -1,4 +1,4 @@
-export const invoiceNumber = "INS-2026-001";
+export const invoiceNumber = "DR-2026-001";
 export const invoiceDate = "19 May 2026";
 
 export const contractor = {

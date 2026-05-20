@@ -1,7 +1,7 @@
 import InvoicePage from "@/components/InvoicePage";
 
 export const metadata = {
-  title: "Insurance Claim Invoice",
+  title: "Tax Invoice — Dennies & Rewards Construction",
   robots: "noindex, nofollow",
 };
 

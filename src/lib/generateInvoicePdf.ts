@@ -1,5 +1,5 @@
 import jsPDF from "jspdf";
-import { contractor, client, incidentReport, lineItems, invoiceNumber, invoiceDate } from "./invoiceData";
+import { contractor, client, lineItems, invoiceNumber, invoiceDate } from "./invoiceData";
 
 const MARGIN = 18;
 const PAGE_W = 210;
@@ -27,7 +27,12 @@ export async function generateInvoicePdf() {
   pdf.setFontSize(20);
   pdf.setFont("helvetica", "bold");
   setColor(ACCENT);
-  pdf.text("INSURANCE CLAIM INVOICE", MARGIN, y);
+  pdf.text("TAX INVOICE", MARGIN, y);
+  y += 6;
+  pdf.setFontSize(10);
+  pdf.setFont("helvetica", "normal");
+  setColor(MID);
+  pdf.text("Dennies & Rewards Construction", MARGIN, y);
   y += 2;
   rule(0.8, ACCENT);
   y += 7;
@@ -56,7 +61,7 @@ export async function generateInvoicePdf() {
   pdf.setFont("helvetica", "bold");
   setColor(MID);
   pdf.text("FROM (CONTRACTOR)", MARGIN, y);
-  pdf.text("TO (CLAIMANT)", col2, y);
+  pdf.text("TO (CLIENT)", col2, y);
   y += 4;
 
   pdf.setFontSize(10);
@@ -80,23 +85,6 @@ export async function generateInvoicePdf() {
     y += 4.5;
   }
   y += 6;
-
-  // ── INCIDENT REPORT ──
-  rule(0.3, [210, 210, 210]);
-  y += 5;
-
-  pdf.setFontSize(8);
-  pdf.setFont("helvetica", "bold");
-  setColor(DARK);
-  pdf.text("INCIDENT REPORT", MARGIN, y);
-  y += 4;
-
-  pdf.setFontSize(9);
-  pdf.setFont("helvetica", "italic");
-  setColor(MID);
-  const reportLines = pdf.splitTextToSize(`"${incidentReport}"`, CONTENT_W);
-  pdf.text(reportLines, MARGIN, y);
-  y += reportLines.length * 4.5 + 7;
 
   // ── LINE ITEMS TABLE ──
   rule(0.3, [210, 210, 210]);
@@ -181,7 +169,7 @@ export async function generateInvoicePdf() {
   pdf.setFont("helvetica", "italic");
   setColor([160, 160, 160]);
   pdf.text(
-    "This invoice is submitted in support of an insurance claim for storm/weather damage repairs.",
+    "Please ensure payment is made directly to Dennies & Rewards Construction using the banking details above.",
     MARGIN,
     y
   );
