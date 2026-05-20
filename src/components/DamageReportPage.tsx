@@ -23,9 +23,9 @@ const damageItems = [
 ];
 
 const repairsCompleted = [
-  "Boundary wall rebuilt and plastered (14 – 16 May 2026).",
-  "Broken nutec planks fully replaced (14 – 16 May 2026).",
-  "Gate steel reinforcement re-secured and fitted (14 – 16 May 2026).",
+  "Boundary wall rebuilt and plastered.",
+  "Broken nutec planks fully replaced.",
+  "Gate steel reinforcement re-secured and fitted.",
 ];
 
 const outstandingRepairs = [
