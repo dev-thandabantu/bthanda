@@ -12,7 +12,7 @@ const client = {
 };
 
 const incidentDate = "11 May 2026";
-const repairDate = "14 – 16 May 2026";
+const repairDate = "14 – 18 May 2026";
 const reportDate = "19 May 2026";
 
 const damageItems = [
@@ -23,9 +23,9 @@ const damageItems = [
 ];
 
 const repairsCompleted = [
-  "Boundary wall rebuilt and plastered.",
-  "Broken nutec planks fully replaced.",
-  "Gate steel reinforcement re-secured and fitted.",
+  "Boundary wall rebuilt and plastered (14 – 16 May 2026).",
+  "Gate steel reinforcement re-secured and fitted (14 – 16 May 2026).",
+  "Broken nutec planks fully replaced (18 May 2026).",
 ];
 
 const outstandingRepairs = [
