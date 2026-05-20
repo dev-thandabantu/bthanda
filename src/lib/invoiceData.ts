@@ -1,5 +1,5 @@
 export const invoiceNumber = "DR-2026-001";
-export const invoiceDate = "16 May 2026";
+export const invoiceDate = "19 May 2026";
 
 export const contractor = {
   name: "Dennies & Rewards Construction",
@@ -30,7 +30,7 @@ export const lineItems = [
     amount: 4729,
   },
   {
-    description: "Labour – Wall Rebuild, Plastering & Gate Steel Reinforcement",
+    description: "Labour – Wall Rebuild, Plastering, Gate Steel Reinforcement & Sewerage Pipe Repair",
     amount: 5150,
   },
 ];

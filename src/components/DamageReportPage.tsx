@@ -12,12 +12,12 @@ const client = {
 };
 
 const incidentDate = "11 May 2026";
-const repairDate = "14 – 18 May 2026";
+const repairDate = "14 – 19 May 2026";
 const reportDate = "19 May 2026";
 
 const damageItems = [
   { item: "Boundary wall", detail: "Wall collapsed onto the sewerage pipe due to the force of the storm.", repaired: true },
-  { item: "Sewerage pipe", detail: "Cracked and fractured where the boundary wall fell on it. Sewage leakage observed.", repaired: false },
+  { item: "Sewerage pipe", detail: "Cracked and fractured where the boundary wall fell on it. Sewage leakage observed.", repaired: true },
   { item: "Nutec planks", detail: "Multiple nutec planks along the boundary wall broke and required full replacement.", repaired: true },
   { item: "Gate steel reinforcement", detail: "Enforcing steel at the gate became loose and detached from its fitting.", repaired: true },
 ];
@@ -26,11 +26,10 @@ const repairsCompleted = [
   "Boundary wall rebuilt and plastered (14 – 16 May 2026).",
   "Gate steel reinforcement re-secured and fitted (14 – 16 May 2026).",
   "Broken nutec planks fully replaced (18 May 2026).",
+  "Sewerage pipe repaired (19 May 2026).",
 ];
 
-const outstandingRepairs = [
-  "Sewerage pipe — damaged but not yet repaired. Requires a licensed plumber. Claim submitted for assessment.",
-];
+const outstandingRepairs: string[] = [];
 
 const beforePhotos = [
   "/insurance-photos/before-1.jpg",
