@@ -88,6 +88,14 @@ const applications: Application[] = [
       "Remote contract role — scope, design, and build AI workflows and internal tools for business efficiency. JD: LLMs, RAG, agents, automation platforms (N8N/Zapier/Make.com), API integration, stakeholder communication. CV-only application, no cover letter field. Honest gap: N8N/Zapier/Make.com not in background — custom pipeline experience (Inngest, FastAPI) is the closest analogue. Strong fit on RAG, LLM integration, agents, prompt engineering, fast iteration, and stakeholder translation (AgriData government pilots, AakiTech client delivery).",
   },
   {
+    company: "Conquest",
+    role: "Intermediate Developer",
+    date: "2026-05-20",
+    status: "Applied",
+    notes:
+      "Cape Town-based software startup, product called Conquest One. Stack: Next.js 16 App Router, React 19, TypeScript strict, Mantine, Redux Toolkit, RTK Query, React Hook Form, Zod, PostgreSQL, Drizzle ORM, Better Auth, Entra ID, Azure Blob, Pino, Sentry, Vitest, Playwright. JD explicitly requires Claude Code and AGENTS.md/CLAUDE.md — written by someone who uses agentic tooling daily. Near-perfect fit. Applied via Indeed one-click. Also sent cold email to enquiries@conquest.co.za asking recipient to forward to the right person — led with 'this email was drafted in Claude Code' and called out that we spent real effort trying to find a direct email and failed. Cover letter led with the 'agentic coding non-negotiable' line and mirrored JD language (Plan Mode, Git worktrees, AGENTS.md). Salary: R70,000–R90,000/month.",
+  },
+  {
     company: "DeepMetis",
     role: "Senior AI Engineer",
     date: "2026-05-17",
