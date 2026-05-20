@@ -1,4 +1,4 @@
-export const invoiceNumber = "DR-2026-001";
+export const invoiceNumber = "DRC-2026-031";
 export const invoiceDate = "19 May 2026";
 
 export const contractor = {
@@ -32,5 +32,9 @@ export const lineItems = [
   {
     description: "Labour – Wall Rebuild, Plastering, Gate Steel Reinforcement & Sewerage Pipe Repair",
     amount: 5150,
+  },
+  {
+    description: "Plumbing",
+    amount: 550,
   },
 ];

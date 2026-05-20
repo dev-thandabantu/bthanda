@@ -175,5 +175,5 @@ export async function generateInvoicePdf() {
     y
   );
 
-  pdf.save(`Insurance-Claim-Invoice-${invoiceNumber}.pdf`);
+  pdf.save(`${invoiceNumber} - Dennies & Rewards Construction.pdf`);
 }
